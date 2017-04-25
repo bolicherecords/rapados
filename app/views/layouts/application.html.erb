@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <div>
+      <% if user_signed_in? %>
+          Welcome <%=  current_user.email %>
+          <%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %>
+      <% else %>
+          <%= link_to "Iniciar Sesión", new_user_session_path%> or <%= link_to "Registrarse", new_user_registration_path %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
