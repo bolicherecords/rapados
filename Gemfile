@@ -14,6 +14,7 @@ gem "font-awesome-rails"
 gem "bson_ext"
 gem "devise"
 gem 'cancancan', '~> 1.10'
+gem "rolify"
 
 group :development, :test do
   gem 'byebug', platform: :mri
