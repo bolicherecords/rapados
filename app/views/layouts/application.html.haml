@@ -6,7 +6,41 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+    %link{:href => "https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css", :rel => "stylesheet"}
+
+
+  %body{'ng-app'=>'Tetrapp'}
+    %div{"ng-cloak" => "", "ng-controller" => "ApplicationCtrl"}
+      %md-content.md-padding
+        %md-nav-bar{"md-selected-nav-item" => "currentNavItem", "nav-bar-aria-label" => "navigation links"}
+          %md-nav-item{"md-nav-click" => "goto('page1')", :name => "page1"}
+            Page One
+          %md-nav-item{"md-nav-click" => "goto('page2')", :name => "page2"}
+            Page Two
+          %md-nav-item{"md-nav-click" => "goto('page3')", :name => "page3"}
+            Page Three
+          /
+            these require actual routing with ui-router or ng-route, so they
+            won't work in the demo
+            <md-nav-item md-nav-href="#page4" name="page5">Page Four</md-nav-item>
+            <md-nav-item md-nav-sref="app.page5" name="page4">Page Five</md-nav-item>
+            You can also add options for the <code>ui-sref-opts</code> attribute.
+            <md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">
+            Page Six
+            </md-nav-item>
+        .ext-content
+          External content for `
+          %span> {{currentNavItem}}
+          `.
+        %md-checkbox{"ng-model" => "disableInkBar"} Disable Ink Bar
+
+
+
+
+
+
+
+
     - if user_signed_in?
       = "Welcome #{current_user.email}"
       = link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete

@@ -1,0 +1,11 @@
+{
+  "name": "TetraRails",
+  "authors": [
+    "Gonzalo Godoy Moya <tucocorp@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "1.6.4",
+    "angular-ui-router": "0.4.2",
+    "angular-material": "1.1.4"
+  }
+}
