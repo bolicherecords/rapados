@@ -1,0 +1,14 @@
+- if user_signed_in?
+  -# = "Bienvenido dios #{current_user.full_name}"
+  = current_user.has_role? :admin
+  - if current_user.has_role? :god
+    = render "layouts/menu/god"
+  - elsif current_user.has_role? :admin
+    = render "layouts/menu/admin"
+  - elsif current_user.has_role? :user
+    = render "layouts/menu/user"
+  = link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete
+- else
+  = link_to "Iniciar Sesión", new_user_session_path
+  or
+  = link_to "Registrarse", new_user_registration_path

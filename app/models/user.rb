@@ -1,3 +1,4 @@
+# User model
 class User
   include Mongoid::Document
   rolify
@@ -40,4 +41,8 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  def full_name
+    first_name.present? ? "#{first_name} #{last_name}" : email
+  end
 end
