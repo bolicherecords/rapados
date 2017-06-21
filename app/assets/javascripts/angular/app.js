@@ -1,5 +1,4 @@
-var tetrapp =
-angular.module('Tetrapp', ['ui.router', 'tetraControllers','ngMaterial'])
+angular.module('RapadosApp', ['ui.router', 'rapadosControllers','ngMaterial'])
   .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) { // provider-injector
     $stateProvider.state('example', {
          url: "/example",

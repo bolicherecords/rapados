@@ -1,1 +1,1 @@
-var controllers = angular.module('tetraControllers', [])
+var controllers = angular.module('rapadosControllers', [])
