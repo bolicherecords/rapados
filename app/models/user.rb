@@ -15,8 +15,6 @@ class User
   field :phone,              type: String, default: ""
   field :address,            type: String, default: ""
 
-
-
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -42,6 +40,17 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # == Asociaciones
+  has_many :clients
+  has_many :providers
+  has_many :stores
+  has_many :sales
+  has_many :purchases
+  has_many :stocks
+  has_many :products
+  has_many :dispatchs
+
+  # == Métodos
   def full_name
     first_name.present? ? "#{first_name} #{last_name}" : email
   end
