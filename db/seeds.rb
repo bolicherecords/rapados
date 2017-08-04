@@ -6,10 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@user = User.find_or_create_by(email: "tucocorp@gmail.com", password: "123123")
-@user.add_role :god
+@user = User.find_or_create_by(email: "gonzalo@tetracode.cl", password: "12345678")
 @user.save
+@user.add_role :god
 
-@user = User.find_or_create_by(email: "francisco@tetracode.cl", password: "123123")
-@user.add_role :god
+@user = User.find_or_create_by(email: "francisco@tetracode.cl", password: "12345678")
 @user.save
+@user.add_role :god
+
+@user = User.find_or_create_by(email: "admin@tetracode.cl", password: "12345678")
+@user.save
+@user.add_role :admin
+
+@user = User.find_or_create_by(email: "user@tetracode.cl", password: "12345678")
+@user.save
+@user.add_role :user

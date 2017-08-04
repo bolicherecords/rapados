@@ -1,10 +1,9 @@
 class Client
-
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
   # include GlobalID::Identification
-
+  resourcify
   # == Asociaciones
   has_many  :sales
   belongs_to :user

@@ -1,6 +1,4 @@
 - if user_signed_in?
-  -# = "Bienvenido dios #{current_user.full_name}"
-  = current_user.has_role? :admin
   - if current_user.has_role? :god
     = render "layouts/menu/god"
   - elsif current_user.has_role? :admin
