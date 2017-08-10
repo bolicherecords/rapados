@@ -1,0 +1,9 @@
+.container
+	= form_for(@provider) do |f|
+		%div
+			= f.label :name
+			= f.text_field :name, :maxlength => 12, placeholder: "Ejemplo: Nombre Empresa Anal",class: "form-control", autofocus: true
+		%div
+			%br
+				= f.submit "Guardar", class: "btn btn-success guardar_cliente"
+				= link_to 'Volver', providers_path , class: "btn btn-link"

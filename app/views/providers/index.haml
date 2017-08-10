@@ -1,0 +1,7 @@
+.container{ 'ng-controller' => 'ProviderController', 'ng-init' => "getProviders(#{@providers.to_json})"}
+	.provider_list{'ng-repeat' => 'provider in providers', 'ng-cloack'=>''}
+		{{provider.name}} -
+		{{provider.phone}} -
+		{{provider.email}}
+		= link_to 'Ver', provider_path(1), class: "" 
+		
