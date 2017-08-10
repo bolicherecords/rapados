@@ -12,4 +12,5 @@
   %body{'ng-app'=>'RapadosApp'}
     %div{"ng-cloak" => "", "ng-controller" => "ApplicationCtrl"}
       = render "layouts/navigation"
-    = yield
+      %ui-view
+        = yield

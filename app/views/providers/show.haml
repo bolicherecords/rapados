@@ -1,0 +1,5 @@
+.container{ 'ng-controller' => 'ProviderController'}
+  %h2
+    Hola {{provider.name}} {{provider.email}} {{provider.phone}}
+
+  = link_to 'Volver', providers_path
