@@ -1,0 +1,14 @@
+.container
+	= form_for(@product) do |f|
+		%div
+			= f.label :name
+			= f.text_field :name, placeholder: "Nombre proveedor",class: "form-control", autofocus: true
+			= f.label :description
+			= f.text_field :description, placeholder: "Descripción",class: "form-control", autofocus: true
+			= f.label :unit
+			= f.text_field :unit, placeholder: "Unidad",class: "form-control", autofocus: true
+
+		%div
+			%br
+				= f.submit "Guardar", class: "btn btn-success"
+				= link_to 'Volver', products_path , class: "btn btn-link"

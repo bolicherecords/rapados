@@ -1,0 +1,14 @@
+%h1 Clients#index
+%p Find me in app/views/clients/index.html.haml
+
+%ul
+  = @clients.each do |client|
+    %li
+      = link_to client.name, client.name
+      = client.name
+      = client.phone
+      = client.email
+      = link_to 'Editar', edit_client_path(client)
+      = link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }
+
+= link_to 'Crear Nuevo', new_client_path

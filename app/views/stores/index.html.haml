@@ -1,0 +1,17 @@
+%h1 Stores#index
+%p Find me in app/views/stores/index.html.haml
+
+%ul
+  = @stores.each do |store|
+    %li
+      = link_to store.name, store.name
+      = store.name
+      = store.city
+      = store.country
+      = store.phone
+      = store.address
+      = store.timezone
+      = link_to 'Editar', edit_store_path(store)
+      = link_to 'Eliminar', store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta tienda?' }
+
+= link_to 'Crear Nuevo', new_store_path

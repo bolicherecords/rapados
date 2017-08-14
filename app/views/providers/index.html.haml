@@ -1,0 +1,13 @@
+%h1 Providers#index
+%p Find me in app/views/providers/index.html.haml
+
+%ul
+  = @providers.each do |provider|
+    %li
+      = link_to provider.name, provider.name
+      = provider.phone
+      = provider.email
+      = link_to 'Editar', edit_provider_path(provider)
+      = link_to 'Eliminar', provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }
+
+= link_to 'Crear Nuevo', new_provider_path

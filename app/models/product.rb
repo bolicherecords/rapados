@@ -1,6 +1,6 @@
 class Product
-	
-  # == Includes
+
+	# == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
   # include GlobalID::Identification
@@ -13,13 +13,16 @@ class Product
   belongs_to  :user
 
   # == Atributos
-  field :name,        type: String, default: ""
-  field :description, type: String, default: ""
-  field :unit,        type: String, default: ""
+  field :name,        type: String, default: ''
+  field :description, type: String, default: ''
+  field :unit,        type: String, default: ''
 
   # == Validaciones
-  validates_presence_of     :name,  message: "Debes ingresar un nombre."
+  validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Métodos
 
+	def purchases
+		Purchase.in(id: purchase_details.pluck(:pucharse_id))
+	end
 end
