@@ -10,8 +10,8 @@ class Store
   has_many   :sales
   has_many   :stocks
   belongs_to :user
-
-  #TODO: Investigar relación doble DISPATCH
+  has_many :origins, class_name: "Dispatch", inverse_of: :origin
+  has_many :destinations, class_name: "Dispatch", inverse_of: :destination
 
   # == Atributos
   field :name,        type: String, default: ""
