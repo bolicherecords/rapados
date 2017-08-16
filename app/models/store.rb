@@ -7,7 +7,6 @@ class Store
 
   # == Asociaciones
 	has_many   :purchase_details
-  has_many   :purchases, through: :purchase_details
   has_many   :sales
   has_many   :stocks
   belongs_to :user
@@ -27,5 +26,4 @@ class Store
   validates_presence_of     :name,  message: "Debes ingresar un nombre."
 
   # == Métodos
-
 end

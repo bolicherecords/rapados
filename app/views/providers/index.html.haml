@@ -2,7 +2,7 @@
 %p Find me in app/views/providers/index.html.haml
 
 %ul
-  = @providers.each do |provider|
+  - @providers.each do |provider|
     %li
       = link_to provider.name, provider.name
       = provider.phone

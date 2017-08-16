@@ -2,7 +2,7 @@
 %p Find me in app/views/clients/index.html.haml
 
 %ul
-  = @clients.each do |client|
+  - @clients.each do |client|
     %li
       = link_to client.name, client.name
       = client.name

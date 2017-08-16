@@ -2,7 +2,7 @@
 %p Find me in app/views/products/index.html.haml
 
 %ul
-  = @products.each do |product|
+  - @products.each do |product|
     %li
       = link_to product.name, product.name
       = product.name
