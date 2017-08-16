@@ -1,13 +1,20 @@
-%h1 Providers#index
-%p Find me in app/views/providers/index.html.haml
+%h1 Proveedores
 
-%ul
-  - @providers.each do |provider|
-    %li
-      = link_to provider.name, provider.name
-      = provider.phone
-      = provider.email
-      = link_to 'Editar', edit_provider_path(provider)
-      = link_to 'Eliminar', provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }
+%table.table
+  %th Nombre
+  %th Teléfono de contacto
+  %th Correo Electrónico
+  %th
+    - @providers.each do |provider|
+      %tr
+        %td
+          = link_to provider.name, provider.name
+        %td
+          = provider.phone
+        %td
+          = provider.email
+        %td
+          = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
+          = link_to 'Eliminar', provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger'
 
-= link_to 'Crear Nuevo', new_provider_path, class: 'btn btn-raised btn-success'
+= link_to 'Nuevo Proveedor', new_provider_path, class: 'btn btn-raised btn-success'
