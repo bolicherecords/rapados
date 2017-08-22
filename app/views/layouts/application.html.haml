@@ -10,39 +10,38 @@
 
 
   %body
-    -# #wrapper
-    -#   / Sidebar
-    -#   #sidebar-wrapper
-    -#     %ul.sidebar-nav
-    -#       %li.sidebar-brand
-    -#         %a{:href => "#"}
-    -#           Start Bootstrap
-    -#       %li
-    -#         %a{:href => "#"} Dashboard
-    -#       %li
-    -#         %a{:href => "#"} Shortcuts
-    -#       %li
-    -#         %a{:href => "#"} Overview
-    -#       %li
-    -#         %a{:href => "#"} Events
-    -#       %li
-    -#         %a{:href => "#"} About
-    -#       %li
-    -#         %a{:href => "#"} Services
-    -#       %li
-    -#         %a{:href => "#"} Contact
-    -#   / /#sidebar-wrapper
-    -#   / Page Content
-    -#   #page-content-wrapper
-    -#     .container-fluid
-    -#       %h1 Simple Sidebar
-    -#       %p This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.
-    -#       %p
-    -#         Make sure to keep all page content within the
-    -#         = succeed "." do
-    -#           %code #page-content-wrapper
-    -#       %a#menu-toggle.btn.btn-secondary{:href => "#menu-toggle"} Toggle Menu
-    -#   / /#page-content-wrapper
+    .container-fluid
+      .navbar.navbar-inverse
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "#"} Rapados
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          .nav.navbar-nav
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} One more separated link
 
-    = render "layouts/navigation"
-    = yield
+                  = render "layouts/navigation"
+      .row
+        .col-xs-6.col-md-1
+        .col-xs-6.col-md-10
+          = yield
+        .col-xs-6.col-md-1

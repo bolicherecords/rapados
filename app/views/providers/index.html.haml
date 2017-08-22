@@ -1,5 +1,10 @@
-%h1 Proveedores
+%h1.header
+  Proveedores
 
+%br
+%br
+%br
+%br
 %table.table
   %th Nombre
   %th Teléfono de contacto
@@ -8,7 +13,7 @@
     - @providers.each do |provider|
       %tr
         %td
-          = link_to provider.name, provider.name
+          = link_to provider.name, provider
         %td
           = provider.phone
         %td
