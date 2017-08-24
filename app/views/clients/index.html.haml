@@ -1,14 +1,24 @@
-%h1 Clients#index
-%p Find me in app/views/clients/index.html.haml
+%h1.header
+  Listado de Clientes
+%br
+%br
+%br
+%br
+%table.table
+  %th Nombre
+  %th Teléfono de Contacto
+  %th Correo Electrónico
+  %th
+    - @clients.each do |client|
+      %tr
+        %td
+          = link_to client.name, client
+        %td
+          = client.phone
+        %td
+          = client.email
+        %td
+          = link_to 'Editar', edit_client_path(client), class: 'btn btn-raised btn-primary'
+          = link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger'
 
-%ul
-  - @clients.each do |client|
-    %li
-      = link_to client.name, client.name
-      = client.name
-      = client.phone
-      = client.email
-      = link_to 'Editar', edit_client_path(client)
-      = link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }
-
-= link_to 'Crear Nuevo', new_client_path
+= link_to 'Crear Nuevo', new_client_path, class: 'btn btn-raised btn-success'
