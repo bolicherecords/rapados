@@ -50,6 +50,8 @@ class User
   has_many :products
   has_many :dispatchs
 
+  belongs_to :store
+
   # == Métodos
   def full_name
     first_name.present? ? "#{first_name} #{last_name}" : email

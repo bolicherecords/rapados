@@ -12,6 +12,7 @@ class Store
   belongs_to :user
   has_many :origins, class_name: "Dispatch", inverse_of: :origin
   has_many :destinations, class_name: "Dispatch", inverse_of: :destination
+  has_many :users
 
   # == Atributos
   field :name,        type: String, default: ""

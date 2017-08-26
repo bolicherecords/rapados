@@ -5,17 +5,17 @@ class SalesController < ApplicationController
     @sales = Sale.all
   end
 
-  def show; end
+  def show
+
+  end
 
   def new
     @sale = Sale.new
   end
 
   def create
-    @sale = Sale.new(sale_params)
-    @sale.user = current_user
-    @sale.save
-    redirect_to @sale, notice: 'Sale was successfully created.'
+    sale = Sale.create(client_id: sale_params[:client_id], user: current_user, store: current_user.store)
+    redirect_to sale, notice: 'Venta creada exitosamente.'
   end
 
   def edit; end
@@ -33,7 +33,7 @@ class SalesController < ApplicationController
   private
 
   def sale_params
-    params.require(:sale).permit(:name, :phone, :email)
+    params.require(:sale).permit(:client_id)
   end
 
   def set_sale

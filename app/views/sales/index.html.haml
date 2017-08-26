@@ -1,0 +1,12 @@
+%h1 Sales#index
+%p Find me in app/views/sales/index.html.haml
+
+%ul
+  - @sales.each do |sale|
+    %li
+      = link_to sale.client.name, sale.client
+      = link_to sale.store.name, sale.store
+      = link_to 'Editar', edit_sale_path(sale)
+      = link_to 'Eliminar', sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta venta?' }
+
+= link_to 'Crear Nuevo', new_sale_path

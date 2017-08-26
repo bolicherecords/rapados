@@ -16,6 +16,7 @@ class Product
   field :name,        type: String, default: ''
   field :description, type: String, default: ''
   field :unit,        type: String, default: ''
+  field :barcode,     type: String, default: ''
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
