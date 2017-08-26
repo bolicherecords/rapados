@@ -19,6 +19,10 @@
           = client.email
         %td
           = link_to 'Editar', edit_client_path(client), class: 'btn btn-raised btn-primary'
-          = link_to 'Eliminar', client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger'
+          = link_to client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-= link_to 'Crear Nuevo', new_client_path, class: 'btn btn-raised btn-success'
+= link_to new_client_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Cliente

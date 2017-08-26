@@ -19,6 +19,11 @@
           = product.unit
         %td
           = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'
-          = link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-danger'
+          = link_to product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-= link_to 'Crear Nuevo', new_product_path, class: 'btn btn-raised btn-success'
+
+= link_to new_product_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Producto

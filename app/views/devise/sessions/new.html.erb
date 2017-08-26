@@ -1,28 +1,29 @@
-<div class="row">
-  <div class="col-xs-8 col-md-6">
-
-        <h2>Iniciar Sesion</h2>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :"Correo Electrónico", class: "form-label" %><br />
-            <%= f.email_field :email, autofocus: true, class: "form-control" %>
-          </div>
-          </br>
-          <div class="field">
-            <%= f.label :password, "Contraseña" %><br />
-            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-          </div>
-          </br>
-          <% if devise_mapping.rememberable? -%>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xs-8 col-md-6 col-md-offset-3">
+      <h2>Iniciar Sesion</h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, "Recordarme" %>
+              <%= f.label :"Correo Electrónico", class: "form-label" %><br />
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
             </div>
-          <% end -%>
-          <div class="actions">
-            <%= f.submit "Ingresar", class:"btn btn-raised btn-success" %>
-          </div>
-        <% end %>
+            </br>
+            <div class="field">
+              <%= f.label :password, "Contraseña" %><br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+            </br>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, "Recordarme" %>
+              </div>
+            <% end -%>
+            <div class="actions">
+              <%= f.submit "Ingresar", class:"btn btn-raised btn-success btn-lg" %>
+            </div>
+          <% end %>
 
+    </div>
   </div>
 </div>

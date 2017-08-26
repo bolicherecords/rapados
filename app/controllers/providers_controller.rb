@@ -15,6 +15,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(provider_params)
     @provider.user = current_user
     @provider.save
+    flash[:success] = 'El proveedor ha sido creado con éxito.'
     redirect_to @provider, notice: 'Provider was successfully created.'
   end
 
@@ -22,12 +23,14 @@ class ProvidersController < ApplicationController
 
   def update
     @provider.update(provider_params)
-    redirect_to @provider, notice: 'Provider was successfully updated.'
+    flash[:success] = 'El proveedor ha sido actualizado con éxito.'
+    redirect_to providers_url
   end
 
   def destroy
     @provider.destroy
-    redirect_to providers_url, notice: 'Provider was successfully destroyed.'
+    flash[:success] = 'El proveedor ha sido creado con éxito.'
+    redirect_to providers_url
   end
 
   private
