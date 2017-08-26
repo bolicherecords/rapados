@@ -66,6 +66,8 @@ GEM
     ffi (1.9.18)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (4.0.7)
@@ -206,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   font-awesome-rails
+  font-awesome-sass (~> 4.3.0)
   haml-rails (~> 0.9)
   jbuilder (~> 2.5)
   jquery-rails
@@ -225,4 +228,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.12.5
+   1.15.0

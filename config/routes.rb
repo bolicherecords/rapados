@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   resources :clients
   resources :purchases
   resources :sales
+
+  # devise_for :users, :path_prefix => 'my'
+  devise_scope :user do
+    get 'users/sign_out' => 'devise/sessions#destroy'
+  end
 end
