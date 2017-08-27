@@ -1,19 +1,18 @@
+%h1.header
+	Agregar Productos	
+%br
+%br
 .container
-	.p#notice
-		= notice
-
-	.h2 Venta
 	%div
-		%ul
-			%li
-				Local:
-				= @sale.store.name
-			%li
-				Cliente:
-				= @sale.client.name
-			%li
-				Cajero:
-				= @sale.user.email
+		%p
+			Local:
+			= @sale.store.name
+		%p
+			Cliente:
+			= @sale.client.name
+		%p
+			Cajero:
+			= @sale.user.email
 	%hr
 
 	%div
@@ -21,10 +20,18 @@
 			= form_tag(sale_details_path(sale: @sale), :method => "post") do
 				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true
 				= submit_tag "Agregar", class: "btn btn-success"
-	
+				= submit_tag "Finalizar", class: "btn btn-danger"
+
 	.h4 Productos
 	%div
 		%br
+		%table.table
+			%th Nombre
+			%th Descripción
+			%th
 			- @sale.sale_details.each do |sale_detail|
-				%ul
-					= sale_detail.product.name
+				%tr
+					%td
+						= sale_detail.product.name
+					%td
+						= sale_detail.product.description

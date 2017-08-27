@@ -60,10 +60,12 @@ class User
   def role
     return 'Dios' if has_role? :god
     return 'Admin' if has_role? :admin
+    return 'Seller' if has_role? :seller
   end
 
   def label_role
     return 'primary' if has_role? :god
     return 'success' if has_role? :admin
+    return 'info' if has_role? :seller
   end
 end

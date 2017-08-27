@@ -1,12 +1,26 @@
-%h1 Sales#index
-%p Find me in app/views/sales/index.html.haml
+%h1.header
+  Listado de Ventas
+%br
+%br
+%table.table
+  %th Cliente
+  %th Local
+  %th Vendedor
+  %th
+    - @sales.each do |sale|
+      %tr
+        %td
+          = link_to sale.client.name, sale.client
+        %td
+          = sale.store.name
+        %td
+          = sale.user.email
+        %td
+          = link_to 'Editar', edit_sale_path(sale), class: 'btn btn-raised btn-primary'
+          = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este salee?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-%ul
-  - @sales.each do |sale|
-    %li
-      = link_to sale.client.name, sale.client
-      = link_to sale.store.name, sale.store
-      = link_to 'Editar', edit_sale_path(sale)
-      = link_to 'Eliminar', sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta venta?' }
-
-= link_to 'Crear Nuevo', new_sale_path
+= link_to new_sale_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nueva Venta

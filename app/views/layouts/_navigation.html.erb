@@ -19,8 +19,8 @@
           <%= render "layouts/menu/god" %>
         <% elsif current_user.has_role? :admin %>
           <%= render "layouts/menu/admin" %>
-        <% elsif current_user.has_role? :user %>
-          <%= render "layouts/menu/user" %>
+        <% elsif current_user.has_role? :seller %>
+          <%= render "layouts/menu/seller" %>
         <% end %>
       </ul>
     <%end%>
