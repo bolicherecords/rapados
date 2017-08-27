@@ -56,4 +56,14 @@ class User
   def full_name
     first_name.present? ? "#{first_name} #{last_name}" : email
   end
+
+  def role
+    return 'Dios' if has_role? :god
+    return 'Admin' if has_role? :admin
+  end
+
+  def label_role
+    return 'primary' if has_role? :god
+    return 'success' if has_role? :admin
+  end
 end

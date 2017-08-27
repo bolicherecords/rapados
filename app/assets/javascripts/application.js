@@ -22,3 +22,4 @@
 //= require turbolinks
 //= require_tree .
 //= require_tree ./angular
+//= require bootstrap/dist/js/bootstrap.min.js

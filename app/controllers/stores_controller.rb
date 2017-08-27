@@ -15,19 +15,22 @@ class StoresController < ApplicationController
     @store = Store.new(store_params)
     @store.user = current_user
     @store.save
-    redirect_to @store, notice: 'Store was successfully created.'
+    flash[:success] = 'La tienda ha sido creada con éxito.'
+    redirect_to @store
   end
 
   def edit; end
 
   def update
     @store.update(store_params)
-    redirect_to @store, notice: 'Store was successfully updated.'
+    flash[:success] = 'La tienda ha sido actualizada con éxito.'
+    redirect_to stores_url
   end
 
   def destroy
     @store.destroy
-    redirect_to stores_url, notice: 'Store was successfully destroyed.'
+    flash[:success] = 'La tienda ha sido eliminada con éxito.'
+    redirect_to stores_url
   end
 
   private

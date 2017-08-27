@@ -1,14 +1,29 @@
-%h1 Products#index
-%p Find me in app/views/products/index.html.haml
+%h1.header
+  Listado de Productos
+%br
+%br
+%br
+%br
+%table.table
+  %th Nombre
+  %th Descripción
+  %th Unidad
+  %th
+    - @products.each do |product|
+      %tr
+        %td
+          = link_to product.name, product
+        %td
+          = product.description
+        %td
+          = product.unit
+        %td
+          = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'
+          = link_to product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-%ul
-  - @products.each do |product|
-    %li
-      = link_to product.name, product.name
-      = product.name
-      = product.description
-      = product.unit
-      = link_to 'Editar', edit_product_path(product)
-      = link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }
 
-= link_to 'Crear Nuevo', new_product_path
+= link_to new_product_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Producto

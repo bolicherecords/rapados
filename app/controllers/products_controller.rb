@@ -15,19 +15,22 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     @product.save
-    redirect_to @product, notice: 'Product was successfully created.'
+    flash[:success] = 'El producto ha sido creado con éxito.'
+    redirect_to @product
   end
 
   def edit; end
 
   def update
     @product.update(product_params)
-    redirect_to @product, notice: 'Product was successfully updated.'
+    flash[:success] = 'El producto ha sido actualizado con éxito.'
+    redirect_to products_url
   end
 
   def destroy
     @product.destroy
-    redirect_to products_url, notice: 'Product was successfully destroyed.'
+    flash[:success] = 'El producto ha sido creado con éxito.'
+    redirect_to products_url
   end
 
   private

@@ -11,6 +11,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mongoid', '~> 6.1.0'
 gem "haml-rails", "~> 0.9"
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.3.0'
 gem "bson_ext"
 gem "devise"
 gem 'cancancan', '~> 1.10'

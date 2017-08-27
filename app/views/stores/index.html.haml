@@ -1,5 +1,5 @@
 %h1.header
-  Proveedores
+  Listado de Tiendas
 
 %br
 %br
@@ -29,6 +29,10 @@
           = store.timezone
         %td
           = link_to 'Editar', edit_store_path(store), class: 'btn btn-raised btn-primary'
-          = link_to 'Eliminar', store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta tienda?' }, class: 'btn btn-raised btn-danger'
+          = link_to store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta tienda?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-= link_to 'Nuevo Proveedor', new_store_path, class: 'btn btn-raised btn-success'
+= link_to new_store_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nueva Tienda

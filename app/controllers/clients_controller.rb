@@ -15,19 +15,22 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     @client.user = current_user
     @client.save
-    redirect_to @client, notice: 'Client was successfully created.'
+    flash[:success] = 'El cliente ha sido creado con éxito.'
+    redirect_to @client
   end
 
   def edit; end
 
   def update
     @client.update(client_params)
-    redirect_to @client, notice: 'Client was successfully updated.'
+    flash[:success] = 'El cliente ha sido actualizado con éxito.'
+    redirect_to clients_url
   end
 
   def destroy
     @client.destroy
-    redirect_to clients_url, notice: 'Client was successfully destroyed.'
+    flash[:success] = 'El cliente ha sido eliminado con éxito.'
+    redirect_to clients_url
   end
 
   private

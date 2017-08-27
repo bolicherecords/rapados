@@ -1,8 +1,5 @@
 %h1.header
-  Proveedores
-
-%br
-%br
+  Listado de Proveedores
 %br
 %br
 %table.table
@@ -20,6 +17,11 @@
           = provider.email
         %td
           = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
-          = link_to 'Eliminar', provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger'
+          = link_to provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
 
-= link_to 'Nuevo Proveedor', new_provider_path, class: 'btn btn-raised btn-success'
+
+= link_to new_provider_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Proveedor
