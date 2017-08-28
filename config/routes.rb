@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root to: 'welcome#index'
   devise_for :users
-  resources :providers
+  resources :providers do
+    collection do
+      get :desactivated
+      get 'toggle_activated/:id' => 'providers#desactivated', as: :toggle_activated
+    end
+  end
   resources :stores
   resources :products
   resources :clients
@@ -19,5 +24,5 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
-  
+
 end

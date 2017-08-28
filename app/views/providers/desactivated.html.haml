@@ -1,13 +1,18 @@
-%h2.header
-  Listado de Proveedores
+%div{style: "display:inline-flex"}
+  %h2.header
+    Listado de Proveedores
+  %div{style: "margin-left:1em;margin-top:2em;"}
+    .label.label-default
+      Desctivados
 %hr
+
 = link_to new_provider_path, class: 'btn btn-raised btn-success' do
   %i.fa.fa-plus-circle
   Nuevo Proveedor
-
-= link_to desactivated_providers_path(), class: 'btn btn-info' do
+= link_to providers_path(), class: 'btn btn-info' do
   %i.fa.fa-edit
-  Proveedores Descativados
+  Proveedores Activados
+
 %br
 %br
 %table.table

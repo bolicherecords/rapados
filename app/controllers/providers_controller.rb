@@ -33,6 +33,10 @@ class ProvidersController < ApplicationController
     redirect_to providers_url
   end
 
+  def desactivated
+    @providers = Provider.where(status: 0)
+  end
+
   private
 
   def provider_params

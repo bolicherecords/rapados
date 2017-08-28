@@ -14,6 +14,7 @@ class Provider
   field :document_id, type: String, default: ""
   field :phone,       type: String, default: ""
   field :email,       type: String, default: ""
+  field :status,      type: Integer, default: 1
 
   # == Validaciones
   validates_presence_of     :name,  message: "Debes ingresar un nombre."
