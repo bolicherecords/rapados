@@ -21,3 +21,6 @@
 @user = User.find_or_create_by(email: "seller@tetracode.cl", password: "12345678")
 @user.save
 @user.add_role :seller
+
+# Remove Role
+#@user.remove_role :admin

@@ -1,5 +1,5 @@
 %h1.header
-	Agregar Productos	
+	Agregar Productos
 %br
 %br
 .container
@@ -15,10 +15,11 @@
 			= @sale.user.email
 	%hr
 
-	%div
-		%br
-			= form_tag(sale_details_path(sale: @sale), :method => "post") do
-				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true
+	.row
+		= form_tag(sale_details_path(sale: @sale), :method => "post") do
+			.col-md-4
+				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
+			.col-md-2
 				= submit_tag "Agregar", class: "btn btn-success"
 				= submit_tag "Finalizar", class: "btn btn-danger"
 

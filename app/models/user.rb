@@ -50,9 +50,9 @@ class User
   has_many :products
   has_many :dispatchs
 
-  belongs_to :store
+  belongs_to :store, optional: true
 
-  # == Métodos
+  # == Metodos
   def full_name
     first_name.present? ? "#{first_name} #{last_name}" : email
   end
@@ -60,7 +60,7 @@ class User
   def role
     return 'Dios' if has_role? :god
     return 'Admin' if has_role? :admin
-    return 'Seller' if has_role? :seller
+    return 'Vendedor' if has_role? :seller
   end
 
   def label_role

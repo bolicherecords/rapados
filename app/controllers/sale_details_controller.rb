@@ -4,11 +4,11 @@ class SaleDetailsController < ApplicationController
     product = Product.where(barcode: params[:barcode]).first
     if product.present?
       SaleDetail.create(product: product, sale: params[:sale])
-      notice = 'Producto agregado exitosamente.'
+      flash[:success] = 'Producto agregado exitosamente.'
     else
-      notice = 'Código de barra no registrado'
+      flash[:danger] = 'Código de barra no registrado'
     end
-    redirect_to :back, notice: notice
+    redirect_to :back
   end
 
   private
@@ -16,5 +16,4 @@ class SaleDetailsController < ApplicationController
   def sale_params
     params.require(:sale_details).permit(:barcode, :sale)
   end
-
 end

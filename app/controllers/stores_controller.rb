@@ -15,7 +15,7 @@ class StoresController < ApplicationController
     @store = Store.new(store_params)
     @store.user = current_user
     @store.save
-    flash[:success] = 'La tienda ha sido creada con éxito.'
+    flash[:success] = 'El local ha sido creado con éxito.'
     redirect_to @store
   end
 
@@ -23,13 +23,13 @@ class StoresController < ApplicationController
 
   def update
     @store.update(store_params)
-    flash[:success] = 'La tienda ha sido actualizada con éxito.'
+    flash[:success] = 'El local ha sido actualizado con éxito.'
     redirect_to stores_url
   end
 
   def destroy
     @store.destroy
-    flash[:success] = 'La tienda ha sido eliminada con éxito.'
+    flash[:success] = 'El local ha sido eliminado con éxito.'
     redirect_to stores_url
   end
 

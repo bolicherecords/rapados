@@ -13,16 +13,16 @@
 
 %li.dropdown
   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-    Tiendas
+    Locales
     %span.caret
   %ul.dropdown-menu
     %li
       = link_to new_store_path do
         %i.fa.fa-plus-circle
-        Nueva Tienda
+        Nuevo Local
     %li.divider{:role => "separator"}
     %li
-      = link_to "Ver Tiendas", stores_path
+      = link_to "Ver Locales", stores_path
 %li.dropdown
   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
     Productos
