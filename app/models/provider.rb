@@ -6,7 +6,7 @@ class Provider
   # include GlobalID::Identification
 
   # == Asociaciones
-  has_many  :purchases
+  has_many :purchases
   belongs_to :user
 
   # == Atributos
@@ -17,7 +17,7 @@ class Provider
   field :status,      type: Integer, default: 1
 
   # == Validaciones
-  validates_presence_of     :name,  message: "Debes ingresar un nombre."
+  validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Métodos
   def prev

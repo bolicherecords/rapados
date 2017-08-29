@@ -1,8 +1,8 @@
 class ProvidersController < ApplicationController
-  before_action :set_provider, only: [:show, :edit, :update, :destroy]
+  before_action :set_provider, only: [:show, :edit, :update, :destroy, :toggle_activated, :toggle_desactivated]
 
   def index
-    @providers = Provider.all
+    @providers = Provider.where(status: 1)
   end
 
   def show; end
@@ -35,6 +35,18 @@ class ProvidersController < ApplicationController
 
   def desactivated
     @providers = Provider.where(status: 0)
+  end
+
+  def toggle_activated
+    @provider.update!(status: 1)
+    flash[:success] = 'El proveedor ha sido activado con éxito.'
+    redirect_to desactivated_providers_path
+  end
+
+  def toggle_desactivated
+    @provider.update!(status: 0)
+    flash[:success] = 'El proveedor ha sido desactivado con éxito.'
+    redirect_to providers_url
   end
 
   private

@@ -2,7 +2,7 @@
   %h2.header
     Listado de Proveedores
   %div{style: "margin-left:1em;margin-top:2em;"}
-    .label.label-default
+    .label.label-warning
       Desctivados
 %hr
 
@@ -29,6 +29,7 @@
         %td
           = provider.email
         %td
+          = link_to 'Activar', toggle_activated_providers_path(provider), class: 'btn btn-raised btn-success'
           = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
           = link_to provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
