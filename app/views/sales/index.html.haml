@@ -6,6 +6,7 @@
   %th Cliente
   %th Local
   %th Vendedor
+  %th Estado
   %th
     - @sales.each do |sale|
       %tr
@@ -15,6 +16,8 @@
           = sale.store.name
         %td
           = sale.user.email
+        %td
+          = sale.status_name
         %td
           = link_to 'Ver', sale_path(sale), class: 'btn btn-raised btn-success'
           = link_to 'Editar', edit_sale_path(sale), class: 'btn btn-raised btn-primary'

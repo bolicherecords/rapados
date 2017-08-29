@@ -18,6 +18,11 @@ gem 'cancancan', '~> 1.10'
 gem "rolify"
 gem "bower-rails"
 
+#Decorators
+gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
+gem 'draper'
+
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
