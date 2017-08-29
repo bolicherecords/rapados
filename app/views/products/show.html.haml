@@ -1,5 +1,32 @@
-.jumbotron
-  %h1
-    = @product.name
-    = @product.description
-    = @product.unit
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        Panel Control
+      .panel-body
+        = link_to edit_product_path(@product), class: 'btn btn-link' do
+          %i.fa.fa-edit
+          Editar Producto
+        = link_to @product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-trash-o
+          Eliminar Producto
+
+  .col-md-9
+    .title
+      Producto:
+      = @product.name
+    %br
+    %br
+    %table.table
+      %tr
+        %td
+          %strong
+            Descripción:
+        %td
+          = @product.description
+      %tr
+        %td
+          %strong
+            Unidad
+        %td
+          = @product.unit

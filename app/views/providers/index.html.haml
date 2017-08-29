@@ -1,11 +1,9 @@
-%div{style: "display:inline-flex"}
-  %h2.header
-    Listado de Proveedores
+.title
+  Listado de Proveedores
 %hr
 = link_to new_provider_path, class: 'btn btn-raised btn-success' do
   %i.fa.fa-plus-circle
   Nuevo Proveedor
-
 = link_to desactivated_providers_path(), class: 'btn btn-info' do
   %i.fa.fa-edit
   Proveedores Descativados
@@ -25,7 +23,7 @@
         %td
           = provider.email
         %td
-          = link_to 'Desactivar', toggle_desactivated_providers_path(provider), class: 'btn btn-raised btn-warning'
+          = link_to 'Desactivar', edit_provider_path(provider, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
           = link_to provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o

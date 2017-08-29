@@ -1,7 +1,9 @@
-%h1.header
+.title
   Listado de Productos
-%br
-%br
+%hr
+= link_to new_product_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Producto
 %br
 %br
 %table.table
@@ -22,8 +24,3 @@
           = link_to product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar
-
-
-= link_to new_product_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nuevo Producto

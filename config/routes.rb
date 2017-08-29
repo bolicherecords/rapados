@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :providers do
     collection do
       get :desactivated
-      get 'toggle_activated/:id' => 'providers#toggle_activated', as: :toggle_activated
-      get 'toggle_desactivated/:id' => 'providers#toggle_desactivated', as: :toggle_desactivated
     end
   end
   resources :stores

@@ -1,8 +1,12 @@
 class ProvidersController < ApplicationController
-  before_action :set_provider, only: [:show, :edit, :update, :destroy, :toggle_activated, :toggle_desactivated]
+  before_action :set_provider, only: [:show, :edit, :update, :destroy]
 
   def index
-    @providers = Provider.where(status: 1)
+    @providers = Provider.where(status: Provider::STATUS_ACTIVATE)
+  end
+
+  def desactivated
+    @providers = Provider.where(status: Provider::STATUS_DESACTIVATE)
   end
 
   def show; end
@@ -19,7 +23,17 @@ class ProvidersController < ApplicationController
     redirect_to @provider, notice: 'Provider was successfully created.'
   end
 
-  def edit; end
+  def edit
+    if params[:origin] == 'ACTIVATE'
+      @provider.update(status: Provider::STATUS_ACTIVATE)
+      flash[:success] = 'El proveedor ha sido activado con éxito.'
+      redirect_to desactivated_providers_path
+    elsif params[:origin] == 'DESACTIVATE'
+      @provider.update(status: Provider::STATUS_DESACTIVATE)
+      flash[:success] = 'El proveedor ha sido desactivado con éxito.'
+      redirect_to providers_url
+    end
+  end
 
   def update
     @provider.update(provider_params)
@@ -30,22 +44,6 @@ class ProvidersController < ApplicationController
   def destroy
     @provider.destroy
     flash[:success] = 'El proveedor ha sido creado con éxito.'
-    redirect_to providers_url
-  end
-
-  def desactivated
-    @providers = Provider.where(status: 0)
-  end
-
-  def toggle_activated
-    @provider.update!(status: 1)
-    flash[:success] = 'El proveedor ha sido activado con éxito.'
-    redirect_to desactivated_providers_path
-  end
-
-  def toggle_desactivated
-    @provider.update!(status: 0)
-    flash[:success] = 'El proveedor ha sido desactivado con éxito.'
     redirect_to providers_url
   end
 

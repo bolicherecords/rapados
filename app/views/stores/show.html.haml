@@ -1,8 +1,45 @@
-.jumbotron
-  %h1
-    = @store.name
-    = @store.city
-    = @store.country
-    = @store.phone
-    = @store.address
-    = @store.timezone
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        Panel Control
+      .panel-body
+        = link_to edit_store_path(@store), class: 'btn btn-link' do
+          %i.fa.fa-edit
+          Editar Local
+        %br
+        = link_to @store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este Local?' }, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-trash-o
+          Eliminar Local
+
+  .col-md-9
+    .title
+      Local:
+      = @store.name
+    %br
+    %br
+    %table.table
+      %tr
+        %td
+          %strong
+            Lugar:
+        %td
+          = "#{@store.city} - #{@store.country}"
+      %tr
+        %td
+          %strong
+            Teléfono de contacto
+        %td
+          = @store.phone
+      %tr
+        %td
+          %strong
+            Dirección
+        %td
+          = @store.address
+      %tr
+        %td
+          %strong
+            Zona Horaria
+        %td
+          = @store.timezone
