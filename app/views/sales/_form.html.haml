@@ -1,9 +1,8 @@
-.container
-	= form_for(@sale) do |f|
-		%div
-			= f.select(:client_id, Client.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
+= form_for(@sale) do |f|
+	%div
+		= f.select(:client_id, Client.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
 
-		%div
-			%br
-				= f.submit "Guardar", class: "btn btn-success"
-				= link_to 'Volver', sales_path , class: "btn btn-link"
+	%div
+		%br
+			= f.submit "Guardar", class: "btn btn-success"
+			= link_to 'Volver', sales_path , class: "btn btn-link"

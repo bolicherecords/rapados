@@ -16,6 +16,7 @@
         %td
           = sale.user.email
         %td
+          = link_to 'Ver', sale_path(sale), class: 'btn btn-raised btn-success'
           = link_to 'Editar', edit_sale_path(sale), class: 'btn btn-raised btn-primary'
           = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este salee?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
