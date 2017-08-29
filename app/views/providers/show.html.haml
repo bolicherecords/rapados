@@ -12,15 +12,21 @@
           Eliminar Proveedor
 
   .col-md-9
-    %h2
+    .title
       Proveedor:
       = @provider.name
-    %hr
-    %p
-      %strong
-        Correo Electrónico:
-      = @provider.email
-    %p
-      %strong
-        teléfono de contacto
-      = @provider.phone
+    %br
+    %br
+    %table.table
+      %tr
+        %td
+          %strong
+            Correo Electrónico:
+        %td
+          = @provider.email
+      %tr
+        %td
+          %strong
+            teléfono de contacto:
+        %td
+          = @provider.phone
