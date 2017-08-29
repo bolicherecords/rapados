@@ -13,15 +13,19 @@
 		%p
 			Cajero:
 			= @sale.user.email
+		%p
+			Estado:
+			= @sale.status
 	%hr
 
 	.row
 		= form_tag(sale_details_path(sale: @sale), :method => "post") do
 			.col-md-4
 				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
-			.col-md-2
+			.col-md-4
 				= submit_tag "Agregar", class: "btn btn-success"
-				= submit_tag "Finalizar", class: "btn btn-danger"
+				= link_to 'Finalizar', edit_sale_path(@sale, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
+				= link_to 'Anular', edit_sale_path(@sale, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
 	.h4 Productos
 	%div

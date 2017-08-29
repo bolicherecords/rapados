@@ -18,11 +18,21 @@ class SalesController < ApplicationController
     redirect_to sale, notice: 'Venta creada exitosamente.'
   end
 
-  def edit; end
+  def edit
+    if params[:origin] == "FINISHED"
+      @sale.update(status: Sale::STATUS_FINISHED)
+      flash[:success] = 'Venta finalizada exitosamente.'
+      redirect_to @sale
+    elsif params[:origin] == "CANCELLED"
+      @sale.update(status: Sale::STATUS_CANCELLED)
+      flash[:success] = 'Venta anulada exitosamente.'
+      redirect_to @sale
+    end
+  end
 
   def update
     @sale.update(sale_params)
-    redirect_to @sale, notice: 'Sale was successfully updated.'
+    redirect_to @sale, notice: 'Venta actualizada exitosamente.'
   end
 
   def destroy
