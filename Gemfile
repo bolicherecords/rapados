@@ -19,6 +19,11 @@ gem "rolify"
 gem "bower-rails"
 gem 'ransack'
 
+#Decorators
+gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
+gem 'draper'
+
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end

@@ -2,11 +2,11 @@ class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sales = Sale.all
+    @sales = SaleDecorator.decorate_collection(Sale.all)
   end
 
   def show
-
+    @sale = SaleDecorator.decorate(@sale)
   end
 
   def new
@@ -15,24 +15,25 @@ class SalesController < ApplicationController
 
   def create
     sale = Sale.create(client_id: sale_params[:client_id], user: current_user, store: current_user.store)
-    redirect_to sale, notice: 'Venta creada exitosamente.'
+    flash[:success] = 'Venta creada exitosamente.'
+    redirect_to sale
   end
 
   def edit
-    if params[:origin] == "FINISHED"
-      @sale.update(status: Sale::STATUS_FINISHED)
-      flash[:success] = 'Venta finalizada exitosamente.'
+    case params[:origin]
+    when "FINISHED"
+      @sale.finish_sale ? flash[:success] = 'Venta finalizada exitosamente.' : flash[:danger] = "Imposible finalizar venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
       redirect_to @sale
-    elsif params[:origin] == "CANCELLED"
-      @sale.update(status: Sale::STATUS_CANCELLED)
-      flash[:success] = 'Venta anulada exitosamente.'
-      redirect_to @sale
+    when "CANCELLED"
+      @sale.cancel_sale ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
+      redirect_to @sale      
     end
   end
 
   def update
     @sale.update(sale_params)
-    redirect_to @sale, notice: 'Venta actualizada exitosamente.'
+    flash[:success] = 'Venta actualizada exitosamente.'
+    redirect_to @sale
   end
 
   def destroy

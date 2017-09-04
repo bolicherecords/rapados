@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rails/activemodel-serializers-xml
+  revision: 356edf4dfc38fb1fbfee90c87856e4fe5b73c5e1
+  specs:
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,6 +70,11 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -159,6 +173,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    request_store (1.2.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rolify (5.1.0)
@@ -209,12 +224,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel-serializers-xml!
   bower-rails
   bson_ext
   byebug
   cancancan (~> 1.10)
   coffee-rails (~> 4.2)
   devise
+  draper
   font-awesome-rails
   font-awesome-sass (~> 4.3.0)
   haml-rails (~> 0.9)

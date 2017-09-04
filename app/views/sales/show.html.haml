@@ -4,18 +4,24 @@
 %br
 .container
 	%div
-		%p
-			Local:
-			= @sale.store.name
-		%p
-			Cliente:
-			= @sale.client.name
-		%p
-			Cajero:
-			= @sale.user.email
-		%p
-			Estado:
-			= @sale.status
+		%table.table
+			%tr
+				%th Local
+				%td 
+					= @sale.store.name
+				%tr
+				%th Cliente
+				%td 
+					= @sale.client.name	
+				%tr
+				%th Cajero
+				%td 
+					= @sale.user.email
+				%tr
+				%th Estado
+				%td 
+					= @sale.status_name
+				%tr
 	%hr
 
 	.row
@@ -31,9 +37,9 @@
 	%div
 		%br
 		%table.table
-			%th Nombre
-			%th Descripción
-			%th
+			%tr
+				%th Nombre
+				%th Descripción
 			- @sale.sale_details.each do |sale_detail|
 				%tr
 					%td
