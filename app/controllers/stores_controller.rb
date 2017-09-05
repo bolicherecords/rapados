@@ -20,7 +20,7 @@ class StoresController < ApplicationController
     @store.user = current_user
     @store.save
     flash[:success] = 'El local ha sido creado con éxito.'
-    redirect_to @store
+    redirect_to stores_url
   end
 
   def edit

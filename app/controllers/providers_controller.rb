@@ -20,7 +20,7 @@ class ProvidersController < ApplicationController
     @provider.user = current_user
     @provider.save
     flash[:success] = 'El proveedor ha sido creado con éxito.'
-    redirect_to @provider
+    redirect_to providers_url
   end
 
   def edit
