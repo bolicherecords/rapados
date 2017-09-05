@@ -135,7 +135,7 @@ development:
     # Application name that is printed to the mongodb logs upon establishing a
     # connection in server versions >= 3.4. Note that the name cannot exceed 128 bytes.
     # app_name: MyApplicationName
-test:
+production:
   clients:
     default:
      # The standard MongoDB connection URI allows for easy
