@@ -1,10 +1,4 @@
-angular.module('RapadosApp', ['ui.router', 'rapadosControllers','ngMaterial'])
+angular.module('RapadosApp', ['ui.router', 'rapadosControllers'])
   .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) { // provider-injector
-    $stateProvider.state('example', {
-         url: "/example",
-         templateUrl: "/example"
-     });
+    
   }])
-  function AppCtrl($scope) {
-    $scope.currentNavItem = 'page1';
-  }

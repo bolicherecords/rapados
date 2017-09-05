@@ -1,0 +1,35 @@
+.title
+  Listado de Proveedores
+  .title_label
+    .label.label-warning
+      Desctivados
+%hr
+
+= link_to new_provider_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Proveedor
+= link_to providers_path(), class: 'btn btn-info' do
+  %i.fa.fa-edit
+  Proveedores Activados
+
+%br
+%br
+%table.table
+  %th Nombre
+  %th Teléfono de contacto
+  %th Correo Electrónico
+  %th
+    - @providers.each do |provider|
+      %tr
+        %td
+          = link_to provider.name, provider
+        %td
+          = provider.phone
+        %td
+          = provider.email
+        %td
+          = link_to 'Activar', edit_provider_path(provider, origin: "ACTIVATE"), class: 'btn btn-raised btn-success'
+          = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
+          = link_to provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
