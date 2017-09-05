@@ -1,1 +1,49 @@
-= "Bienvenido administrador #{current_user.full_name}" 
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Proveedores
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to new_provider_path do
+        %i.fa.fa-plus-circle
+        Nuevo Proveedor
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Proveedores", providers_path
+
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Locales
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to new_store_path do
+        %i.fa.fa-plus-circle
+        Nuevo Local
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Locales", stores_path
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Productos
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to new_product_path do
+        %i.fa.fa-plus-circle
+        Nuevo Producto
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Productos", products_path
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Clientes
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to new_client_path do
+        %i.fa.fa-user-plus
+        Nuevo Cliente
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Clientes", clients_path

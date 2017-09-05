@@ -1,0 +1,32 @@
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        Panel Control
+      .panel-body
+        = link_to edit_provider_path(@provider), class: 'btn btn-link' do
+          %i.fa.fa-edit
+          Editar Proveedor
+        = link_to @provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-trash-o
+          Eliminar Proveedor
+
+  .col-md-9
+    .title
+      Proveedor:
+      = @provider.name
+    %br
+    %br
+    %table.table
+      %tr
+        %td
+          %strong
+            Correo Electrónico:
+        %td
+          = @provider.email
+      %tr
+        %td
+          %strong
+            teléfono de contacto:
+        %td
+          = @provider.phone

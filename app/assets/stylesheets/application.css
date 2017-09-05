@@ -12,5 +12,18 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap/dist/css/bootstrap.min
+ *= require font-awesome
+*/
 
- */
+.title {
+  font-size: 30px;
+  display:inline-flex;
+  font-weight: 500;
+
+}
+.title_label {
+  font-size: 15px;
+  margin-top: 12px;
+  margin-left: 10px;
+}

@@ -18,6 +18,9 @@
 @user.save
 @user.add_role :admin
 
-@user = User.find_or_create_by(email: "user@tetracode.cl", password: "12345678")
+@user = User.find_or_create_by(email: "seller@tetracode.cl", password: "12345678")
 @user.save
-@user.add_role :user
+@user.add_role :seller
+
+# Remove Role
+#@user.remove_role :admin

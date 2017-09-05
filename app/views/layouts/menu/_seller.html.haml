@@ -1,0 +1,10 @@
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Ventas
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to "Nueva Venta", new_sale_path
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Ventas", sales_path

@@ -11,11 +11,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mongoid', '~> 6.1.0'
 gem "haml-rails", "~> 0.9"
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.3.0'
 gem "bson_ext"
 gem "devise"
 gem 'cancancan', '~> 1.10'
 gem "rolify"
 gem "bower-rails"
+gem 'ransack'
+
+#Decorators
+gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
+gem 'draper'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri

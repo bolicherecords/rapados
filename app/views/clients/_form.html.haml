@@ -1,0 +1,16 @@
+.container
+	= form_for(@client) do |f|
+		%div{ class: 'form-group label-floating'}
+			= f.label "Nombre"
+			= f.text_field :name, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Teléfono de contacto"
+			= f.text_field :phone, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Correo electrónico"
+			= f.text_field :email, class: "form-control", autofocus: true
+
+		%div
+			%br
+				= f.submit "Guardar", class: "btn btn-raised btn-success"
+				= link_to 'Volver', clients_path , class: "btn btn-link"

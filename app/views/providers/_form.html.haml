@@ -1,0 +1,19 @@
+.container
+	= form_for(@provider) do |f|
+		%div{ class: 'form-group label-floating'}
+			= f.label 'Nombre', class: 'control-label'
+			= f.text_field :name, class: "form-control", autofocus: true
+			-# %p{class: 'help-block'}
+			-# 	This is a hint as a
+			-# 	%code
+			-# 		help-block.hint
+		%div{ class: 'form-group label-floating'}
+			= f.label 'Teléfono de contacto', class: 'control-label'
+			= f.text_field :phone, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label 'Correo electrónico', class: 'control-label'
+			= f.text_field :email, class: "form-control", autofocus: true
+		%div
+			%br
+				= f.submit "Guardar", class: "btn btn-raised btn-success"
+				= link_to 'Volver', providers_path , class: "btn btn-link"

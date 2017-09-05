@@ -50,8 +50,22 @@ class User
   has_many :products
   has_many :dispatchs
 
-  # == Métodos
+  belongs_to :store, optional: true
+
+  # == Metodos
   def full_name
     first_name.present? ? "#{first_name} #{last_name}" : email
+  end
+
+  def role
+    return 'Dios' if has_role? :god
+    return 'Admin' if has_role? :admin
+    return 'Vendedor' if has_role? :seller
+  end
+
+  def label_role
+    return 'primary' if has_role? :god
+    return 'success' if has_role? :admin
+    return 'info' if has_role? :seller
   end
 end

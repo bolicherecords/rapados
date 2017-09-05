@@ -1,0 +1,16 @@
+.container
+	= form_for(@product) do |f|
+		%div{ class: 'form-group label-floating'}
+			= f.label "Nombre"
+			= f.text_field :name, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Descripción"
+			= f.text_field :description, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Unidad"
+			= f.text_field :unit, class: "form-control", autofocus: true
+
+		%div
+			%br
+				= f.submit "Guardar", class: "btn btn-raised btn-success"
+				= link_to 'Volver', products_path , class: "btn btn-link"
