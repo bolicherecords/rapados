@@ -6,6 +6,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if (user.has_role? :admin) || (user.has_role? :god)
       can :manage, :all
+      can [:update], Purchase, id: Purchase.where(status: 1).pluck(:id)
     else
       can :read, :all
     end

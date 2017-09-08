@@ -20,14 +20,14 @@
 				%tr
 				%th Estado
 				%td
-					-# = @purchase.status_name
+					-# = @purchase.status_name.present ? @purchase.status_name : ''
 				%tr
 	%hr
 
 	.row
 		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
 			.col-md-2
-				= text_field_tag :total, params[:total], placeholder: "Cantidad", autofocus: true, class: "form-control"
+				= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
 			.col-md-4
 				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
 			.col-md-4
@@ -42,9 +42,21 @@
 			%tr
 				%th Nombre
 				%th Descripción
+				%th Cantidad
+				%th Unidad
+				%th
 			- @purchase.purchase_details.each do |purchase_detail|
 				%tr
 					%td
 						= purchase_detail.product.name
 					%td
 						= purchase_detail.product.description
+					%td
+						= purchase_detail.amount
+					%td
+						= purchase_detail.product.unit
+					%td
+						- if can? :update, @purchase
+							= link_to purchase_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
+								%i.fa.fa-trash-o
+								Quitar
