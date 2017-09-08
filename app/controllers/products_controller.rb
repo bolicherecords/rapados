@@ -2,7 +2,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.where(status: Product::STATUS_ACTIVATE)
+  end
+
+  def desactivated
+    @products = Product.where(status: Product::STATUS_DESACTIVATE)
   end
 
   def show; end
@@ -17,10 +21,20 @@ class ProductsController < ApplicationController
     @product.save
     @product.update(barcode: @product.id)
     flash[:success] = 'El producto ha sido creado con éxito.'
-    redirect_to @product
+    redirect_to products_url
   end
 
-  def edit; end
+  def edit
+    if params[:origin] == 'ACTIVATE'
+      @product.update(status: Product::STATUS_ACTIVATE)
+      flash[:success] = 'El producto ha sido activado con éxito.'
+      redirect_to desactivated_products_path
+    elsif params[:origin] == 'DESACTIVATE'
+      @product.update(status: Product::STATUS_DESACTIVATE)
+      flash[:success] = 'El producto ha sido desactivado con éxito.'
+      redirect_to products_url
+    end
+  end
 
   def update
     @product.update(product_params)

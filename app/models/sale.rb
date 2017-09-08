@@ -9,13 +9,13 @@ class Sale
   STATUS_DRAFT            = 1
   STATUS_FINISHED         = 2
   STATUS_CANCELLED        = 3
-  
+
 
   # == Asociaciones
   has_many   :sale_details
   belongs_to :store
-  belongs_to :client
   belongs_to :user
+  # belongs_to :client
 
   # == Atributos
   field :total,       type: Integer, default: 0

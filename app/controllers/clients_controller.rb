@@ -2,7 +2,11 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clients = Client.all
+    @clients = Client.where(status: Client::STATUS_ACTIVATE)
+  end
+
+  def desactivated
+    @clients = Client.where(status: Client::STATUS_DESACTIVATE)
   end
 
   def show; end
@@ -16,10 +20,20 @@ class ClientsController < ApplicationController
     @client.user = current_user
     @client.save
     flash[:success] = 'El cliente ha sido creado con éxito.'
-    redirect_to @client
+    redirect_to clients_url
   end
 
-  def edit; end
+  def edit
+    if params[:origin] == 'ACTIVATE'
+      @client.update(status: Client::STATUS_ACTIVATE)
+      flash[:success] = 'El cliente ha sido activado con éxito.'
+      redirect_to desactivated_clients_path
+    elsif params[:origin] == 'DESACTIVATE'
+      @client.update(status: Client::STATUS_DESACTIVATE)
+      flash[:success] = 'El cliente ha sido desactivado con éxito.'
+      redirect_to clients_url
+    end
+  end
 
   def update
     @client.update(client_params)

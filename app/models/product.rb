@@ -12,11 +12,15 @@ class Product
   has_many    :stocks
   belongs_to  :user
 
+  STATUS_DESACTIVATE = 0
+  STATUS_ACTIVATE    = 1
+
   # == Atributos
   field :name,        type: String, default: ''
   field :description, type: String, default: ''
   field :unit,        type: String, default: ''
   field :barcode,     type: String, default: ''
+  field :status,      type: Integer, default: STATUS_ACTIVATE
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'

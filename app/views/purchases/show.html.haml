@@ -1,0 +1,50 @@
+%h1.header
+	Detalle de Compra
+%br
+%br
+.container
+	%div
+		%table.table
+			%tr
+				%th Local
+				%td
+					= @purchase.store.name
+				%tr
+				%th Proveedor
+				%td
+					= @purchase.provider.name
+				%tr
+				%th Comprador
+				%td
+					= @purchase.user.email
+				%tr
+				%th Estado
+				%td
+					-# = @purchase.status_name
+				%tr
+	%hr
+
+	.row
+		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
+			.col-md-2
+				= text_field_tag :total, params[:total], placeholder: "Cantidad", autofocus: true, class: "form-control"
+			.col-md-4
+				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
+			.col-md-4
+				= submit_tag "Agregar", class: "btn btn-success"
+				= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
+				= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+
+	.h4 Productos
+	%div
+		%br
+		%table.table
+			%tr
+				%th Nombre
+				%th Descripción
+			- @purchase.purchase_details.each do |purchase_detail|
+				%tr
+					%td
+						= purchase_detail.product.name
+					%td
+						= purchase_detail.product.description

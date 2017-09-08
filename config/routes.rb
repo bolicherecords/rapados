@@ -6,9 +6,22 @@ Rails.application.routes.draw do
       get :desactivated
     end
   end
-  resources :stores
-  resources :products
-  resources :clients
+  resources :stores do
+    collection do
+      get :desactivated
+    end
+  end
+
+  resources :products do
+    collection do
+      get :desactivated
+    end
+  end
+  resources :clients do
+    collection do
+      get :desactivated
+    end
+  end
 
   resources :purchases
   resources :purchase_details
@@ -23,5 +36,4 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
-
 end

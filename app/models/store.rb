@@ -14,17 +14,21 @@ class Store
   has_many :destinations, class_name: "Dispatch", inverse_of: :destination
   has_many :users
 
-  # == Atributos
-  field :name,        type: String, default: ""
-  field :city,        type: String, default: ""
-  field :country,     type: String, default: ""
-  field :phone,       type: String, default: ""
-  field :address,     type: String, default: ""
-  field :timezone,    type: Integer, default: -3
+  STATUS_DESACTIVATE = 0
+  STATUS_ACTIVATE    = 1
 
+  # == Atributos
+  field :name,        type: String, default: ''
+  field :city,        type: String, default: ''
+  field :region,      type: String, default: ''
+  field :country,     type: String, default: ''
+  field :phone,       type: String, default: ''
+  field :address,     type: String, default: ''
+  field :timezone,    type: Integer, default: -3
+  field :status,      type: Integer, default: STATUS_ACTIVATE
 
   # == Validaciones
-  validates_presence_of     :name,  message: "Debes ingresar un nombre."
+  validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Métodos
 end

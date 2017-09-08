@@ -1,0 +1,8 @@
+= form_for(@purchase) do |f|
+	%div
+		= f.select(:provider_id, Provider.actives.collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Proveedor', class: 'form-control'})
+
+	%div
+		%br
+			= f.submit "Guardar", class: "btn btn-success"
+			= link_to 'Volver', purchases_path , class: "btn btn-link"
