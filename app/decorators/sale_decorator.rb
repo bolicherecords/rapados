@@ -11,4 +11,5 @@ class SaleDecorator < Draper::Decorator
       "Anulada"
     end
 	end
+  
 end

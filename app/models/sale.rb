@@ -32,7 +32,8 @@ class Sale
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
-      self.save
+      #self.save
+      Sale::StockControlService.execute(self, 'SALE')
       #TODO: Call to update stock service
     end
   end
