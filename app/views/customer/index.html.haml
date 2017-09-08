@@ -1,0 +1,30 @@
+.title
+  Listado de Clientes
+%hr
+= link_to new_customer_path, class: 'btn btn-raised btn-success' do
+  %i.fa.fa-plus-circle
+  Nuevo Cliente
+= link_to desactivated_customers_path(), class: 'btn btn-info' do
+  %i.fa.fa-edit
+  Clientes Desactivados
+%br
+%br
+%table.table
+  %th Nombre
+  %th Teléfono de Contacto
+  %th Correo Electrónico
+  %th
+    - @customers.each do |customer|
+      %tr
+        %td
+          = link_to customer.name, customer
+        %td
+          = customer.phone
+        %td
+          = customer.email
+        %td
+          = link_to 'Desactivar', edit_customer_path(customer, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
+          = link_to 'Editar', edit_customer_path(customer), class: 'btn btn-raised btn-primary'
+          = link_to customer, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar

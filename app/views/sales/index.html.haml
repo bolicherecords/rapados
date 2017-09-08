@@ -11,7 +11,7 @@
     - @sales.each do |sale|
       %tr
         %td
-          = link_to sale.client.name, sale.client
+          = link_to sale.customer.name, sale.customer
         %td
           = sale.store.name
         %td

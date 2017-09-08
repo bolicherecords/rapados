@@ -41,7 +41,7 @@ class User
   # field :locked_at,       type: Time
 
   # == Asociaciones
-  has_many :clients
+  has_many :customers
   has_many :providers
   has_many :stores
   has_many :sales

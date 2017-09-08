@@ -17,7 +17,7 @@ gem "devise"
 gem 'cancancan', '~> 1.10'
 gem "rolify"
 gem "bower-rails"
-gem 'ransack'
+#gem 'ransack'
 
 #Decorators
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'

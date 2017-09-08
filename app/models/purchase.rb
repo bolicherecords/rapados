@@ -21,10 +21,9 @@ class Purchase
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime
-
+  
 
   # == Validaciones
-  validates_presence_of :total, message: 'Debes ingresar un total.'
 
   # == Métodos
   def products

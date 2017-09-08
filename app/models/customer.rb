@@ -1,4 +1,4 @@
-class Client
+class Customer
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps

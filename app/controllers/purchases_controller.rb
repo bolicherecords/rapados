@@ -2,10 +2,12 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
   def index
-    @purchases = Purchase.all
+    @purchases = PurchaseDecorator.decorate_collection(Purchase.all)
   end
 
-  def show; end
+  def show
+    @purchase = PurchaseDecorator.decorate(@purchase)
+  end
 
   def new
     @purchase = Purchase.new

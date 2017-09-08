@@ -4,18 +4,18 @@
       .panel-heading
         Panel Control
       .panel-body
-        = link_to edit_client_path(@client), class: 'btn btn-link' do
+        = link_to edit_customer_path(@customer), class: 'btn btn-link' do
           %i.fa.fa-edit
           Editar Cliente
         %br
-        = link_to @client, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-link' do
+        = link_to @customer, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-link' do
           %i.fa.fa-trash-o
           Eliminar Cliente
 
   .col-md-9
     .title
       Cliente:
-      = @client.name
+      = @customer.name
     %br
     %br
     %table.table
@@ -24,10 +24,10 @@
           %strong
             Teléfono de contacto:
         %td
-          = @client.phone
+          = @customer.phone
       %tr
         %td
           %strong
             Correo Electrónico
         %td
-          = @client.email
+          = @customer.email

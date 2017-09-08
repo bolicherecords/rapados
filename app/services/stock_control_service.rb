@@ -1,8 +1,8 @@
 class StockControlService < BaseService
 
   def self.execute(sale, type)
-  	raise sale.inspect
- 		sale.update(status: 4)
+ 		puts "PASE POR ACA PADRE 111"
+ 		sale.update(status: 1)
   end
 
 end

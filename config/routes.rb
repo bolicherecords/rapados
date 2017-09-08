@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get :desactivated
     end
   end
-  resources :clients do
+  resources :customers do
     collection do
       get :desactivated
     end

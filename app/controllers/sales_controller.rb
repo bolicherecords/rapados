@@ -14,7 +14,7 @@ class SalesController < ApplicationController
   end
 
   def create
-    sale = Sale.create(client_id: sale_params[:client_id], user: current_user, store: current_user.store)
+    sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store: current_user.store)
     flash[:success] = 'Venta creada exitosamente.'
     redirect_to sale
   end
@@ -22,10 +22,10 @@ class SalesController < ApplicationController
   def edit
     case params[:origin]
     when "FINISHED"
-      @sale.finish_sale ? flash[:success] = 'Venta finalizada exitosamente.' : flash[:danger] = "Imposible finalizar venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
+      @sale.finish ? flash[:success] = 'Venta finalizada exitosamente.' : flash[:danger] = "Imposible finalizar venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
       redirect_to @sale
     when "CANCELLED"
-      @sale.cancel_sale ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
+      @sale.cancel ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
       redirect_to @sale 
     end
   end
@@ -44,7 +44,7 @@ class SalesController < ApplicationController
   private
 
   def sale_params
-    params.require(:sale).permit(:client_id)
+    params.require(:sale).permit(:customer_id)
   end
 
   def set_sale

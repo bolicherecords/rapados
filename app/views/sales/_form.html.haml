@@ -1,6 +1,6 @@
 = form_for(@sale) do |f|
 	%div
-		= f.select(:client_id, Client.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
+		= f.select(:customer_id, Customer.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
 
 	%div
 		%br

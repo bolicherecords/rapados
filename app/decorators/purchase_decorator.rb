@@ -2,7 +2,7 @@ class PurchaseDecorator < Draper::Decorator
 	delegate_all
 
 	def status_name
-    case source.status
+    case self.status
     when Purchase::STATUS_DRAFT
       "Nueva"
     when Purchase::STATUS_FINISHED

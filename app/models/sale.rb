@@ -15,7 +15,7 @@ class Sale
   has_many   :sale_details
   belongs_to :store
   belongs_to :user
-  # belongs_to :client
+  belongs_to :customer
 
   # == Atributos
   field :total,       type: Integer, default: 0
@@ -28,22 +28,26 @@ class Sale
   validates_presence_of :total, message: "Debes ingresar un total."
 
   # == Métodos
-  def finish_sale
+  def finish
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
-      #self.save
-      Sale::StockControlService.execute(self, 'SALE')
+      self.save
       #TODO: Call to update stock service
+      #StockControlService.execute(self, 'SALE')
     end
   end
 
-  def cancel_sale
+  def cancel
     if self.status < STATUS_CANCELLED
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save
       #TODO: Call to update stock service
     end
+  end
+
+  def is_draft?
+    self.status == STATUS_DRAFT
   end
 end

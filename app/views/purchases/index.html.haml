@@ -17,7 +17,7 @@
         %td
           = purchase.user.email
         %td
-          -# = purchase.status_name
+          = purchase.status_name
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
           = link_to 'Editar', edit_purchase_path(purchase), class: 'btn btn-raised btn-primary'
