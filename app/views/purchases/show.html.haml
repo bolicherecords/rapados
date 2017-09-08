@@ -22,7 +22,6 @@
 				%td
 					= @purchase.status_name
 				%tr
-	%hr
 
 	.row
 		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
@@ -37,8 +36,13 @@
 				- if @purchase.status == 1
 					= submit_tag "Agregar", class: "btn btn-success"
 					= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
+				- elsif @purchase.status == 2
+					= link_to 'Imprimir', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
 				= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
+	%br
+	%br
+	%br
 	.h4 Productos
 	%div
 		%br
@@ -47,7 +51,6 @@
 				%th Cantidad
 				%th Nombre
 				%th Descripción
-				%th Cantidad
 				%th Unidad
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
@@ -58,8 +61,6 @@
 						= purchase_detail.product.name
 					%td
 						= purchase_detail.product.description
-					%td
-						= purchase_detail.amount
 					%td
 						= purchase_detail.product.unit
 					%td

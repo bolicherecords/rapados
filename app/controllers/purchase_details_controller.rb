@@ -2,12 +2,17 @@ class PurchaseDetailsController < ApplicationController
   before_action :set_purchase_detail, only: [:destroy]
 
   def create
-    product = Product.where(id: params[:barcode]).first
-    if product.present?
-      PurchaseDetail.create(product: product, purchase: params[:purchase], amount: params[:amount])
-      flash[:success] = 'Producto agregado exitosamente.'
+    purchase = Purchase.find(params[:purchase])
+    if purchase.is_draft?
+      product = Product.where(id: params[:barcode]).first
+      if product.present?
+        PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount])
+        flash[:success] = 'Producto agregado exitosamente.'
+      else
+        flash[:danger] = 'Código de barra no registrado'
+      end
     else
-      flash[:danger] = 'Código de barra no registrado'
+      flash[:danger] = "Imposible agregar producto. Compra #{PurchaseDecorator.decorate(purchase).status_name}."
     end
     redirect_to :back
   end
