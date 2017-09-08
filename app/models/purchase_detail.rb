@@ -13,7 +13,6 @@ class PurchaseDetail
   field :amount, type: Integer, default: 0
 
   # == Validaciones
-  
 
   # == Métodos
 

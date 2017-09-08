@@ -20,7 +20,9 @@
           = purchase.status_name
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
-          = link_to 'Editar', edit_purchase_path(purchase), class: 'btn btn-raised btn-primary'
+          -#TODO refactor con cancancan
+          - if purchase.status == 1
+            = link_to 'Editar', edit_purchase_path(purchase), class: 'btn btn-raised btn-primary'
           = link_to purchase, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta compra?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar
