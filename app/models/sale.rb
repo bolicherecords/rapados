@@ -15,7 +15,7 @@ class Sale
   has_many   :sale_details
   belongs_to :store
   belongs_to :user
-  # belongs_to :client
+  belongs_to :client
 
   # == Atributos
   field :total,       type: Integer, default: 0

@@ -26,13 +26,17 @@
 
 	.row
 		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
-			.col-md-2
-				= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
+			-#TODO refactor con cancancan
+			- if @purchase.status == 1
+				.col-md-2
+					= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
+				.col-md-4
+					= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
 			.col-md-4
-				= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control"
-			.col-md-4
-				= submit_tag "Agregar", class: "btn btn-success"
-				= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
+				-#TODO refactor con cancancan
+				- if @purchase.status == 1
+					= submit_tag "Agregar", class: "btn btn-success"
+					= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
 				= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
 	.h4 Productos
@@ -56,7 +60,9 @@
 					%td
 						= purchase_detail.product.unit
 					%td
-						- if can? :update, @purchase
+						-#TODO refactor con cancancan
+						- if @purchase.status == 1
 							= link_to purchase_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
 								%i.fa.fa-trash-o
 								Quitar
+	= link_to 'Volver', purchases_path , class: "btn btn-link"
