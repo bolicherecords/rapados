@@ -6,7 +6,7 @@ class PurchaseDetail
   # include GlobalID::Identification
 
   # == Asociaciones
-  belongs_to :purchase
+  belongs_to :purchase, optional: true
   belongs_to :product
 
   # == Atributos

@@ -12,13 +12,23 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = Purchase.new(purchase_params)
-    @purchase.user = current_user
-    @purchase.save
-    redirect_to @purchase, notice: 'Purchase was successfully created.'
+    @purchase = Purchase.create(provider_id: params[:purchase][:provider_id],
+                                user: current_user,
+                                store: current_user.store)
+    flash[:success] = 'Compra creada exitosamente.'
+    redirect_to @purchase
   end
 
-  def edit; end
+  def edit
+    case params[:origin]
+    when "FINISHED"
+      @purchase.finish ? flash[:success] = 'Compra finalizada exitosamente.' : flash[:danger] = "Imposible finalizar compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
+      redirect_to @purchase
+    when "CANCELLED"
+      @purchase.cancel ? flash[:success] = 'Compra anulada exitosamente.' : flash[:danger] = "Imposible anular compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
+      redirect_to @purchase
+    end
+  end
 
   def update
     @purchase.update(purchase_params)
@@ -33,7 +43,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchase).permit(:name, :phone, :email)
+    params.require(:purchase).permit(:name, :phone, :email, :provider_id)
   end
 
   def set_purchase

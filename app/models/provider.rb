@@ -22,6 +22,9 @@ class Provider
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
+  # == Scopes
+  scope :actives, -> { where(status: STATUS_ACTIVATE).order('name ASC') }
+
   # == Métodos
   def prev
     Area.where(:name.lt => name).order(name: :desc).first

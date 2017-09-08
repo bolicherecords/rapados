@@ -3,13 +3,13 @@ class Client
   include Mongoid::Document
   include Mongoid::Timestamps
   # include GlobalID::Identification
-  resourcify
   # == Asociaciones
-  has_many :sales
-  belongs_to :user
 
   STATUS_DESACTIVATE = 0
   STATUS_ACTIVATE    = 1
+
+  has_many :sales
+  belongs_to :user
 
   # == Atributos
   field :name,        type: String, default: ''
