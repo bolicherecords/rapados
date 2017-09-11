@@ -32,20 +32,14 @@ class Sale
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
+      SaleStockService.execute(self, current_user, "-")    
       self.save
-      self.sale_details.each do |sale_detail|
-        StockControlService.execute(sale_detail.amount, sale_detail.product, sale_detail.sale.store, current_user, '-')
-      end
     end
   end
 
   def cancel(current_user)
     if self.status < STATUS_CANCELLED
-      if self.status == STATUS_FINISHED
-        self.sale_details.each do |sale_detail|
-          StockControlService.execute(sale_detail.amount, sale_detail.product, sale_detail.sale.store, current_user, '+')
-        end
-      end
+      SaleStockService.execute(self, current_user, "+") if self.status == STATUS_FINISHED
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save

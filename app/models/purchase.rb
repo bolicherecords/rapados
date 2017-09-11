@@ -35,19 +35,13 @@ class Purchase
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
       self.save
-      self.purchase_details.each do |purchase_detail|
-        StockControlService.execute(purchase_detail.amount, purchase_detail.product, self.store, current_user, '+')
-      end
+      PurchaseStockService.execute(self, current_user, "+")
     end
   end
 
   def cancel(current_user)
     if status < STATUS_CANCELLED
-      if self.status == STATUS_FINISHED
-        self.purchase_details.each do |purchase_detail|
-          StockControlService.execute(purchase_detail.amount, purchase_detail.product, self.store, current_user, '-')
-        end
-      end
+      PurchaseStockService.execute(self, current_user, "-") if self.status == STATUS_FINISHED
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save
