@@ -30,21 +30,27 @@ class Purchase
     Product.in(id: purchase_details.pluck(:product_id))
   end
 
-  def finish
+  def finish(current_user)
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
       self.save
-      #TODO: Call to update stock service
+      self.purchase_details.each do |purchase_detail|
+        StockControlService.execute(purchase_detail.amount, purchase_detail.product, self.store, current_user, '+')
+      end
     end
   end
 
-  def cancel
+  def cancel(current_user)
     if status < STATUS_CANCELLED
+      if self.status == STATUS_FINISHED
+        self.purchase_details.each do |purchase_detail|
+          StockControlService.execute(purchase_detail.amount, purchase_detail.product, self.store, current_user, '-')
+        end
+      end
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save
-      #TODO: Call to update stock service
     end
   end
 

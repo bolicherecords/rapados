@@ -28,26 +28,34 @@ class Sale
   validates_presence_of :total, message: "Debes ingresar un total."
 
   # == Métodos
-  def finish
+  def finish(current_user)
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
       self.save
-      #TODO: Call to update stock service
-      #StockControlService.execute(self, 'SALE')
+      self.sale_details.each do |sale_detail|
+        StockControlService.execute(sale_detail.amount, sale_detail.product, sale_detail.sale.store, current_user, '-')
+      end
     end
   end
 
-  def cancel
+  def cancel(current_user)
     if self.status < STATUS_CANCELLED
+      if self.status == STATUS_FINISHED
+        self.sale_details.each do |sale_detail|
+          StockControlService.execute(sale_detail.amount, sale_detail.product, sale_detail.sale.store, current_user, '+')
+        end
+      end
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save
-      #TODO: Call to update stock service
     end
   end
 
   def is_draft?
     self.status == STATUS_DRAFT
   end
+
 end
+
+

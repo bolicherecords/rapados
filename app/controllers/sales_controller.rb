@@ -22,10 +22,10 @@ class SalesController < ApplicationController
   def edit
     case params[:origin]
     when "FINISHED"
-      @sale.finish ? flash[:success] = 'Venta finalizada exitosamente.' : flash[:danger] = "Imposible finalizar venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
+      @sale.finish(current_user) ? flash[:success] = 'Venta finalizada exitosamente.' : flash[:danger] = "Imposible finalizar venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
       redirect_to @sale
     when "CANCELLED"
-      @sale.cancel ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
+      @sale.cancel(current_user) ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
       redirect_to @sale 
     end
   end

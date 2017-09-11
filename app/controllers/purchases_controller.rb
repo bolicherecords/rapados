@@ -24,10 +24,10 @@ class PurchasesController < ApplicationController
   def edit
     case params[:origin]
     when "FINISHED"
-      @purchase.finish ? flash[:success] = 'Compra finalizada exitosamente.' : flash[:danger] = "Imposible finalizar compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
+      @purchase.finish(current_user) ? flash[:success] = 'Compra finalizada exitosamente.' : flash[:danger] = "Imposible finalizar compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
       redirect_to @purchase
     when "CANCELLED"
-      @purchase.cancel ? flash[:success] = 'Compra anulada exitosamente.' : flash[:danger] = "Imposible anular compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
+      @purchase.cancel(current_user) ? flash[:success] = 'Compra anulada exitosamente.' : flash[:danger] = "Imposible anular compra. Compra #{PurchaseDecorator.decorate(@purchase).status_name}."
       redirect_to @purchase
     end
   end
