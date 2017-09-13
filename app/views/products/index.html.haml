@@ -13,6 +13,8 @@
   %th Nombre
   %th Descripción
   %th Unidad
+  %th Código
+  %th Código de Barras
   %th
     - @products.each do |product|
       %tr
@@ -22,6 +24,10 @@
           = product.description
         %td
           = product.unit
+        %td
+          = product.code
+        %td
+          = product.barcode
         %td
           = link_to 'Desactivar', edit_product_path(product, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'

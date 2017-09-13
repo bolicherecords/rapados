@@ -7,6 +7,7 @@ class PurchasesController < ApplicationController
 
   def show
     @purchase = PurchaseDecorator.decorate(@purchase)
+    @products = Product.where(status: Product::STATUS_ACTIVATE).pluck(:name, :barcode)
   end
 
   def new

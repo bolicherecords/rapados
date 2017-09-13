@@ -23,3 +23,5 @@
 //= require_tree .
 //= require_tree ./angular
 //= require bootstrap/dist/js/bootstrap.min.js
+//= require select2
+//= require select2_locale_es

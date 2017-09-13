@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  include ApplicationHelper
 
   def index
     @products = Product.where(status: Product::STATUS_ACTIVATE)
@@ -19,7 +20,6 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     @product.save
-    @product.update(barcode: @product.id)
     flash[:success] = 'El producto ha sido creado con éxito.'
     redirect_to products_url
   end

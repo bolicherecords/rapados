@@ -30,3 +30,5 @@
             Unidad
         %td
           = @product.unit
+    - @barcode_png = barcode_output(@product)
+    = wicked_pdf_image_tag_for_public(@barcode_png)
