@@ -30,4 +30,9 @@ class Product
 	def purchases
 		Purchase.in(id: purchase_details.pluck(:pucharse_id))
 	end
+  
+  def get_stocks
+    stocks.distinct(:store).map{|s| Stock.current_stock(self, s)}
+  end
+
 end

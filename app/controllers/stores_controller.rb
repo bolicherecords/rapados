@@ -9,7 +9,9 @@ class StoresController < ApplicationController
     @stores = Store.where(status: Store::STATUS_DESACTIVATE)
   end
 
-  def show; end
+  def show
+    @stocks = @store.get_stocks
+  end
 
   def new
     @store = Store.new

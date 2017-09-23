@@ -31,4 +31,8 @@ class Store
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Métodos
+  def get_stocks
+    stocks.distinct(:product).map{|p| Stock.current_stock(p, self)}
+  end
+
 end

@@ -9,7 +9,9 @@ class ProductsController < ApplicationController
     @products = Product.where(status: Product::STATUS_DESACTIVATE)
   end
 
-  def show; end
+  def show
+    @stocks = @product.get_stocks
+  end
 
   def new
     @product = Product.new
