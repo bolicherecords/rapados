@@ -26,7 +26,7 @@ class SalesController < ApplicationController
       redirect_to @sale
     when "CANCELLED"
       @sale.cancel(current_user) ? flash[:success] = 'Venta anulada exitosamente.' : flash[:danger] = "Imposible anular venta. Venta #{SaleDecorator.decorate(@sale).status_name}."
-      redirect_to @sale 
+      redirect_to @sale
     end
   end
 
