@@ -46,10 +46,15 @@ class Product
       self.code = code
     end while Product.where(code: code).present?
   end
+  
+  def get_stocks
+    stocks.distinct(:store).map{|s| Stock.current_stock(self, s)}
+  end
 
   def set_barcode
     begin
       self.barcode = Barby::EAN13.new(format('%012d', code)).data.to_s
     end while Product.where(barcode: barcode).present?
   end
+
 end

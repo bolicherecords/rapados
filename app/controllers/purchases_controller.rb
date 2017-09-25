@@ -15,9 +15,8 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = Purchase.create(provider_id: params[:purchase][:provider_id],
-                                user: current_user,
-                                store: current_user.store)
+    @purchase = Purchase.create(purchase_params)
+    @purchase.update(user: current_user)
     flash[:success] = 'Compra creada exitosamente.'
     redirect_to @purchase
   end
@@ -46,7 +45,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchase).permit(:name, :phone, :email, :provider_id)
+    params.require(:purchase).permit(:name, :phone, :email, :provider_id, :store_id)
   end
 
   def set_purchase

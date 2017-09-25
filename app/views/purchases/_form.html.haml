@@ -1,6 +1,7 @@
 = form_for(@purchase) do |f|
 	%div
 		= f.select(:provider_id, Provider.actives.collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Proveedor', class: 'form-control'})
+		= f.select(:store_id, Store.actives.collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local', class: 'form-control'})
 
 	%div
 		%br

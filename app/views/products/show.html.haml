@@ -30,5 +30,29 @@
             Unidad
         %td
           = @product.unit
+
     - @barcode_png = barcode_output(@product)
     = wicked_pdf_image_tag_for_public(@barcode_png)
+
+.row
+  .col-md-3
+  .col-md-9
+    %br
+    .h3 Stock
+    %table.table
+      %th Tienda
+      %th Cantidad
+      %th Fecha Creación
+      %th Última Actualización
+      %th
+        - @stocks.each do |stock|
+          %tr
+            %td
+              = link_to stock.store.name, stock.store
+            %td
+              = stock.amount
+            %td
+              = stock.created_at
+            %td
+              = stock.updated_at
+

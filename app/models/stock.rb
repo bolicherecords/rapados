@@ -9,7 +9,10 @@ class Stock
   belongs_to  :product
   belongs_to  :store
   belongs_to  :user
-  #TODO: Investigar relación doble DISPATCH
+  
+  # == Constantes
+  ADD_STOCK               = 1
+  REMOVE_STOCK            = 0
 
   # == Atributos
   field :amount,    type: Integer, default: 0
@@ -19,5 +22,8 @@ class Stock
   validates_presence_of     :amount,  message: "Debes ingresar una cantidad."
 
   # == Métodos
+  def self.current_stock(product, store)
+    Stock.where(product:product, store: store).desc(:created_at).limit(1).first
+  end
 
-end
+end 

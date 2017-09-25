@@ -43,3 +43,25 @@
             Zona Horaria
         %td
           = @store.timezone
+
+.row
+  .col-md-3
+  .col-md-9
+    %br
+    .h3 Stock
+    %table.table
+      %th Producto
+      %th Cantidad
+      %th Fecha Creación
+      %th Última Actualización
+      %th
+        - @stocks.each do |stock|
+          %tr
+            %td
+              = link_to stock.product.name, stock.product
+            %td
+              = stock.amount
+            %td
+              = stock.created_at
+            %td
+              = stock.updated_at

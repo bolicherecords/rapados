@@ -68,4 +68,13 @@ class User
     return 'success' if has_role? :admin
     return 'info' if has_role? :seller
   end
+
+  def is_admin?
+    return true if has_role? :admin
+  end
+
+  def is_seller?
+    return true if has_role? :seller
+  end
+
 end

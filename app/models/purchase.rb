@@ -35,13 +35,13 @@ class Purchase
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
       self.save
-      PurchaseStockService.execute(self, current_user, "+")
+      PurchaseStockService.execute(self, current_user, Stock::ADD_STOCK)
     end
   end
 
   def cancel(current_user)
     if status < STATUS_CANCELLED
-      PurchaseStockService.execute(self, current_user, "-") if self.status == STATUS_FINISHED
+      PurchaseStockService.execute(self, current_user, Stock::REMOVE_STOCK) if self.status == STATUS_FINISHED
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save

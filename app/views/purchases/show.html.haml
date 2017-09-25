@@ -39,7 +39,7 @@
 					= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
 				- elsif @purchase.status == 2
 					= link_to 'Imprimir', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
-				= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+					= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
 	%br
 	.h3 Productos
