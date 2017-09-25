@@ -4,7 +4,7 @@ class PurchaseDetailsController < ApplicationController
   def create
     purchase = Purchase.find(params[:purchase])
     if purchase.is_draft?
-      product = Product.where(id: params[:barcode]).first
+      product = Product.where(barcode: params[:barcode]).first
       if product.present?
         PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount])
         flash[:success] = 'Producto agregado exitosamente.'

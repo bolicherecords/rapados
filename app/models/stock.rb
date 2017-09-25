@@ -26,9 +26,4 @@ class Stock
     Stock.where(product:product, store: store).desc(:created_at).limit(1).first
   end
 
-  def self.get_stocks
-    stocks = Stock.all
-  end
-
-
 end 

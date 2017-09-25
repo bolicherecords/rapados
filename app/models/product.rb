@@ -1,3 +1,9 @@
+require 'barby'
+require 'barby/barcode/ean_13'
+require 'barby/barcode/code_128'
+require 'barby/outputter/html_outputter'
+require 'barby/outputter/png_outputter'
+
 class Product
 
 	# == Includes
@@ -19,20 +25,36 @@ class Product
   field :name,        type: String, default: ''
   field :description, type: String, default: ''
   field :unit,        type: String, default: ''
+  field :code,        type: Integer, default: ''
   field :barcode,     type: String, default: ''
   field :status,      type: Integer, default: STATUS_ACTIVATE
+
+
+  before_create :set_code, :set_barcode
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Métodos
+  def purchases
+    Purchase.in(id: purchase_details.pluck(:pucharse_id))
+  end
 
-	def purchases
-		Purchase.in(id: purchase_details.pluck(:pucharse_id))
-	end
+  def set_code
+    begin
+      code = Product.count > 0 ? Product.last.code + 1 : 1
+      self.code = code
+    end while Product.where(code: code).present?
+  end
   
   def get_stocks
     stocks.distinct(:store).map{|s| Stock.current_stock(self, s)}
+  end
+
+  def set_barcode
+    begin
+      self.barcode = Barby::EAN13.new(format('%012d', code)).data.to_s
+    end while Product.where(barcode: barcode).present?
   end
 
 end

@@ -17,6 +17,12 @@ gem "devise"
 gem 'cancancan', '~> 1.10'
 gem "rolify"
 gem "bower-rails"
+gem 'barby'
+gem 'chunky_png'      , '~> 1.3.4'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-heroku'
+gem 'select2-rails'
 
 #Decorators
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'

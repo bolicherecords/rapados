@@ -31,14 +31,14 @@ class Sale
     if self.status == STATUS_DRAFT
       self.status = STATUS_FINISHED
       self.finish_at = Time.now
-      SaleStockService.execute(self, current_user, Stock::ADD_STOCK)    
+      SaleStockService.execute(self, current_user, Stock::REMOVE_STOCK)
       self.save
     end
   end
 
   def cancel(current_user)
     if self.status < STATUS_CANCELLED
-      SaleStockService.execute(self, current_user, Stock::REMOVE_STOCK) if self.status == STATUS_FINISHED
+      SaleStockService.execute(self, current_user, Stock::ADD_STOCK) if self.status == STATUS_FINISHED
       self.status = STATUS_CANCELLED
       self.cancel_at = Time.now
       self.save
