@@ -1,5 +1,8 @@
 %h1.header
   Listado de Compras
+  = link_to new_purchase_path, class: 'btn btn-raised btn-success' do
+    %i.fa.fa-plus-circle
+    Nueva Compra
 %br
 %br
 %table.table
@@ -27,6 +30,3 @@
             %i.fa.fa-trash-o
             Eliminar
 
-= link_to new_purchase_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nueva Compra

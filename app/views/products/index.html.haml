@@ -13,7 +13,6 @@
   %th Nombre
   %th Descripción
   %th Unidad
-  %th Código
   %th Código de Barras
   %th
     - @products.each do |product|
@@ -24,8 +23,6 @@
           = product.description
         %td
           = product.unit
-        %td
-          = product.code
         %td
           = product.barcode
         %td
