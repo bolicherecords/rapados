@@ -48,7 +48,7 @@ class User
   has_many :purchases
   has_many :stocks
   has_many :products
-  has_many :dispatchs
+  has_many :dispatches
 
   belongs_to :store, optional: true
 

@@ -34,12 +34,12 @@ class PurchasesController < ApplicationController
 
   def update
     @purchase.update(purchase_params)
-    redirect_to @purchase, notice: 'Purchase was successfully updated.'
+    redirect_to @purchase, notice: 'Compra exitosamente editada.'
   end
 
   def destroy
     @purchase.destroy
-    redirect_to purchases_url, notice: 'Purchase was successfully destroyed.'
+    redirect_to purchases_url, notice: 'Compra exitosamente borrada.'
   end
 
   private

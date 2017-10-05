@@ -1,0 +1,28 @@
+%h1.header
+  Listado de Despachos
+  = link_to new_dispatch_path, class: 'btn btn-raised btn-success' do
+    %i.fa.fa-plus-circle
+    Nuevo Despacho
+%br
+%br
+%table.table
+  %th Local Origen
+  %th Local Destino
+  %th Estado
+  %th
+    - @dispatches.each do |dispatch|
+      %tr
+        %td
+          = link_to dispatch.origin.name, dispatch.origin
+        %td
+          = link_to dispatch.destination.name, dispatch.destination
+        %td
+          = dispatch.status_name
+        %td
+          = link_to 'Ver', dispatch_path(dispatch), class: 'btn btn-raised btn-success'
+          -#TODO refactor con cancancan
+          - if dispatch.status == 1
+            = link_to 'Editar', edit_dispatch_path(dispatch), class: 'btn btn-raised btn-primary'
+          = link_to dispatch, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este despacho?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar

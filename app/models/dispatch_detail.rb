@@ -13,7 +13,7 @@ class DispatchDetail
   field :amount,        type: Integer, default: 0
 
   # == Validaciones
-  validates_presence_of     :total,  message: "Debes ingresar una cantidad."
+  
 
   # == Métodos
 
