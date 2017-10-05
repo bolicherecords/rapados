@@ -47,20 +47,20 @@
 		%table.table
 			%tr
 				%th Cantidad
+				%th Unidad
 				%th Nombre
 				%th Descripción
-				%th Unidad
 				%th 
 			- @sale.sale_details.each do |sale_detail|
 				%tr
 					%td
 						= sale_detail.amount
 					%td
+						= sale_detail.product.unit
+					%td
 						= sale_detail.product.name
 					%td
 						= sale_detail.product.description
-					%td
-						= sale_detail.product.unit
 					%td
 						-#TODO refactor con cancancan
 						- if @sale.status == 1
