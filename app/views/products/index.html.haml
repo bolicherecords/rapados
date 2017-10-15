@@ -1,12 +1,22 @@
 .title
   Listado de Productos
 %hr
-= link_to new_product_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nuevo Producto
-= link_to desactivated_products_path(), class: 'btn btn-info' do
-  %i.fa.fa-edit
-  Productos Desactivados
+
+.row
+  .col-md-4
+    = link_to new_product_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nuevo Producto
+    = link_to desactivated_products_path(), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Productos Desactivados
+  .col-md-8
+    = form_tag(products_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-8
+          = text_field_tag :query, params[:query], placeholder: "Ingrese nombre, Descripción, Unidad o Código de barras del producto", autofocus: true, class: "form-control"
+        .col-md-4
+          = submit_tag "Buscar", class: "btn btn-info"
 %br
 %br
 %table.table

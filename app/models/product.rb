@@ -9,6 +9,7 @@ class Product
 	# == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   # include GlobalID::Identification
 
   # == Asociaciones
@@ -34,6 +35,9 @@ class Product
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
+
+  # == Buscador
+  search_in :name, :description, :unit, :barcode #Ej: Relations :job_titles => [:job_position_detail, :area_name, :category_name]
 
   # == Métodos
   def purchases
