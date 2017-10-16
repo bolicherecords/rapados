@@ -28,6 +28,8 @@ gem 'select2-rails'
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml'
 gem 'draper'
 
+#Buscadores
+gem 'mongoid_search'
 
 group :development, :test do
   gem 'byebug', platform: :mri

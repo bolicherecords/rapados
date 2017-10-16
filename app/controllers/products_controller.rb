@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   include ApplicationHelper
 
   def index
-    @products = Product.where(status: Product::STATUS_ACTIVATE)
+    options = params    
+    @products = Fetchers::FetchProductsService.decorated(options)
   end
 
   def desactivated
