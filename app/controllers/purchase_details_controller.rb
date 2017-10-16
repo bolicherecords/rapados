@@ -3,16 +3,20 @@ class PurchaseDetailsController < ApplicationController
 
   def create
     purchase = Purchase.find(params[:purchase])
-    if purchase.is_draft?
-      product = Product.where(barcode: params[:barcode]).first
-      if product.present?
-        PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount])
-        flash[:success] = 'Producto agregado exitosamente.'
+    if params[:barcode].present? && params[:amount].present?
+      if purchase.draft?
+        product = Product.where(barcode: params[:barcode]).first
+        if product.present?
+          PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], total: product.price * params[:amount].to_i)
+          flash[:success] = 'Producto agregado exitosamente.'
+        else
+          flash[:danger] = 'Código de barra no registrado'
+        end
       else
-        flash[:danger] = 'Código de barra no registrado'
+        flash[:danger] = "Imposible agregar producto. Compra #{PurchaseDecorator.decorate(purchase).status_name}."
       end
     else
-      flash[:danger] = "Imposible agregar producto. Compra #{PurchaseDecorator.decorate(purchase).status_name}."
+      flash[:danger] = 'Debes ingresar cantidad y código de barra'
     end
     redirect_to :back
   end

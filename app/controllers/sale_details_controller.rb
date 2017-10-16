@@ -3,7 +3,7 @@ class SaleDetailsController < ApplicationController
 
   def create
     sale = Sale.find(params[:sale])
-    if sale.is_draft?
+    if sale.draft?
       product = Product.where(barcode: params[:barcode]).first
       if product.present?
         SaleDetail.create(product: product, sale: sale, amount: params[:amount])

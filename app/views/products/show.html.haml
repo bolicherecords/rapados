@@ -21,15 +21,21 @@
       %tr
         %td
           %strong
-            Unidad
+            Código Barra:
+        %td
+          = @product.barcode
+      %tr
+        %td
+          %strong
+            Precio/Unidad
+        %td
+          = "#{@product.price} / #{@product.unit}"
       %tr
         %td
           %strong
             Descripción:
         %td
           = @product.description
-        %td
-          = @product.unit
 
     -# - @barcode_png = barcode_output(@product)
     -# = wicked_pdf_image_tag_for_public(@barcode_png)

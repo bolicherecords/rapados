@@ -1,5 +1,5 @@
 class Dispatch
-	
+
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -25,8 +25,8 @@ class Dispatch
   # == Validaciones
 
   # == Métodos
-  def is_draft?
-    self.status == STATUS_DRAFT
+  def draft?
+    status == STATUS_DRAFT
   end
 
   def finish(current_user)

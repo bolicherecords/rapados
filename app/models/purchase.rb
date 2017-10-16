@@ -17,11 +17,10 @@ class Purchase
   STATUS_CANCELLED        = 3
 
   # == Atributos
-  field :total, type: Integer, default: 0
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime
-  
+
 
   # == Validaciones
 
@@ -48,8 +47,11 @@ class Purchase
     end
   end
 
-  def is_draft?
-    self.status == STATUS_DRAFT
+  def draft?
+    status == STATUS_DRAFT
   end
-  
+
+  def total
+    purchase_details.map(&:total).sum
+  end
 end

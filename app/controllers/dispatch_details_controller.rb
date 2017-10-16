@@ -3,7 +3,7 @@ class DispatchDetailsController < ApplicationController
 
   def create
     dispatch = Dispatch.find(params[:dispatch])
-    if dispatch.is_draft?
+    if dispatch.draft?
       product = Product.where(barcode: params[:barcode]).first
       if product.present?
         DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount])

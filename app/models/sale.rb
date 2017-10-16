@@ -45,10 +45,8 @@ class Sale
     end
   end
 
-  def is_draft?
-    self.status == STATUS_DRAFT
+  def draft?
+    status == STATUS_DRAFT
   end
 
 end
-
-

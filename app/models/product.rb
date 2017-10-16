@@ -25,6 +25,7 @@ class Product
   field :name,        type: String, default: ''
   field :description, type: String, default: ''
   field :unit,        type: String, default: ''
+  field :price,      type: Integer, default: 0
   field :code,        type: Integer, default: ''
   field :barcode,     type: String, default: ''
   field :status,      type: Integer, default: STATUS_ACTIVATE
@@ -46,7 +47,7 @@ class Product
       self.code = code
     end while Product.where(code: code).present?
   end
-  
+
   def get_stocks
     stocks.distinct(:store).map{|s| Stock.current_stock(self, s)}
   end

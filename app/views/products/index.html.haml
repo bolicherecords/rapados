@@ -11,8 +11,8 @@
 %br
 %table.table
   %th Nombre
-  %th Unidad
   %th Descripción
+  %th Precio/Unidad
   %th Código de Barras
   %th
     - @products.each do |product|
@@ -20,9 +20,9 @@
         %td
           = link_to product.name, product
         %td
-          = product.unit
-        %td
           = product.description
+        %td
+          = "#{product.price} / #{product.unit}"
         %td
           = product.barcode
         %td
