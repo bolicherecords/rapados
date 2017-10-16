@@ -2,7 +2,8 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @customers = Customer.where(status: Customer::STATUS_ACTIVATE)
+    options = params   
+    @customers = Fetchers::FetchCustomersService.decorated(options)
   end
 
   def desactivated

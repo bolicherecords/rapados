@@ -2,7 +2,8 @@ class ProvidersController < ApplicationController
   before_action :set_provider, only: [:show, :edit, :update, :destroy]
 
   def index
-    @providers = Provider.where(status: Provider::STATUS_ACTIVATE)
+    options = params   
+    @providers = Fetchers::FetchProvidersService.decorated(options)
   end
 
   def desactivated
