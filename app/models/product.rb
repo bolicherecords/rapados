@@ -31,7 +31,6 @@ class Product
   field :barcode,     type: String, default: ''
   field :status,      type: Integer, default: STATUS_ACTIVATE
 
-
   before_create :set_code, :set_barcode
 
   # == Validaciones

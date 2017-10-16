@@ -18,7 +18,7 @@ class PurchaseDetailsController < ApplicationController
     else
       flash[:danger] = 'Debes ingresar cantidad y código de barra'
     end
-    redirect_to :back
+    redirect_to purchase
   end
 
   def destroy

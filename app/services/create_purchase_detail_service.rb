@@ -1,0 +1,4 @@
+class CreatePurchaseDetailService < BaseService
+
+
+end

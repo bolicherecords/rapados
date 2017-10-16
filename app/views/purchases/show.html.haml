@@ -1,5 +1,5 @@
 %h1.header
-	Agregar Productos
+	Detalle Compra
 %br
 %br
 .container
@@ -24,6 +24,9 @@
 
 
 	.row
+		%h3
+			Agregar Productos
+		%br
 		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
 			-#TODO refactor con cancancan
 			- if @purchase.status == 1
@@ -41,8 +44,6 @@
 					= link_to 'Imprimir', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
 					= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
-	%br
-	.h3 Productos
 	%div
 		%br
 		%table.table
