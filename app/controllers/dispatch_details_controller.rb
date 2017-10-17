@@ -7,8 +7,8 @@ class DispatchDetailsController < ApplicationController
       if dispatch.draft?
         product = Product.where(barcode: params[:barcode]).first
         if product.present?
-          stock = Stock.current_stock(product, dispatch.origin).amount
-          if stock >= params[:amount].to_i
+          stock = Stock.current_stock(product, dispatch.origin)
+          if stock && stock.amount >= params[:amount].to_i
             DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount], total: product.price * params[:amount].to_i)
             flash[:success] = 'Producto agregado exitosamente.'
           else

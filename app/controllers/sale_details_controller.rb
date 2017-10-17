@@ -7,8 +7,8 @@ class SaleDetailsController < ApplicationController
       if sale.draft?
         product = Product.where(barcode: params[:barcode]).first
         if product.present?
-          stock = Stock.current_stock(product, sale.store).amount
-          if stock >= params[:amount].to_i
+          stock = Stock.current_stock(product, sale.store)
+          if stock && stock.amount >= params[:amount].to_i
             SaleDetail.create(product: product, sale: sale, amount: params[:amount], total: product.price * params[:amount].to_i)
             flash[:success] = 'Producto agregado exitosamente.'
           else
