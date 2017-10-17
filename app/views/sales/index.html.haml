@@ -6,6 +6,7 @@
   %th Cliente
   %th Local
   %th Vendedor
+  %th total
   %th Estado
   %th
     - @sales.each do |sale|
@@ -16,6 +17,8 @@
           = sale.store.name
         %td
           = sale.user.email
+        %td
+          = sale.total
         %td
           = sale.status_name
         %td

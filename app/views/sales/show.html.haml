@@ -1,5 +1,5 @@
 %h1.header
-	Agregar Productos
+	Detalle Venta
 %br
 %br
 .container
@@ -7,23 +7,26 @@
 		%table.table
 			%tr
 				%th Local
-				%td 
+				%td
 					= @sale.store.name
 				%tr
 				%th Cliente
-				%td 
-					= @sale.customer.name	
+				%td
+					= @sale.customer.name
 				%tr
 				%th Cajero
-				%td 
+				%td
 					= @sale.user.email
 				%tr
 				%th Estado
-				%td 
+				%td
 					= @sale.status_name
 				%tr
 
 	.row
+		%h3
+			Agregar Productos
+		%br
 		= form_tag(sale_details_path(sale: @sale), :method => "post") do
 			-#TODO refactor con cancancan
 			- if @sale.status == 1
@@ -39,9 +42,6 @@
 				- elsif @sale.status == 2
 					= link_to 'Imprimir', edit_sale_path(@sale, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
 					= link_to 'Anular', edit_sale_path(@sale, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
-
-	%br
-	.h3 Productos
 	%div
 		%br
 		%table.table
@@ -50,7 +50,9 @@
 				%th Unidad
 				%th Nombre
 				%th Descripción
-				%th 
+				%th Precio
+				%th Total
+				%th
 			- @sale.sale_details.each do |sale_detail|
 				%tr
 					%td
@@ -62,11 +64,19 @@
 					%td
 						= sale_detail.product.description
 					%td
+						= sprintf("$%2.0f", sale_detail.total/sale_detail.amount)
+					%td
+						= sprintf("$%2.0f", sale_detail.total)
+					%td
 						-#TODO refactor con cancancan
 						- if @sale.status == 1
 							= link_to sale_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
 								%i.fa.fa-trash-o
 								Quitar
-
-	= link_to 'Volver', sales_path , class: "btn btn-link"
-	
+	%br
+	%br
+		.row
+			.col-md-8
+				= link_to 'Volver', sales_path , class: "btn btn-link"
+			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
+				= "Total: #{sprintf("$%2.0f", @sale.total)}"

@@ -3,16 +3,25 @@ class DispatchDetailsController < ApplicationController
 
   def create
     dispatch = Dispatch.find(params[:dispatch])
-    if dispatch.draft?
-      product = Product.where(barcode: params[:barcode]).first
-      if product.present?
-        DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount])
-        flash[:success] = 'Producto agregado exitosamente.'
+    if params[:barcode].present? && params[:amount].present?
+      if dispatch.draft?
+        product = Product.where(barcode: params[:barcode]).first
+        if product.present?
+          stock = Stock.current_stock(product, dispatch.origin).amount
+          if stock >= params[:amount].to_i
+            DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount], total: product.price * params[:amount].to_i)
+            flash[:success] = 'Producto agregado exitosamente.'
+          else
+            flash[:danger] = "No hay sufiente stock, actualmente hay: #{stock}"
+          end
+        else
+          flash[:danger] = 'Código de barra no registrado'
+        end
       else
-        flash[:danger] = 'Código de barra no registrado'
+        flash[:danger] = "Imposible agregar producto. Compra #{DispatchDecorator.decorate(dispatch).status_name}."
       end
     else
-      flash[:danger] = "Imposible agregar producto. Compra #{DispatchDecorator.decorate(dispatch).status_name}."
+      flash[:danger] = 'Debes ingresar cantidad y código de barra'
     end
     redirect_to :back
   end

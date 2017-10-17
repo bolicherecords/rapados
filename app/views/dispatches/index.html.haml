@@ -8,6 +8,8 @@
 %table.table
   %th Local Origen
   %th Local Destino
+  %th Fecha
+  %th Total
   %th Estado
   %th
     - @dispatches.each do |dispatch|
@@ -16,6 +18,10 @@
           = link_to dispatch.origin.name, dispatch.origin
         %td
           = link_to dispatch.destination.name, dispatch.destination
+        %td
+          = dispatch.created_at
+        %td
+          = dispatch.total
         %td
           = dispatch.status_name
         %td

@@ -47,4 +47,8 @@ class Dispatch
     end
   end
 
+  def total
+    dispatch_details.map(&:total).sum
+  end
+
 end

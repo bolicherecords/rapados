@@ -3,16 +3,26 @@ class SaleDetailsController < ApplicationController
 
   def create
     sale = Sale.find(params[:sale])
-    if sale.draft?
-      product = Product.where(barcode: params[:barcode]).first
-      if product.present?
-        SaleDetail.create(product: product, sale: sale, amount: params[:amount])
-        flash[:success] = 'Producto agregado exitosamente.'
+    if params[:barcode].present? && params[:amount].present?
+      if sale.draft?
+        product = Product.where(barcode: params[:barcode]).first
+        if product.present?
+          stock = Stock.current_stock(product, sale.store).amount
+          if stock >= params[:amount].to_i
+            SaleDetail.create(product: product, sale: sale, amount: params[:amount], total: product.price * params[:amount].to_i)
+            flash[:success] = 'Producto agregado exitosamente.'
+          else
+            flash[:danger] = "No hay sufiente stock, actualmente hay: #{stock}"
+          end
+
+        else
+          flash[:danger] = 'Código de barra no registrado'
+        end
       else
-        flash[:danger] = 'Código de barra no registrado'
+        flash[:danger] = "Imposible agregar producto. Venta #{SaleDecorator.decorate(sale).status_name}."
       end
     else
-      flash[:danger] = "Imposible agregar producto. Venta #{SaleDecorator.decorate(sale).status_name}."
+      flash[:danger] = 'Debes ingresar cantidad y código de barra'
     end
     redirect_to :back
   end

@@ -34,7 +34,6 @@
 					= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
 				.col-md-4
 					= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control barcode"
-					-# = select_tag :barcode, options_for_select(@products, "#{@product.id if @product.present?}"), { class: 'barcode form-control' , prompt: "Ingrese Código de Barras"}
 			.col-md-4
 				-#TODO refactor con cancancan
 				- if @purchase.status == 1
@@ -76,15 +75,10 @@
 							= link_to purchase_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
 								%i.fa.fa-trash-o
 								Quitar
-
-	%br
+  %br
 	%br
 		.row
 			.col-md-8
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
 				= "Total: #{sprintf("$%2.0f", @purchase.total)}"
-:javascript
-	$(document).ready(function() {
-		$("#barcode").select2();
-	});

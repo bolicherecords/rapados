@@ -49,4 +49,8 @@ class Sale
     status == STATUS_DRAFT
   end
 
+  def total
+    sale_details.map(&:total).sum
+  end
+
 end

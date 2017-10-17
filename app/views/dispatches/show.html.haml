@@ -1,5 +1,5 @@
 %h1.header
-	Agregar Productos
+	Detalle Despacho
 %br
 %br
 .container
@@ -19,6 +19,9 @@
 					= @dispatch.status_name
 				%tr
 	.row
+		%h3
+			Agregar Productos
+		%br
 		= form_tag(dispatch_details_path(dispatch: @dispatch), :method => "post") do
 			-#TODO refactor con cancancan
 			- if @dispatch.status == 1
@@ -26,7 +29,6 @@
 					= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
 				.col-md-4
 					= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control barcode"
-					-# = select_tag :barcode, options_for_select(@products, "#{@product.id if @product.present?}"), { class: 'barcode form-control' , prompt: "Ingrese Código de Barras"}
 			.col-md-4
 				-#TODO refactor con cancancan
 				- if @dispatch.status == 1
@@ -36,9 +38,6 @@
 					= link_to 'Imprimir', edit_dispatch_path(@dispatch, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
 					= link_to 'Anular', edit_dispatch_path(@dispatch, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
 
-
-	%br
-	.h3 Productos
 	%div
 		%br
 		%table.table
@@ -47,6 +46,8 @@
 				%th Unidad
 				%th Nombre
 				%th Descripción
+				%th Precio
+				%th Total
 				%th
 			- @dispatch.dispatch_details.each do |dispatch_detail|
 				%tr
@@ -59,10 +60,19 @@
 					%td
 						= dispatch_detail.product.description
 					%td
+						= sprintf("$%2.0f", dispatch_detail.total/dispatch_detail.amount)
+					%td
+						= sprintf("$%2.0f", dispatch_detail.total)
+					%td
 						-#TODO refactor con cancancan
 						- if @dispatch.status == 1
 							= link_to dispatch_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
 								%i.fa.fa-trash-o
 								Quitar
-
-	= link_to 'Volver', dispatches_path , class: "btn btn-link"
+	%br
+	%br
+		.row
+			.col-md-8
+				= link_to 'Volver', dispatches_path , class: "btn btn-link"
+			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
+				= "Total: #{sprintf("$%2.0f", @dispatch.total)}"

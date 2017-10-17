@@ -8,7 +8,8 @@
 %table.table
   %th Cliente
   %th Local
-  %th Vendedor
+  %th Comprador
+  %th Total
   %th Estado
   %th
     - @purchases.each do |purchase|
@@ -20,6 +21,10 @@
         %td
           = purchase.user.email
         %td
+          = purchase.created_at
+        %td
+          = purchase.total
+        %td
           = purchase.status_name
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
@@ -29,4 +34,3 @@
           = link_to purchase, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta compra?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar
-
