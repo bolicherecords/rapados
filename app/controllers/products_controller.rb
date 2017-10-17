@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   include ApplicationHelper
 
   def index
-    options = params    
+    options = params   
     @products = Fetchers::FetchProductsService.decorated(options)
   end
 

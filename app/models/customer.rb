@@ -2,6 +2,7 @@ class Customer
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   # include GlobalID::Identification
   # == Asociaciones
 
@@ -20,6 +21,9 @@ class Customer
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
+
+  # == Buscador
+  search_in :name, :document_id, :phone, :email #Ej: Relations :job_titles => [:job_position_detail, :area_name, :category_name]
 
   # == Métodos
   def prev

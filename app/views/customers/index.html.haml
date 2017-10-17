@@ -1,12 +1,21 @@
 .title
   Listado de Clientes
 %hr
-= link_to new_customer_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nuevo Cliente
-= link_to desactivated_customers_path(), class: 'btn btn-info' do
-  %i.fa.fa-edit
-  Clientes Desactivados
+.row
+  .col-md-4
+    = link_to new_customer_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nuevo Cliente
+    = link_to desactivated_customers_path(), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Clientes Desactivados
+  .col-md-8
+    = form_tag(customers_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-8
+          = text_field_tag :query, params[:query], placeholder: "Ingrese nombre, Descripción, Unidad o Código de barras del cliento", autofocus: true, class: "form-control"
+        .col-md-4
+          = submit_tag "Buscar", class: "btn btn-info"
 %br
 %br
 %table.table
