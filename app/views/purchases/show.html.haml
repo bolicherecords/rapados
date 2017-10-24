@@ -14,6 +14,14 @@
 				%td
 					= @purchase.provider.name
 				%tr
+				%th Nº Factura
+				%td
+					= @purchase.document_number
+				%tr
+				%th Fecha Vencimiento
+				%td
+					= @purchase.document_number_expiration
+				%tr
 				%th Comprador
 				%td
 					= @purchase.user.email

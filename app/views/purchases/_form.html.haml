@@ -5,6 +5,12 @@
 	%div{ class: 'form-group label-floating'}
 		= f.label "local", class: "title_label"
 		= f.select(:store_id, Store.actives.collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local', class: 'form-control'})
+	%div{ class: 'form-group label-floating'}
+		= f.label "Nº Factura", class: "title_label"
+		= f.text_field(:document_number, class: 'form-control')
+	%div{ class: 'form-group label-floating'}
+		= f.label "Fecha Vencimiento", class: "title_label"
+		= f.text_field(:document_number_expiration_at, class: 'form-control')
 
 	%div{ class: 'form-group label-floating'}
 		%br

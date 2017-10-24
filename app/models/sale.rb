@@ -21,6 +21,7 @@ class Sale
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime
+  field :number,      type: Integer
 
 
   # == Validaciones

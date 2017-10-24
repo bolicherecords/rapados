@@ -14,7 +14,7 @@ class SalesController < ApplicationController
   end
 
   def create
-    sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store: current_user.store)
+    sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store: current_user.store, number: sale_params[:number])
     flash[:success] = 'Venta creada exitosamente.'
     redirect_to sale
   end
@@ -44,7 +44,7 @@ class SalesController < ApplicationController
   private
 
   def sale_params
-    params.require(:sale).permit(:customer_id)
+    params.require(:sale).permit(:customer_id, :number)
   end
 
   def set_sale

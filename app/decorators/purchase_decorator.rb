@@ -11,4 +11,9 @@ class PurchaseDecorator < Draper::Decorator
       "Anulada"
     end
 	end
+
+  def document_number_expiration
+    self.document_number_expiration_at.strftime("%d/%m/%Y") if self.document_number_expiration_at.present?
+
+  end
 end

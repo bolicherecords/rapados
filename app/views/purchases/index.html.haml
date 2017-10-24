@@ -6,8 +6,10 @@
 %br
 %br
 %table.table
-  %th Cliente
+  %th Proveedor
   %th Local
+  %th Nº Factura
+  %th Fecha Vencimiento
   %th Comprador
   %th Total
   %th Estado
@@ -18,6 +20,10 @@
           = link_to purchase.provider.name, purchase.provider
         %td
           = purchase.store.name
+        %td
+          = purchase.document_number
+        %td
+          = purchase.document_number_expiration
         %td
           = purchase.user.email
         %td
