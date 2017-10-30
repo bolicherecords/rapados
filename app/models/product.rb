@@ -61,4 +61,8 @@ class Product
     end while Product.where(barcode: barcode).present?
   end
 
+  def full_name
+    "(#{barcode}) #{name}"
+  end
+
 end

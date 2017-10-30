@@ -41,16 +41,15 @@
 				.col-md-2
 					= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
 				.col-md-4
-					= text_field_tag :barcode, params[:barcode], placeholder: "Ingrese Codigo de Barras", autofocus: true, class: "form-control barcode"
+					= select_tag :barcode, options_from_collection_for_select(@products, "barcode", "full_name"), {include_blank: true, class: 'form-control js-barcode-input'}
 			.col-md-4
 				-#TODO refactor con cancancan
 				- if @purchase.status == 1
-					= submit_tag "Agregar", class: "btn btn-success"
+					= submit_tag "Agregar", class: "btn btn-success js-add-product"
 					= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
 				- elsif @purchase.status == 2
 					= link_to 'Imprimir', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-info'
 					= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
-
 	%div
 		%br
 		%table.table
@@ -90,3 +89,15 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
 				= "Total: #{sprintf("$%2.0f", @purchase.total)}"
+
+:javascript
+	$('.js-barcode-input').select2({
+		theme: "bootstrap",
+		placeholder: 'Ingrese Código de Barras',
+		allowClear: true,
+		width: '100%'
+	});
+
+	$('.js-barcode-input').change(function(){
+		$('.js-add-product').click();
+	});
