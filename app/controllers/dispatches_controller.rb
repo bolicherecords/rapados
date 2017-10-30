@@ -3,7 +3,8 @@ class DispatchesController < ApplicationController
   before_action :set_dispatch, only: [:show, :edit, :update, :destroy]
 
   def index
-    @dispatches = DispatchDecorator.decorate_collection(Dispatch.all)
+    options = params   
+    @dispatches = Fetchers::FetchDispatchesService.decorated(options)
   end
 
   def new
