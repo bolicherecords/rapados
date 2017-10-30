@@ -3,6 +3,7 @@ class Sale
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   # include GlobalID::Identification
 
   # == Constantes
@@ -26,6 +27,9 @@ class Sale
 
   # == Validaciones
   validates_presence_of :total, message: "Debes ingresar un total."
+
+  # == Buscador
+  search_in :status, :number, :store => [:name], :customer => [:name, :document_id], :user =>[:email]
 
   # == Métodos
   def finish(current_user)

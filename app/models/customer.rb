@@ -4,11 +4,12 @@ class Customer
   include Mongoid::Timestamps
   include Mongoid::Search
   # include GlobalID::Identification
-  # == Asociaciones
 
+  # == Constantes
   STATUS_DESACTIVATE = 0
   STATUS_ACTIVATE    = 1
 
+  # == Asociaciones
   has_many :sales
   belongs_to :user
 

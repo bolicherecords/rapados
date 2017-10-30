@@ -1,8 +1,21 @@
 %h1.header
   Listado de Compras
-  = link_to new_purchase_path, class: 'btn btn-raised btn-success' do
-    %i.fa.fa-plus-circle
-    Nueva Compra
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_purchase_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nueva Compra
+    = link_to new_purchase_path, class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Compras Desactivadas
+  .col-md-8.col-xs-7
+    = form_tag(purchases_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese número de factura, local, proveedor o encargado de la compra", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br
 %table.table

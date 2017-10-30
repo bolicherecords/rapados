@@ -1,5 +1,21 @@
 %h1.header
   Listado de Ventas
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_customer_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nueva Venta
+    = link_to desactivated_customers_path(), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Ventas Anuladas
+  .col-md-8.col-xs-7
+    = form_tag(customers_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese número, local, nombre del cliente, rut del cliente o mail del vededor", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br
 %table.table
@@ -30,7 +46,3 @@
           = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este salee?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar
-
-= link_to new_sale_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nueva Venta

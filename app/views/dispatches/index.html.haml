@@ -1,8 +1,21 @@
 %h1.header
   Listado de Despachos
-  = link_to new_dispatch_path, class: 'btn btn-raised btn-success' do
-    %i.fa.fa-plus-circle
-    Nuevo Despacho
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_dispatch_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nuevo Despacho
+    = link_to new_dispatch_path, class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Despachos Anulados
+  .col-md-8.col-xs-7
+    = form_tag(dispatches_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese número de factura, local, proveedor o encargado", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br
 %table.table

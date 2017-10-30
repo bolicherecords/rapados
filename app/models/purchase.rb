@@ -3,6 +3,7 @@ class Purchase
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   # include GlobalID::Identification
 
   # == Asociaciones
@@ -24,6 +25,9 @@ class Purchase
   field :document_number_expiration_at, type: Date, default: Date.today
 
   # == Validaciones
+
+  # == Buscador
+  search_in :status, :document_number, :store => [:name], :provider => [:name, :document_id], :user =>[:email]
 
   # == Métodos
   def products

@@ -3,6 +3,7 @@ class Dispatch
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Search
   # include GlobalID::Identification
 
   # == Asociaciones
@@ -12,17 +13,20 @@ class Dispatch
   has_many    :dispatch_details
 
   # == Constantes
-  STATUS_DRAFT            = 1
-  STATUS_FINISHED         = 2
-  STATUS_CANCELLED        = 3
+  STATUS_DRAFT      = 1
+  STATUS_FINISHED   = 2
+  STATUS_CANCELLED  = 3
 
   # == Atributos
-  field :total, type: Integer, default: 0
+  field :total,       type: Integer, default: 0
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime
 
   # == Validaciones
+
+  # == Buscador
+  search_in :status, :origin =>[:name], :destination =>[:name], :origin =>[:email]
 
   # == Métodos
   def draft?
