@@ -7,6 +7,7 @@ class SalesController < ApplicationController
 
   def show
     @sale = SaleDecorator.decorate(@sale)
+    @products = Product.where(status: Product::STATUS_ACTIVATE)
   end
 
   def new
