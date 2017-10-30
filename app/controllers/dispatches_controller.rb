@@ -19,6 +19,7 @@ class DispatchesController < ApplicationController
 
   def show
     @dispatch = DispatchDecorator.decorate(@dispatch)
+    @products = Product.where(status: Product::STATUS_ACTIVATE)
   end
 
   def edit
