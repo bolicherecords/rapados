@@ -2,7 +2,8 @@ class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sales = SaleDecorator.decorate_collection(Sale.all)
+    options = params   
+    @sales = Fetchers::FetchSalesService.decorated(options)
   end
 
   def show
@@ -15,7 +16,8 @@ class SalesController < ApplicationController
   end
 
   def create
-    sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store: current_user.store, number: sale_params[:number])
+    store_id = sale_params[:store_id].present? ? sale_params[:store_id] : current_user.store_id
+    sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store_id: store_id, number: sale_params[:number])
     flash[:success] = 'Venta creada exitosamente.'
     redirect_to sale
   end
@@ -45,7 +47,7 @@ class SalesController < ApplicationController
   private
 
   def sale_params
-    params.require(:sale).permit(:customer_id, :number)
+    params.require(:sale).permit(:customer_id, :number, :store_id)
   end
 
   def set_sale

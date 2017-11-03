@@ -1,4 +1,8 @@
 = form_for(@sale) do |f|
+	- if current_user.is_admin?
+		%div{ class: 'form-group label-floating'}
+			= f.label "Local", class: "title_label"
+			= f.select(:store_id, Store.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
 	%div{ class: 'form-group label-floating'}
 		= f.label "Cliente", class: "title_label"
 		= f.select(:customer_id, Customer.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
