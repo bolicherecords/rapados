@@ -11,7 +11,9 @@ module ProvidersHelper
     {
       'kg' => 'kg',
       'lts' => 'lts',
-      'cc' => 'cc'
+      'cc' => 'cc',
+      'unidad' => 'unidad',
+      'caja' => 'caja'
     }.to_a
   end
 end

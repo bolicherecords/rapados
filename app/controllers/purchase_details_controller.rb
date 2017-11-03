@@ -7,7 +7,7 @@ class PurchaseDetailsController < ApplicationController
       if purchase.draft?
         product = Product.where(barcode: params[:barcode]).first
         if product.present?
-          PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], total: product.price * params[:amount].to_i)
+          PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], total: product.purchase_price * params[:amount].to_f)
           flash[:success] = 'Producto agregado exitosamente.'
         else
           flash[:danger] = 'Código de barra no registrado'

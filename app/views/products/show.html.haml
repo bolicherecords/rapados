@@ -27,9 +27,15 @@
       %tr
         %td
           %strong
-            Precio/Unidad
+            Precio de Compra/Unidad
         %td
-          = "#{@product.price} / #{@product.unit}"
+          = "#{@product.purchase_price} / #{@product.unit}"
+      %tr
+        %td
+          %strong
+            Precio de Venta/Unidad
+        %td
+          = "#{@product.sale_price} / #{@product.unit}"
       %tr
         %td
           %strong
@@ -56,7 +62,7 @@
             %td
               = link_to stock.store.name, stock.store
             %td
-              = stock.amount
+              = stock.amount.to_f
             %td
               = stock.created_at
             %td

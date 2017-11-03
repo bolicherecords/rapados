@@ -1,5 +1,5 @@
 class Stock
-	
+
   # == Includes
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -9,13 +9,13 @@ class Stock
   belongs_to  :product
   belongs_to  :store
   belongs_to  :user
-  
+
   # == Constantes
   ADD_STOCK               = 1
   REMOVE_STOCK            = 0
 
   # == Atributos
-  field :amount,    type: Integer, default: 0
+  field :amount,    type: Float, default: 0
 
 
   # == Validaciones
@@ -26,4 +26,4 @@ class Stock
     Stock.where(product:product, store: store).desc(:created_at).limit(1).first
   end
 
-end 
+end

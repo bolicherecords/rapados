@@ -23,13 +23,14 @@ class Product
   STATUS_ACTIVATE    = 1
 
   # == Atributos
-  field :name,        type: String, default: ''
-  field :description, type: String, default: ''
-  field :unit,        type: String, default: ''
-  field :price,      type: Integer, default: 0
-  field :code,        type: Integer, default: ''
-  field :barcode,     type: String, default: ''
-  field :status,      type: Integer, default: STATUS_ACTIVATE
+  field :name,             type: String, default: ''
+  field :description,      type: String, default: ''
+  field :unit,             type: String, default: ''
+  field :purchase_price,   type: Integer, default: 0
+  field :sale_price,       type: Integer, default: 0
+  field :code,             type: Integer, default: ''
+  field :barcode,          type: String, default: ''
+  field :status,           type: Integer, default: STATUS_ACTIVATE
 
   before_create :set_code, :set_barcode
 
@@ -63,6 +64,10 @@ class Product
 
   def full_name
     "(#{barcode}) #{name}"
+  end
+
+  def profit_margin
+    sale_price - purchase_price
   end
 
 end

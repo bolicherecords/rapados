@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   include ApplicationHelper
 
   def index
-    options = params   
+    options = params
     @products = Fetchers::FetchProductsService.decorated(options)
   end
 
@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :unit, :price)
+    params.require(:product).permit(:name, :description, :unit, :purchase_price, :sale_price)
   end
 
   def set_product

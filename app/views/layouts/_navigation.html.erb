@@ -13,17 +13,17 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <%if current_user%>
-      <ul class="nav navbar-nav">
-        <% if current_user.has_role? :god%>
-          <%= render "layouts/menu/god" %>
-        <% elsif current_user.has_role? :admin %>
-          <%= render "layouts/menu/admin" %>
-        <% elsif current_user.has_role? :seller %>
-          <%= render "layouts/menu/seller" %>
-        <% end %>
-      </ul>
-    <%end%>
+      <%if current_user%>
+        <ul class="nav navbar-nav">
+          <% if current_user.has_role? :god%>
+            <%= render "layouts/menu/god" %>
+          <% elsif current_user.has_role? :admin %>
+            <%= render "layouts/menu/admin" %>
+          <% elsif current_user.has_role? :seller %>
+            <%= render "layouts/menu/seller" %>
+          <% end %>
+        </ul>
+      <%end%>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <li class="dropdown">
@@ -32,6 +32,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
+                <li><a href=<%= edit_perfile_path(current_user) %>>Editar Perfil</a></li>
                 <li><a href=<%= destroy_user_session_path %>>Cerrar Sesión</a></li>
               </ul>
             </li>

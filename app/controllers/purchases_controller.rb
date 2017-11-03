@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
   def index
-    @purchases = PurchaseDecorator.decorate_collection(Purchase.all)
+    @purchases = PurchaseDecorator.decorate_collection(Purchase.all.desc(:document_number_expiration_at))
   end
 
   def show
