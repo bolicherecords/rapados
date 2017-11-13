@@ -22,8 +22,11 @@ Rails.application.routes.draw do
       get :desactivated
     end
   end
-
-  resources :purchases
+  resources :purchases do
+    collection do
+      get :canceled
+    end
+  end
   resources :purchase_details
 
   resources :dispatches

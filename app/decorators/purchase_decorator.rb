@@ -2,18 +2,29 @@ class PurchaseDecorator < Draper::Decorator
 	delegate_all
 
 	def status_name
-    case self.status
+    case status
     when Purchase::STATUS_DRAFT
-      "Nueva"
+      'Nueva'
     when Purchase::STATUS_FINISHED
-      "Finalizada"
+      'Finalizada'
     when Purchase::STATUS_CANCELLED
-      "Anulada"
+      'Anulada'
     end
 	end
 
-  def document_number_expiration
-    self.document_number_expiration_at.strftime("%d/%m/%Y") if self.document_number_expiration_at.present?
+	def document_number_expiration
+		document_number_expiration_at.strftime('%d/%m/%Y') if document_number_expiration_at.present?
+	end
 
-  end
+	def created_at_datetime
+		format_date(created_at)
+	end
+
+	def format_date_time(date)
+		date.in_time_zone.strftime("%d/%m/%Y %H:%M") if date
+	end
+
+	def format_date(date)
+		date.strftime("%d/%m/%Y") if date
+	end
 end

@@ -2,7 +2,7 @@ class BaseDecorator < Draper::Decorator
   decorates_finders
   delegate_all
 
-  def created_at
+  def created_at_datetime
     format_date_time(source.created_at)
   end
 
@@ -24,7 +24,7 @@ class BaseDecorator < Draper::Decorator
 
   def format_date_time(date)
     #Time.zone = 'America/Santiago'
-    date.in_time_zone.strftime("%d.%m.%Y - %H:%M") if date
+    date.in_time_zone.strftime("%d:%m:%Y - %H:%M") if date
   end
 
   def format_time(date)

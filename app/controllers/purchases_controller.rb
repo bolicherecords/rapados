@@ -6,6 +6,11 @@ class PurchasesController < ApplicationController
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
   end
 
+  def canceled
+    options = params
+    @purchases = Fetchers::FetchPurchasesService.decorated(options)
+  end
+
   def show
     @purchase = PurchaseDecorator.decorate(@purchase)
     @products = Product.where(status: Product::STATUS_ACTIVATE)
