@@ -10,6 +10,10 @@
         = link_to @provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-link' do
           %i.fa.fa-trash-o
           Eliminar Proveedor
+        %br  
+        = link_to :back, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-arrow-left
+          Volver
 
   .col-md-9
     .title
