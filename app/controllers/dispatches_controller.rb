@@ -7,7 +7,7 @@ class DispatchesController < ApplicationController
     @dispatches = Fetchers::FetchDispatchesService.decorated(options)
   end
 
-  def canceled
+  def cancelled
     options = params
     @dispatches = Fetchers::FetchDispatchesService.decorated(options)
   end

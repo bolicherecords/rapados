@@ -6,7 +6,7 @@
     = link_to new_dispatch_path, class: 'btn btn-raised btn-success' do
       %i.fa.fa-plus-circle
       Nuevo Despacho
-    = link_to canceled_dispatches_path(status: Dispatch::STATUS_CANCELLED), class: 'btn btn-info' do
+    = link_to cancelled_dispatches_path(status: Dispatch::STATUS_CANCELLED), class: 'btn btn-info' do
       %i.fa.fa-edit
       Despachos Anulados
   .col-md-8.col-xs-7

@@ -10,7 +10,7 @@
       %i.fa.fa-edit
       Compras
   .col-md-8.col-xs-7
-    = form_tag(canceled_purchases_path(), :method => "get", id: "search-form") do
+    = form_tag(cancelled_purchases_path(), :method => "get", id: "search-form") do
       .row
         .col-md-7.col-md-offset-4.col-xs-10
           = text_field_tag :query, params[:query], placeholder: "Ingrese número de factura, local, proveedor o encargado de la compra", autofocus: true, class: "form-control"

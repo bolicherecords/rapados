@@ -24,19 +24,23 @@ Rails.application.routes.draw do
   end
   resources :purchases do
     collection do
-      get :canceled
+      get :cancelled
     end
   end
   resources :purchase_details
 
   resources :dispatches do
     collection do
-      get :canceled
+      get :cancelled
     end
   end
   resources :dispatch_details
 
-  resources :sales
+  resources :sales do
+    collection do
+      get :cancelled
+    end
+  end
   resources :sale_details
   resources :perfiles
 
