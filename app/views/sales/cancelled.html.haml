@@ -24,8 +24,8 @@
   %th Local
   %th Vendedor
   %th Nº Venta
+  %th Fecha Creación
   %th total
-  %th Estado
   %th
     - @sales.each do |sale|
       %tr
@@ -38,9 +38,9 @@
         %td
           = sale.number
         %td
-          = sale.total
+          = sale.created_at_datetime
         %td
-          = sale.status_name
+          = sale.total
         %td
           = link_to 'Ver', sale_path(sale), class: 'btn btn-raised btn-success'
           = link_to 'Editar', edit_sale_path(sale), class: 'btn btn-raised btn-primary'

@@ -23,6 +23,7 @@
   %th Local
   %th Vendedor
   %th Nº Venta
+  %th Fecha Creación
   %th total
   %th Estado
   %th
@@ -36,6 +37,8 @@
           = sale.user.email
         %td
           = sale.number
+        %td
+          = sale.created_at_datetime
         %td
           = sale.total
         %td
