@@ -1,20 +1,21 @@
 .title
   Listado de Ventas
+  .title_label
+    .label.label-warning
+      Anuladas
 %hr
 .row
   .col-md-4.col-xs-5
-    = link_to new_sale_path, class: 'btn btn-raised btn-success' do
-      %i.fa.fa-plus-circle
-      Nueva Venta
-    = link_to cancelled_sales_path(status: Sale::STATUS_CANCELLED), class: 'btn btn-info' do
+    = link_to sales_path(), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Ventas Anuladas
+      Ventas
   .col-md-8.col-xs-7
-    = form_tag(sales_path(), :method => "get", id: "search-form") do
+    = form_tag(cancelled_sales_path(), :method => "get", id: "search-form") do
       .row
         .col-md-7.col-md-offset-4.col-xs-10
           = text_field_tag :query, params[:query], placeholder: "Ingrese número, local, nombre del cliente, rut del cliente o mail del vededor", autofocus: true, class: "form-control"
         .col-md-1.col-xs-2
+          = hidden_field_tag :status, Sale::STATUS_CANCELLED
           = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br

@@ -2,7 +2,12 @@ class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   def index
-    options = params   
+    options = params
+    @sales = Fetchers::FetchSalesService.decorated(options)
+  end
+
+  def cancelled
+    options = params
     @sales = Fetchers::FetchSalesService.decorated(options)
   end
 

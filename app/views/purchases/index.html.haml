@@ -6,7 +6,7 @@
     = link_to new_purchase_path, class: 'btn btn-raised btn-success' do
       %i.fa.fa-plus-circle
       Nueva Compra
-    = link_to canceled_purchases_path(status: Purchase::STATUS_CANCELLED), class: 'btn btn-info' do
+    = link_to cancelled_purchases_path(status: Purchase::STATUS_CANCELLED), class: 'btn btn-info' do
       %i.fa.fa-edit
       Compras Anuladas
   .col-md-8.col-xs-7

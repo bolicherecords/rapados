@@ -1,7 +1,8 @@
 class Fetchers::FetchSalesService < BaseService
   def self.execute(params = {})
     query = params[:query]
-    sales = Sale.all
+    status = params[:status]
+    sales = status ? Sale.where(status: status) : Sale.where(:status.ne => Sale::STATUS_CANCELLED)
     sales = sales.full_text_search(query) if (query.present? && query != " ")
     sales = sales.order(created_at: :desc)
   end

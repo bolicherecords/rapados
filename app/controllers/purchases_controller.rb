@@ -6,7 +6,7 @@ class PurchasesController < ApplicationController
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
   end
 
-  def canceled
+  def cancelled
     options = params
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
   end
