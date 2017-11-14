@@ -14,11 +14,11 @@ class Customer
   belongs_to :user
 
   # == Atributos
-  field :name,        type: String, default: ''
-  field :document_id, type: String, default: ''
-  field :phone,       type: String, default: ''
-  field :email,       type: String, default: ''
-  field :status,      type: Integer, default: STATUS_ACTIVATE
+  field :name,          type: String, default: ''
+  field :document_id,   type: String, default: ''
+  field :phone,         type: String, default: ''
+  field :email,         type: String, default: ''
+  field :status,        type: Integer, default: STATUS_ACTIVATE
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'

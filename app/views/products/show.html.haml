@@ -27,9 +27,15 @@
       %tr
         %td
           %strong
-            Precio/Unidad
+            Precio Compra/Unidad
         %td
-          = "#{@product.price} / #{@product.unit}"
+          = "#{@product.purchase_price} / #{@product.unit}"
+      %tr
+        %td
+          %strong
+            Precio Venta/Unidad
+        %td
+          = "#{@product.sale_price} / #{@product.unit}"
       %tr
         %td
           %strong

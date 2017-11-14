@@ -23,6 +23,9 @@
   %th Nombre
   %th Teléfono de contacto
   %th Correo Electrónico
+  %th Banco
+  %th Número de cuenta
+  %th Vendedor
   %th
     - @providers.each do |provider|
       %tr
@@ -32,6 +35,12 @@
           = provider.phone
         %td
           = provider.email
+        %td
+          = provider.bank
+        %td
+          = provider.bank_account
+        %td
+          = provider.seller_name
         %td
           = link_to 'Desactivar', edit_provider_path(provider, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_provider_path(provider), class: 'btn btn-raised btn-primary'
