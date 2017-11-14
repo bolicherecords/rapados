@@ -19,7 +19,10 @@ class Provider
   field :phone,       type: String, default: ''
   field :email,       type: String, default: ''
   field :status,      type: Integer, default: STATUS_ACTIVATE
-
+  field :bank,          type: String, default: ''
+  field :bank_account,  type: String, default: ''
+  field :seller_name,   type: String, default: ''
+  
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 

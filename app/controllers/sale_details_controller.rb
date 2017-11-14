@@ -12,7 +12,7 @@ class SaleDetailsController < ApplicationController
             SaleDetail.create(product: product, sale: sale, amount: params[:amount], total: product.sale_price * params[:amount].to_f)
             flash[:success] = 'Producto agregado exitosamente.'
           else
-            flash[:danger] = "No hay sufiente stock, actualmente hay: #{stock}"
+            flash[:danger] = "No hay sufiente stock, actualmente hay: #{stock.present? ? stock.amount : 0}"
           end
 
         else
