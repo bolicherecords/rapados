@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   end
   resources :purchase_details
 
-  resources :dispatches
+  resources :dispatches do
+    collection do
+      get :canceled
+    end
+  end
   resources :dispatch_details
 
   resources :sales
