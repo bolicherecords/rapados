@@ -1,12 +1,13 @@
 .title
   Listado de Locales
-%hr
-= link_to new_store_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nuevo Local
-= link_to desactivated_stores_path(), class: 'btn btn-info' do
-  %i.fa.fa-edit
-  Locales Desactivados
+- if can? :manage, Store
+  %hr
+  = link_to new_store_path, class: 'btn btn-raised btn-success' do
+    %i.fa.fa-plus-circle
+    Nuevo Local
+  = link_to desactivated_stores_path(), class: 'btn btn-info' do
+    %i.fa.fa-edit
+    Locales Desactivados
 %br
 %br
 %table.table
@@ -32,8 +33,9 @@
         %td
           = store.timezone
         %td
-          = link_to 'Desactivar', edit_store_path(store, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
-          = link_to 'Editar', edit_store_path(store), class: 'btn btn-raised btn-primary'
-          = link_to store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este Local?' }, class: 'btn btn-raised btn-danger' do
-            %i.fa.fa-trash-o
-            Eliminar
+          - if can? :manage, Store
+            = link_to 'Desactivar', edit_store_path(store, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
+            = link_to 'Editar', edit_store_path(store), class: 'btn btn-raised btn-primary'
+            = link_to store, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este Local?' }, class: 'btn btn-raised btn-danger' do
+              %i.fa.fa-trash-o
+              Eliminar

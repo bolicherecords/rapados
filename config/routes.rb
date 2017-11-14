@@ -22,15 +22,23 @@ Rails.application.routes.draw do
       get :desactivated
     end
   end
-
-  resources :purchases
+  resources :purchases do
+    collection do
+      get :canceled
+    end
+  end
   resources :purchase_details
 
-  resources :dispatches
+  resources :dispatches do
+    collection do
+      get :canceled
+    end
+  end
   resources :dispatch_details
 
   resources :sales
   resources :sale_details
+  resources :perfiles
 
   # devise_for :users, :path_prefix => 'my'
   devise_scope :user do

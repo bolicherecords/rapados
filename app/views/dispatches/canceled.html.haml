@@ -1,20 +1,21 @@
 .title
   Listado de Despachos
+  .title_label
+    .label.label-warning
+      Anulados
 %hr
 .row
   .col-md-4.col-xs-5
-    = link_to new_dispatch_path, class: 'btn btn-raised btn-success' do
-      %i.fa.fa-plus-circle
-      Nuevo Despacho
-    = link_to canceled_dispatches_path(status: Dispatch::STATUS_CANCELLED), class: 'btn btn-info' do
+    = link_to dispatches_path(), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Despachos Anulados
+      Despachos
   .col-md-8.col-xs-7
-    = form_tag(dispatches_path(), :method => "get", id: "search-form") do
+    = form_tag(canceled_dispatches_path(), :method => "get", id: "search-form") do
       .row
         .col-md-7.col-md-offset-4.col-xs-10
           = text_field_tag :query, params[:query], placeholder: "Ingrese número de factura, local, proveedor o encargado", autofocus: true, class: "form-control"
         .col-md-1.col-xs-2
+          = hidden_field_tag :status, Dispatch::STATUS_CANCELLED
           = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br
@@ -23,7 +24,6 @@
   %th Local Destino
   %th Fecha
   %th Total
-  %th Estado
   %th
     - @dispatches.each do |dispatch|
       %tr
@@ -35,8 +35,6 @@
           = dispatch.created_at_datetime
         %td
           = dispatch.total
-        %td
-          = dispatch.status_name
         %td
           = link_to 'Ver', dispatch_path(dispatch), class: 'btn btn-raised btn-success'
           -#TODO refactor con cancancan

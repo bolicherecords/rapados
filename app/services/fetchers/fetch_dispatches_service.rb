@@ -1,7 +1,8 @@
 class Fetchers::FetchDispatchesService < BaseService
   def self.execute(params = {})
     query = params[:query]
-    dispatches = Dispatch.all
+    status = params[:status]
+    dispatches = status ? Dispatch.where(status: status) : Dispatch.where(:status.ne => Dispatch::STATUS_CANCELLED)
     dispatches = dispatches.full_text_search(query) if (query.present? && query != " ")
     dispatches = dispatches.order(created_at: :desc)
   end

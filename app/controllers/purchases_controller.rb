@@ -2,7 +2,12 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
   def index
-    options = params   
+    options = params
+    @purchases = Fetchers::FetchPurchasesService.decorated(options)
+  end
+
+  def canceled
+    options = params
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
   end
 

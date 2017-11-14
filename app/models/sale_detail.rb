@@ -10,7 +10,7 @@ class SaleDetail
   belongs_to :product
 
   # == Atributos
-  field :amount, type: Integer, default: 0
+  field :amount, type: Float, default: 0
 	field :total, type: Integer, default: 0
 
   # == Validaciones

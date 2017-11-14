@@ -1,20 +1,21 @@
 .title
   Listado de Compras
+  .title_label
+    .label.label-warning
+      Anuladas
 %hr
 .row
   .col-md-4.col-xs-5
-    = link_to new_purchase_path, class: 'btn btn-raised btn-success' do
-      %i.fa.fa-plus-circle
-      Nueva Compra
-    = link_to canceled_purchases_path(status: Purchase::STATUS_CANCELLED), class: 'btn btn-info' do
+    = link_to purchases_path, class: 'btn btn-info' do
       %i.fa.fa-edit
-      Compras Anuladas
+      Compras
   .col-md-8.col-xs-7
-    = form_tag(purchases_path(), :method => "get", id: "search-form") do
+    = form_tag(canceled_purchases_path(), :method => "get", id: "search-form") do
       .row
         .col-md-7.col-md-offset-4.col-xs-10
           = text_field_tag :query, params[:query], placeholder: "Ingrese número de factura, local, proveedor o encargado de la compra", autofocus: true, class: "form-control"
         .col-md-1.col-xs-2
+          = hidden_field_tag :status, Purchase::STATUS_CANCELLED
           = submit_tag "Buscar", class: "btn btn-info pull-right"
 %br
 %br
@@ -26,7 +27,6 @@
   %th Comprador
   %th Fecha Creación
   %th Total
-  %th Estado
   %th
     - @purchases.each do |purchase|
       %tr
@@ -44,8 +44,6 @@
           = purchase.created_at_datetime
         %td
           = purchase.total
-        %td
-          = purchase.status_name
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
           -#TODO refactor con cancancan

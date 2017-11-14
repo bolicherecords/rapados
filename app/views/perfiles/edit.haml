@@ -1,0 +1,27 @@
+.row
+  .col-md-3
+    .list-group
+      = link_to "Perfil de contacto", "#", class: "list-group-item active"
+      = link_to "Cambiar contraseña", "#", class: "list-group-item"
+  .col-md-6
+    .h2
+      Perfil de usuario
+    %hr
+    .well.well-lg.info
+      Esta es tu información de contacto, para poder actualizar la información solo debes cambiarla y guardar cambios.
+    .form-horizontal
+      = form_tag(perfile_path(), :method => "put", id: "search-form") do
+        .row
+          .col-md-12
+            = text_field_tag :email, @user.email, placeholder: "Ingrese Correo Electrónico", autofocus: true, class: "form-control"
+            %br
+            = text_field_tag :first_name, @user.first_name, placeholder: "Ingrese Nombre", autofocus: true, class: "form-control"
+            %br
+            = text_field_tag :last_name, @user.last_name, placeholder: "Ingrese Nombre", autofocus: true, class: "form-control"
+            %br
+            = text_field_tag :phone, @user.phone, placeholder: "Ingrese Telefono de contacto", autofocus: true, class: "form-control"
+            %br
+            = text_field_tag :adress, @user.address, placeholder: "Ingrese Direccion", autofocus: true, class: "form-control"
+            %br
+            = submit_tag "Guardar Cambios", class: "btn btn-success"
+            = link_to "volver", root_path, class: "btn btn-link"

@@ -59,5 +59,4 @@ class Purchase
   def total
     purchase_details.map(&:total).sum
   end
-
 end

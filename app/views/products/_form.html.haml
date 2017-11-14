@@ -10,10 +10,10 @@
 			= f.label "Unidad"
 			= f.select :unit, unit_list, {:selected => unit_list.first[0]}, {:class =>'form-control '}
 		%div{ class: 'form-group label-floating'}
-			= f.label "Precio compra"
+			= f.label "Precio de Compra"
 			= f.text_field :purchase_price, class: "form-control", autofocus: true
 		%div{ class: 'form-group label-floating'}
-			= f.label "Precio venta"
+			= f.label "Precio de Venta"
 			= f.text_field :sale_price, class: "form-control", autofocus: true
 
 		%div

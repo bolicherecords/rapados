@@ -66,4 +66,8 @@ class Product
     "(#{barcode}) #{name}"
   end
 
+  def profit_margin
+    sale_price - purchase_price
+  end
+
 end
