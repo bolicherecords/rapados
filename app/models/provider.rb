@@ -14,11 +14,11 @@ class Provider
   STATUS_ACTIVATE    = 1
 
   # == Atributos
-  field :name,        type: String, default: ''
-  field :document_id, type: String, default: ''
-  field :phone,       type: String, default: ''
-  field :email,       type: String, default: ''
-  field :status,      type: Integer, default: STATUS_ACTIVATE
+  field :name,          type: String, default: ''
+  field :document_id,   type: String, default: ''
+  field :phone,         type: String, default: ''
+  field :email,         type: String, default: ''
+  field :status,        type: Integer, default: STATUS_ACTIVATE
   field :bank,          type: String, default: ''
   field :bank_account,  type: String, default: ''
   field :seller_name,   type: String, default: ''
@@ -34,11 +34,11 @@ class Provider
 
   # == Métodos
   def prev
-    Area.where(:name.lt => name).order(name: :desc).first
+    Provider.where(:name.lt => name).order(name: :desc).first
   end
 
   def next
-    Area.where(:name.gt => name).order(name: :asc).first
+    Provider.where(:name.gt => name).order(name: :asc).first
   end
 
 end

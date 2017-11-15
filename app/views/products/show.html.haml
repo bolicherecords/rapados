@@ -7,6 +7,7 @@
         = link_to edit_product_path(@product), class: 'btn btn-link' do
           %i.fa.fa-edit
           Editar Producto
+        %br
         = link_to @product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-link' do
           %i.fa.fa-trash-o
           Eliminar Producto

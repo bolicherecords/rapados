@@ -78,3 +78,15 @@
     %li.divider{:role => "separator"}
     %li
       = link_to "Ver Despachos", dispatches_path
+%li.dropdown
+  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    Tarifas
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      = link_to new_plan_path do
+        %i.fa.fa-plus-circle
+        Nueva Tarifa
+    %li.divider{:role => "separator"}
+    %li
+      = link_to "Ver Tarifas", plans_path

@@ -28,11 +28,11 @@ class Customer
 
   # == Métodos
   def prev
-    Area.where(:name.lt => name).order(name: :desc).first
+    Customer.where(:name.lt => name).order(name: :desc).first
   end
 
   def next
-    Area.where(:name.gt => name).order(name: :asc).first
+    Customer.where(:name.gt => name).order(name: :asc).first
   end
 
 end

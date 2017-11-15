@@ -15,6 +15,9 @@
 		%div{ class: 'form-group label-floating'}
 			= f.label "Precio de Venta"
 			= f.text_field :sale_price, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Plan", class: "title_label"
+			= f.select(:plan_id, Plan.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Tarifa', class: 'form-control'})
 
 		%div
 			%br

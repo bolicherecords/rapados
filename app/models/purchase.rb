@@ -57,6 +57,6 @@ class Purchase
   end
 
   def total
-    purchase_details.map(&:total).sum
+    purchase_details.map(&:total_detail).sum
   end
 end

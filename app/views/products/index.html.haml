@@ -25,6 +25,7 @@
   %th Precio Venta/Unidad
   %th Margen de Ganancia
   %th Código de Barras
+  %th Tarifa
   %th
     - @products.each do |product|
       %tr
@@ -40,6 +41,8 @@
           = "#{product.profit_margin} / #{product.unit}"
         %td
           = product.barcode
+        %td
+          = link_to product.plan.name, product.plan
         %td
           = link_to 'Desactivar', edit_product_path(product, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'

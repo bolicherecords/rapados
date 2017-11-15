@@ -57,7 +57,10 @@
 				%th Unidad
 				%th Nombre
 				%th Descripción
-				%th Precio Venta
+				%th Precio Compra
+				%th Total Producto
+				%th Tarifa
+				%th Total Tarifa
 				%th Total
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
@@ -71,10 +74,15 @@
 					%td
 						= purchase_detail.product.description
 					%td
-						= sprintf("$%2.0f", purchase_detail.total/purchase_detail.amount)
+						= sprintf("$%2.0f", purchase_detail.purchase_price)
 					%td
 						= sprintf("$%2.0f", purchase_detail.total)
-
+					%td
+						= sprintf("$%2.0f", purchase_detail.plan_price)
+					%td
+						= sprintf("$%2.0f", purchase_detail.total_plan)
+					%td
+						= sprintf("$%2.0f", purchase_detail.total_detail)
 					%td
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1

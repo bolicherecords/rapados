@@ -18,6 +18,7 @@ class Product
   has_many    :dispatch_details
   has_many    :stocks
   belongs_to  :user
+  belongs_to  :plan
 
   STATUS_DESACTIVATE = 0
   STATUS_ACTIVATE    = 1
@@ -38,7 +39,7 @@ class Product
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 
   # == Buscador
-  search_in :name, :description, :unit, :barcode #Ej: Relations :job_titles => [:job_position_detail, :area_name, :category_name]
+  search_in :name, :description, :unit, :barcode
 
   # == Métodos
   def purchases

@@ -44,7 +44,7 @@ class ProvidersController < ApplicationController
 
   def destroy
     @provider.destroy
-    flash[:success] = 'El proveedor ha sido creado con éxito.'
+    flash[:success] = 'El proveedor ha sido eliminado con éxito.'
     redirect_to providers_url
   end
 

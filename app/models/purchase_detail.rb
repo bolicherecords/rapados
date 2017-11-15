@@ -17,4 +17,20 @@ class PurchaseDetail
 
   # == Métodos
 
+  def purchase_price
+    total / amount
+  end
+
+  def plan_price
+    product.plan.price
+  end
+
+  def total_plan
+    plan_price * amount
+  end
+
+  def total_detail
+    total + total_plan
+  end
+  
 end

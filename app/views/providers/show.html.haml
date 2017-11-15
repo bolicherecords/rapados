@@ -7,6 +7,7 @@
         = link_to edit_provider_path(@provider), class: 'btn btn-link' do
           %i.fa.fa-edit
           Editar Proveedor
+        %br 
         = link_to @provider, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este proveedor?' }, class: 'btn btn-raised btn-link' do
           %i.fa.fa-trash-o
           Eliminar Proveedor

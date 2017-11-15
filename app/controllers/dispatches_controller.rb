@@ -19,7 +19,7 @@ class DispatchesController < ApplicationController
   def create
     @dispatch = Dispatch.create(dispatch_params)
     @dispatch.update(user: current_user)
-    flash[:success] = 'Despacho creado exitosamente.'
+    flash[:success] = 'El despacho ha sido creado con éxito.'
     redirect_to @dispatch
   end
 
@@ -31,22 +31,22 @@ class DispatchesController < ApplicationController
   def edit
     case params[:origin]
     when "FINISHED"
-      @dispatch.finish(current_user) ? flash[:success] = 'Despacho finalizado exitosamente.' : flash[:danger] = "Imposible finalizar el despacho. Despacho #{DispatchDecorator.decorate(@dispatch).status_name}."
+      @dispatch.finish(current_user) ? flash[:success] = 'El despacho ha sido finalizado con éxito.' : flash[:danger] = "Imposible finalizar el despacho. Despacho #{DispatchDecorator.decorate(@dispatch).status_name}."
       redirect_to @dispatch
     when "CANCELLED"
-      @dispatch.cancel(current_user) ? flash[:success] = 'Despacho anulado exitosamente.' : flash[:danger] = "Imposible anular el despacho. Despacho #{DispatchDecorator.decorate(@dispatch).status_name}."
+      @dispatch.cancel(current_user) ? flash[:success] = 'El despacho ha sido anulado con éxito.' : flash[:danger] = "Imposible anular el despacho. Despacho #{DispatchDecorator.decorate(@dispatch).status_name}."
       redirect_to @dispatch
     end
   end
 
   def update
     @dispatch.update(dispatch_params)
-    redirect_to @dispatch, notice: 'Despacho exitosamente editado.'
+    redirect_to @dispatch, notice: 'El despacho ha sido actualizado con éxito.'
   end
 
   def destroy
     @dispatch.destroy
-    redirect_to dispatches_url, notice: 'Despacho exitosamente borrado.'
+    redirect_to dispatches_url, notice: 'El despacho ha sido eliminado con éxito.'
   end
 
   private
