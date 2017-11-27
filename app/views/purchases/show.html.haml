@@ -62,6 +62,7 @@
 				%th Tarifa
 				%th Total Tarifa
 				%th Total
+				%th Neto
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
 				%tr
@@ -84,6 +85,8 @@
 					%td
 						= sprintf("$%2.0f", purchase_detail.total_detail)
 					%td
+						= sprintf("$%2.0f", purchase_detail.total_without_tax)
+					%td
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
 							= link_to purchase_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
@@ -92,10 +95,17 @@
 	%br
 	%br
 		.row
-			.col-md-8
+			.col-md-9
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
-			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
-				= "Total: #{sprintf("$%2.0f", @purchase.total)}"
+			.col-md-3.well
+				%p.subtotal
+					= "Neto: #{sprintf("$%2.0f", @purchase.total_without_tax)}"
+				%p.subtotal
+					= "IVA: #{sprintf("$%2.0f", @purchase.total-@purchase.total_without_tax)}"
+				%p.total
+					%strong
+						= "Total: #{sprintf("$%2.0f", @purchase.total)}"
+				
 
 :javascript
 	$('.js-barcode-input').select2({

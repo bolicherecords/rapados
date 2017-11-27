@@ -32,5 +32,9 @@ class PurchaseDetail
   def total_detail
     total + total_plan
   end
+
+  def total_without_tax
+    total_detail / 1.19
+  end
   
 end

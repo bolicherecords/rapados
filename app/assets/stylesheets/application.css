@@ -33,3 +33,13 @@
 .select2-container--default.select2-container--focus .select2-selection--multiple{
    border: 1px solid blue !important;
 }
+
+.total{
+	text-align: right;
+	font-size: 35px;
+}
+
+.subtotal{
+	text-align: right;
+	font-size: 25px;
+}

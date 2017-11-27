@@ -59,4 +59,9 @@ class Purchase
   def total
     purchase_details.map(&:total_detail).sum
   end
+
+  def total_without_tax
+    purchase_details.map(&:total_without_tax).sum
+  end
+
 end
