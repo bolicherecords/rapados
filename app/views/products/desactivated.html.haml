@@ -4,12 +4,9 @@
     .label.label-warning
       Desactivados
 %hr
-= link_to new_product_path, class: 'btn btn-raised btn-success' do
-  %i.fa.fa-plus-circle
-  Nuevo Producto
 = link_to products_path(), class: 'btn btn-info' do
   %i.fa.fa-edit
-  Proveedores Activados
+  Proveedores Activos
 %br
 %br
 %table.table
@@ -27,7 +24,6 @@
           = product.unit
         %td
           = link_to 'Activar', edit_product_path(product, origin: "ACTIVATE"), class: 'btn btn-raised btn-success'
-          = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'
           = link_to product, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este producto?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar

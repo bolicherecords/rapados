@@ -8,7 +8,7 @@
   .col-md-4.col-xs-5
     = link_to dispatches_path(), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Despachos
+      Despachos Activos
   .col-md-8.col-xs-7
     = form_tag(cancelled_dispatches_path(), :method => "get", id: "search-form") do
       .row
@@ -37,9 +37,6 @@
           = dispatch.total
         %td
           = link_to 'Ver', dispatch_path(dispatch), class: 'btn btn-raised btn-success'
-          -#TODO refactor con cancancan
-          - if dispatch.status == 1
-            = link_to 'Editar', edit_dispatch_path(dispatch), class: 'btn btn-raised btn-primary'
           = link_to dispatch, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este despacho?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar
