@@ -8,7 +8,7 @@
   .col-md-4.col-xs-5
     = link_to sales_path(), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Ventas
+      Ventas Activas
   .col-md-8.col-xs-7
     = form_tag(cancelled_sales_path(), :method => "get", id: "search-form") do
       .row
@@ -43,7 +43,6 @@
           = sale.total
         %td
           = link_to 'Ver', sale_path(sale), class: 'btn btn-raised btn-success'
-          = link_to 'Editar', edit_sale_path(sale), class: 'btn btn-raised btn-primary'
-          = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este salee?' }, class: 'btn btn-raised btn-danger' do
+          = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta venta?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar

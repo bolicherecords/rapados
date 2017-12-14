@@ -46,7 +46,7 @@ class SalesController < ApplicationController
 
   def destroy
     @sale.destroy
-    redirect_to sales_url, notice: 'Sale was successfully destroyed.'
+    redirect_to sales_url, notice: 'Venta eliminada exitosamente.'
   end
 
   private
