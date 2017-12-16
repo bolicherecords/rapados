@@ -8,7 +8,7 @@
   .col-md-4.col-xs-5
     = link_to purchases_path, class: 'btn btn-info' do
       %i.fa.fa-edit
-      Compras
+      Compras Activas
   .col-md-8.col-xs-7
     = form_tag(cancelled_purchases_path(), :method => "get", id: "search-form") do
       .row
@@ -46,9 +46,6 @@
           = purchase.total
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
-          -#TODO refactor con cancancan
-          - if purchase.status == 1
-            = link_to 'Editar', edit_purchase_path(purchase), class: 'btn btn-raised btn-primary'
           = link_to purchase, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta compra?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar

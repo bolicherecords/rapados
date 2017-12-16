@@ -1,0 +1,39 @@
+.title
+  Listado de Egresos
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_expense_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nuevo Egreso
+    = link_to cancelled_expenses_path(status: Expense::STATUS_CANCELLED), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Egresos Anulados
+  .col-md-8.col-xs-7
+    = form_tag(expenses_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese nombre o precio del egreso", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
+%br
+%br
+%table.table
+  %th Local
+  %th Nombre
+  %th Teléfono de Contacto
+  %th
+    - @expenses.each do |expense|
+      %tr
+        %td
+          = link_to expense.store.name, expense.store
+        %td
+          = expense.name
+        %td
+          = expense.price
+        %td
+          = link_to 'Anular', edit_expense_path(expense, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+          = link_to 'Editar', edit_expense_path(expense), class: 'btn btn-raised btn-primary'
+          = link_to expense, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar
