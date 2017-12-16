@@ -1,0 +1,39 @@
+.title
+  Listado de Aportes
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_contribution_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nuevo Aporte
+    = link_to cancelled_contributions_path(status: Contribution::STATUS_CANCELLED), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Aportes Anulados
+  .col-md-8.col-xs-7
+    = form_tag(contributions_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese nombre o precio del egreso", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
+%br
+%br
+%table.table
+  %th Local
+  %th Nombre
+  %th Teléfono de Contacto
+  %th
+    - @contributions.each do |contribution|
+      %tr
+        %td
+          = link_to contribution.store.name, contribution.store
+        %td
+          = contribution.name
+        %td
+          = contribution.price
+        %td
+          = link_to 'Anular', edit_contribution_path(contribution, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+          = link_to 'Editar', edit_contribution_path(contribution), class: 'btn btn-raised btn-primary'
+          = link_to contribution, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger' do
+            %i.fa.fa-trash-o
+            Eliminar

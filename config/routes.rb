@@ -57,6 +57,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :expenses do
+    collection do
+      get :cancelled
+    end
+  end
+
+  resources :contributions do
+    collection do
+      get :cancelled
+    end
+  end
+
   resources :perfiles
 
   # devise_for :users, :path_prefix => 'my'
