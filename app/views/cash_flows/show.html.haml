@@ -35,3 +35,28 @@
             Fecha Término
         %td
           = @cash_flow.end_at
+
+
+  .col-md-9
+    %ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
+      %li.nav-item
+        %a#pills-sales-tab.nav-link.active{"aria-controls" => "pills-sales", "aria-selected" => "true", "data-toggle" => "pill", :href => "#pills-sales", :role => "tab"}
+          Ventas
+      %li.nav-item
+        %a#pills-purchases-tab.nav-link{"aria-controls" => "pills-purchases", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-purchases", :role => "tab"}
+          Compras
+      %li.nav-item
+        %a#pills-expenses-tab.nav-link{"aria-controls" => "pills-expenses", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-expenses", :role => "tab"}
+          Egresos
+      %li.nav-item
+        %a#pills-contributions-tab.nav-link{"aria-controls" => "pills-contributions", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-contributions", :role => "tab"}
+          Contribuciones
+    #pills-tabContent.tab-content
+      #pills-sales.tab-pane.fade.show.active{"aria-labelledby" => "pills-sales-tab", :role => "tabpanel"}
+        = render 'sales'
+      #pills-purchase.tab-pane.fade{"aria-labelledby" => "pills-purchases-tab", :role => "tabpanel"}
+        = render 'purchases'
+      #pills-expenses.tab-pane.fade{"aria-labelledby" => "pills-expenses-tab", :role => "tabpanel"}
+        = render 'expenses'
+      #pills-contributions.tab-pane.fade{"aria-labelledby" => "pills-contributions-tab", :role => "tabpanel"}
+        = render 'contributions'

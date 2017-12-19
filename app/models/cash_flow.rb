@@ -14,6 +14,10 @@ class CashFlow
   belongs_to :user
 
   has_many :sales
+  has_many :purchases
+  has_many :dispatches
+  has_many :expenses
+  has_many :contributions
 
   # == Atributos
   field :start_at,     type: DateTime

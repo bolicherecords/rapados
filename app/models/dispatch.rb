@@ -10,7 +10,8 @@ class Dispatch
   belongs_to  :user
   belongs_to  :origin, class_name: "Store", inverse_of: :origins
   belongs_to  :destination, class_name: "Store", inverse_of: :destinations
-  has_many    :dispatch_details
+  belongs_to  :cash_flow, optional: true
+  # has_many    :dispatch_details
 
   # == Constantes
   STATUS_DRAFT      = 1
@@ -22,6 +23,8 @@ class Dispatch
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime
+
+  # after_create :set_cash_flow
 
   # == Validaciones
 
@@ -54,5 +57,11 @@ class Dispatch
   def total
     dispatch_details.map(&:total).sum
   end
+
+  # def set_cash_flow
+  #   cash_flow = CashFlow.current_cash_flow(store)
+  #   raise cash_flow.inspect
+  #   update(cash_flow: cash_flow)
+  # end
 
 end
