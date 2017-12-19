@@ -12,13 +12,16 @@ class Contribution
   # == Asociaciones
   belongs_to :store
   belongs_to :user
+  belongs_to :cash_flow, optional: true
 
   # == Atributos
   field :name,          type: String, default: ''
   field :price,         type: Integer, default: 0
   field :status,        type: Integer, default: STATUS_FINISHED
   field :cancel_at,     type: DateTime
-  
+
+  after_create :set_cash_flow
+
   # == Validaciones
   validates_presence_of :price, message: 'Debes ingresar un precio.'
 
@@ -40,6 +43,11 @@ class Contribution
       self.cancel_at = Time.now
       self.save
     end
+  end
+
+  def set_cash_flow
+    cash_flow = CashFlow.current_cash_flow(store)
+    self.update(cash_flow: cash_flow)
   end
 
 end

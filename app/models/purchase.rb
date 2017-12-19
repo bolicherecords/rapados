@@ -11,6 +11,7 @@ class Purchase
   belongs_to :store
   belongs_to :provider
   belongs_to :user
+  belongs_to :cash_flow, optional: true
 
   # == Constantes
   STATUS_DRAFT            = 1
@@ -23,6 +24,8 @@ class Purchase
   field :cancel_at,                     type: DateTime
   field :document_number,               type: Integer
   field :document_number_expiration_at, type: Date, default: Date.today
+
+  after_create :set_cash_flow
 
   # == Validaciones
 
@@ -62,6 +65,11 @@ class Purchase
 
   def total_without_tax
     purchase_details.map(&:total_without_tax).sum
+  end
+
+  def set_cash_flow
+    cash_flow = CashFlow.current_cash_flow(store)
+    self.update(cash_flow: cash_flow)
   end
 
 end
