@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  
 
   def index
     options = params
@@ -23,6 +24,7 @@ class SalesController < ApplicationController
   def create
     store_id = sale_params[:store_id].present? ? sale_params[:store_id] : current_user.store_id
     sale = Sale.create(customer_id: sale_params[:customer_id], user: current_user, store_id: store_id, number: sale_params[:number])
+    sale.set_cash_flow
     flash[:success] = 'Venta creada exitosamente.'
     redirect_to sale
   end
@@ -51,11 +53,12 @@ class SalesController < ApplicationController
 
   private
 
-  def sale_params
-    params.require(:sale).permit(:customer_id, :number, :store_id)
-  end
+    def sale_params
+      params.require(:sale).permit(:customer_id, :number, :store_id)
+    end
 
-  def set_sale
-    @sale = Sale.find(params[:id])
-  end
+    def set_sale
+      @sale = Sale.find(params[:id])
+    end
+
 end

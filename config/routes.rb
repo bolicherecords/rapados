@@ -69,6 +69,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cash_flows do
+  end
+
   resources :perfiles
 
   # devise_for :users, :path_prefix => 'my'

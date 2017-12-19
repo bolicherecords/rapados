@@ -1,0 +1,33 @@
+.title
+  Listado de Cajas
+%hr
+.row
+  .col-md-4.col-xs-5
+    = link_to new_cash_flow_path, class: 'btn btn-raised btn-success' do
+      %i.fa.fa-plus-circle
+      Nueva Caja
+  .col-md-8.col-xs-7
+    = form_tag(cash_flows_path(), :method => "get", id: "search-form") do
+      .row
+        .col-md-7.col-md-offset-4.col-xs-10
+          = text_field_tag :query, params[:query], placeholder: "Ingrese fecha de caja", autofocus: true, class: "form-control"
+        .col-md-1.col-xs-2
+          = submit_tag "Buscar", class: "btn btn-info pull-right"
+%br
+%br
+%table.table
+  %th Local
+  %th Fecha Inicio
+  %th Fecha Término
+  %th
+    - @cash_flows.each do |cash_flow|
+      %tr
+        %td
+          = link_to cash_flow.store.name, cash_flow.store
+        %td
+          = cash_flow.start_at
+        %td
+          = cash_flow.end_at
+        %td
+          = link_to 'Ver', cash_flow_path(cash_flow), class: 'btn btn-raised btn-success'
+          = link_to 'Finalizar', edit_cash_flow_path(cash_flow, :origin => "FINISHED"), class: 'btn btn-raised btn-danger'

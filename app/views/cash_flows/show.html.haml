@@ -1,0 +1,37 @@
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        Panel Control
+      .panel-body
+        = link_to edit_cash_flow_path(@cash_flow), class: 'btn btn-link' do
+          %i.fa.fa-edit
+          Editar Caja
+        %br
+        = link_to @cash_flow, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-trash-o
+          Eliminar Caja
+        %br
+        = link_to :back, class: 'btn btn-raised btn-link' do
+          %i.fa.fa-arrow-left
+          Volver
+
+  .col-md-9
+    .title
+      Local:
+      = @cash_flow.store.name
+    %br
+    %br
+    %table.table
+      %tr
+        %td
+          %strong
+            Fecha Inicio:
+        %td
+          = @cash_flow.start_at
+      %tr
+        %td
+          %strong
+            Fecha Término
+        %td
+          = @cash_flow.end_at

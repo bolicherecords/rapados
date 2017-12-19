@@ -34,6 +34,6 @@
         %td
           = link_to 'Anular', edit_contribution_path(contribution, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_contribution_path(contribution), class: 'btn btn-raised btn-primary'
-          = link_to contribution, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-danger' do
+          = link_to contribution, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este aporte?' }, class: 'btn btn-raised btn-danger' do
             %i.fa.fa-trash-o
             Eliminar

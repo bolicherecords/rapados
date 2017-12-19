@@ -16,6 +16,7 @@ class Sale
   belongs_to :store
   belongs_to :user
   belongs_to :customer
+  belongs_to :cash_flow, optional: true
 
   # == Atributos
   field :total,       type: Integer, default: 0
@@ -24,6 +25,7 @@ class Sale
   field :cancel_at,   type: DateTime
   field :number,      type: Integer
 
+  after_create :set_cash_flow
 
   # == Validaciones
   validates_presence_of :total, message: "Debes ingresar un total."
@@ -56,6 +58,11 @@ class Sale
 
   def total
     sale_details.map(&:total).sum
+  end
+
+  def set_cash_flow
+    cash_flow = CashFlow.current_cash_flow(store)    
+    self.update(cash_flow: cash_flow)
   end
 
 end
