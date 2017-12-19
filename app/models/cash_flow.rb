@@ -45,4 +45,8 @@ class CashFlow
     CashFlow.where(store: store, status: STATUS_ACTIVE).first
   end
 
+  def total_purchase
+    self.purchases.map{|p| p.total}.sum
+  end
+
 end
