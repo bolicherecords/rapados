@@ -1,12 +1,41 @@
-.title
+.title-center
 	Arqueo de Caja
 %hr
 
 .container
 	%div
-		%table.table
-			%tr
-				%th Local
-				%td
-					= @cash_flow.store.name
+		.col-md-6
+			.subtitle-center
+				Entradas
+			%table.table
 				%tr
+					%th Ventas (IVA inc.)
+					%td
+						= sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)
+					%tr
+		.col-md-6
+			.subtitle-center
+				Salidas
+			%table.table
+				%tr
+					%th Compras (IVA inc.)
+					%td
+						= sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum)
+					%tr
+					%th Egresos
+					%td
+						= sprintf("$%2.0f", @cash_flow.expenses.map(&:price).sum)
+					%tr
+					%th Aportes
+					%td
+						= sprintf("$%2.0f", @cash_flow.contributions.map(&:price).sum)
+					%tr
+
+.container
+	%div
+		.well.col-md-offset-1.col-md-4
+			%p.subtotal
+				= "Total: #{sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)}"
+		.well.col-md-offset-2.col-md-4
+			%p.subtotal
+				= "Total: #{sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum+@cash_flow.expenses.map(&:price).sum+@cash_flow.contributions.map(&:price).sum)}"
