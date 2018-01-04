@@ -1,2 +1,16 @@
 %br
-  DETALLE DE CONTRIBUCIONES
+%br
+%table.table
+  %th Local
+  %th Nombre
+  %th Precio
+  %th
+    - @contributions.each do |contribution|
+      %tr
+        %td
+          = link_to contribution.store.name, contribution.store
+        %td
+          = contribution.name
+        %td
+          = contribution.price
+        %td

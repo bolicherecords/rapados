@@ -70,6 +70,9 @@ Rails.application.routes.draw do
   end
 
   resources :cash_flows do
+    collection do
+      get '/cash_flow_report/:id', to: 'cash_flows#cash_flow_report', as: 'cash_flow_report'
+    end
   end
 
   resources :perfiles

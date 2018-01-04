@@ -1,2 +1,16 @@
 %br
-  DETALLE DE EGRESOS
+%br
+%table.table
+  %th Local
+  %th Nombre
+  %th Precio
+  %th
+    - @expenses.each do |expense|
+      %tr
+        %td
+          = link_to expense.store.name, expense.store
+        %td
+          = expense.name
+        %td
+          = expense.price
+        %td

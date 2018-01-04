@@ -1,2 +1,32 @@
 %br
-  DETALLE DE COMPRAS
+%br
+%table.table
+  %th Proveedor
+  %th Local
+  %th Nº Factura
+  %th Fecha Vencimiento
+  %th Comprador
+  %th Fecha Creación
+  %th Total
+  %th Estado
+  %th
+    - @purchases.each do |purchase|
+      %tr
+        %td
+          = link_to purchase.provider.name, purchase.provider
+        %td
+          = purchase.store.name
+        %td
+          = purchase.document_number
+        %td
+          = purchase.document_number_expiration
+        %td
+          = purchase.user.email
+        %td
+          = purchase.created_at_datetime
+        %td
+          = purchase.total
+        %td
+          = purchase.status_name
+        %td
+          = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'

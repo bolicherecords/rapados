@@ -65,6 +65,11 @@
     %span.caret
   %ul.dropdown-menu
     %li
+      = link_to new_sale_path do
+        %i.fa.fa-user-plus
+        Nueva Venta
+    %li.divider{:role => "separator"}
+    %li
       = link_to "Ver Ventas", sales_path
 %li.dropdown
   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

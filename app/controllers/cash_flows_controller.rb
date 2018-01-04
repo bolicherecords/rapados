@@ -1,5 +1,5 @@
 class CashFlowsController < ApplicationController
-  before_action :set_cash_flow, only: [:show, :edit, :update, :destroy]
+  before_action :set_cash_flow, only: [:show, :edit, :update, :destroy, :cash_flow_report]
 
   def index
     options = params
@@ -7,7 +7,12 @@ class CashFlowsController < ApplicationController
   end
 
   def show
-    
+    options = {}
+    options[:cash_flow] = @cash_flow
+    @sales = Fetchers::FetchSalesService.decorated(options)
+    @purchases = Fetchers::FetchPurchasesService.decorated(options)
+    @expenses = Fetchers::FetchExpensesService.decorated(options)
+    @contributions = Fetchers::FetchContributionsService.decorated(options)
   end
 
   def new
@@ -38,6 +43,10 @@ class CashFlowsController < ApplicationController
   def destroy
     @cash_flow.destroy
     redirect_to cash_flows_url, notice: 'Caja eliminada exitosamente.'
+  end
+
+  def cash_flow_report
+    
   end
 
   private
