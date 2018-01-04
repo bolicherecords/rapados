@@ -21,7 +21,7 @@ class CashFlowsController < ApplicationController
 
   def create
     store_id = cash_flow_params[:store_id].present? ? cash_flow_params[:store_id] : current_user.store_id
-    cash_flow = CashFlow.create(user: current_user, store_id: store_id, start_at: cash_flow_params[:start_at], end_at: cash_flow_params[:end_at])
+    @cash_flow = CashFlow.create(user: current_user, store_id: store_id, start_at: cash_flow_params[:start_at], end_at: cash_flow_params[:end_at])
     flash[:success] = 'Caja creada exitosamente.'
     redirect_to cash_flows_url
   end
@@ -46,7 +46,7 @@ class CashFlowsController < ApplicationController
   end
 
   def cash_flow_report
-    
+
   end
 
   private
