@@ -45,6 +45,7 @@ class DispatchesController < ApplicationController
   end
 
   def destroy
+    DispatchStockService.execute(@dispatch, current_user, Stock::REMOVE_STOCK) if @dispatch.status == Dispatch::STATUS_FINISHED
     @dispatch.destroy
     redirect_to dispatches_url, notice: 'El despacho ha sido eliminado con éxito.'
   end
