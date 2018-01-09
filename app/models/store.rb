@@ -33,7 +33,7 @@ class Store
   # == Scopes
   scope :actives, -> { where(status: STATUS_ACTIVATE).order('name ASC') }
   scope :origin, ->(store) { where(id: store.id).order('name ASC') }
-  scope :chupalo, ->(store) { where(status: STATUS_ACTIVATE, :id.ne => store.id).order('name ASC') }
+  scope :destinations, ->(store) { where(status: STATUS_ACTIVATE, :id.ne => store.id).order('name ASC') }
 
   # == Métodos
   def get_stocks
