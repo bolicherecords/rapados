@@ -1,10 +1,10 @@
 = form_for(@dispatch) do |f|
 	%div{ class: 'form-group label-floating'}
 		= f.label "origen", class: "title_label"
-		= f.select(:origin_id, Store.actives.collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local de Origen', class: 'form-control'})
+		= f.select(:origin_id, Store.origin(current_user.store).collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local de Origen', class: 'form-control'})
 	%div{ class: 'form-group label-floating'}
 		= f.label "destino", class: "title_label"
-		= f.select(:destination_id, Store.actives.collect {|c| [c.name, c.id]}, {:selected => Store.actives.last.id}, {:prompt => 'Seleccione Local de Destino', class: 'form-control'})
+		= f.select(:destination_id, Store.chupalo(current_user.store).collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local de Destino', class: 'form-control'})
 
 	%div{ class: 'form-group label-floating'}
 		%br
