@@ -1,0 +1,20 @@
+%br
+%br
+%table.table
+  %th Local Origen
+  %th Fecha
+  %th Total
+  %th Estado
+  %th
+    - @dispatches_destination.each do |dispatch|
+      %tr
+        %td
+          = link_to dispatch.origin.name, dispatch.destination
+        %td
+          = dispatch.created_at_datetime
+        %td
+          = dispatch.total
+        %td
+          = dispatch.status_name
+        %td
+          = link_to 'Ver', dispatch_path(dispatch), class: 'btn btn-raised btn-success'

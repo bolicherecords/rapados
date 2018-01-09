@@ -18,27 +18,27 @@ class ExpensesController < ApplicationController
   def create
     store_id = expense_params[:store_id].present? ? expense_params[:store_id] : current_user.store_id
     expense = Expense.create(user: current_user, store_id: store_id, name: expense_params[:name], price: expense_params[:price])
-    flash[:success] = 'Egreso creado exitosamente.'
+    flash[:success] = 'Gasto creado exitosamente.'
     redirect_to expenses_url
   end
 
   def edit
     case params[:origin]
     when "CANCELLED"
-      @expense.cancel ? flash[:success] = 'Egreso anulado exitosamente.' : flash[:danger] = "Imposible anular egreso. Egreso #{ExpenseDecorator.decorate(@expense).status_name}."
+      @expense.cancel ? flash[:success] = 'Gasto anulado exitosamente.' : flash[:danger] = "Imposible anular egreso. Gasto #{ExpenseDecorator.decorate(@expense).status_name}."
       redirect_to expenses_url
     end
   end
 
   def update
     @expense.update(expense_params)
-    flash[:success] = 'Egreso actualizado exitosamente.'
+    flash[:success] = 'Gasto actualizado exitosamente.'
     redirect_to expenses_url
   end
 
   def destroy
     @expense.destroy
-    redirect_to expenses_url, notice: 'Egreso eliminado exitosamente.'
+    redirect_to expenses_url, notice: 'Gasto eliminado exitosamente.'
   end
 
   private

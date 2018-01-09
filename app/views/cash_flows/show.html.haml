@@ -51,10 +51,16 @@
           Compras
       %li.nav-item
         %a#pills-expenses-tab.nav-link{"aria-controls" => "pills-expenses", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-expenses", :role => "tab"}
-          Egresos
+          Gastos
+      %li.nav-item
+        %a#pills-dispatches-origin-tab.nav-link{"aria-controls" => "pills-dispatches-origin", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches-origin", :role => "tab"}
+          Despachos Salida
+      %li.nav-item
+        %a#pills-dispatches-destination-tab.nav-link{"aria-controls" => "pills-dispatches-destination", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches-destination", :role => "tab"}
+          Despachos Entrada
       %li.nav-item
         %a#pills-contributions-tab.nav-link{"aria-controls" => "pills-contributions", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-contributions", :role => "tab"}
-          Contribuciones
+          Aportes
     #pills-tabContent.tab-content
       #pills-sales.tab-pane.fade.active.in{"aria-labelledby" => "pills-sales-tab", :role => "tabpanel"}
         = render 'sales'
@@ -62,5 +68,9 @@
         = render 'purchases'
       #pills-expenses.tab-pane.fade{"aria-labelledby" => "pills-expenses-tab", :role => "tabpanel"}
         = render 'expenses'
+      #pills-dispatches-origin.tab-pane.fade{"aria-labelledby" => "pills-dispatches-origin-tab", :role => "tabpanel"}
+        = render 'dispatches_origin'
+      #pills-dispatches-destination.tab-pane.fade{"aria-labelledby" => "pills-dispatches-destination-tab", :role => "tabpanel"}
+        = render 'dispatches_destination'
       #pills-contributions.tab-pane.fade{"aria-labelledby" => "pills-contributions-tab", :role => "tabpanel"}
         = render 'contributions'

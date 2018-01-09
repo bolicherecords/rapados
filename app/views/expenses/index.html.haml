@@ -1,14 +1,14 @@
 .title
-  Listado de Egresos
+  Listado de Gastos
 %hr
 .row
   .col-md-4.col-xs-5
     = link_to new_expense_path, class: 'btn btn-raised btn-success' do
       %i.fa.fa-plus-circle
-      Nuevo Egreso
+      Nuevo Gasto
     = link_to cancelled_expenses_path(status: Expense::STATUS_CANCELLED), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Egresos Anulados
+      Gastos Anulados
   .col-md-8.col-xs-7
     = form_tag(expenses_path(), :method => "get", id: "search-form") do
       .row

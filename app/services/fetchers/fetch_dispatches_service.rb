@@ -2,8 +2,20 @@ class Fetchers::FetchDispatchesService < BaseService
   def self.execute(params = {})
     query = params[:query]
     status = params[:status]
+    cash_flow = params[:cash_flow]
+    origin = params[:origin]
+    destination = params[:destination]
+
+    
     dispatches = status ? Dispatch.where(status: status) : Dispatch.where(:status.ne => Dispatch::STATUS_CANCELLED)
     dispatches = dispatches.full_text_search(query) if (query.present? && query != " ")
+    
+    if origin.present? && destination.nil?
+      dispatches = dispatches.where(cash_flow_origin: cash_flow )
+    elsif destination.present?
+      dispatches = dispatches.where(cash_flow_destination: cash_flow )
+    end
+    
     dispatches = dispatches.order(created_at: :desc)
   end
 

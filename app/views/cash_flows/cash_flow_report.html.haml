@@ -6,36 +6,45 @@
 	%div
 		.col-md-6
 			.subtitle-center
-				Entradas
+				Ingresos
 			%table.table
 				%tr
 					%th Ventas (IVA inc.)
 					%td
 						= sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)
+				%tr
+					%th Despachos (IVA inc.)
+					%td
+						= sprintf("$%2.0f", @cash_flow.dispatch_origins.map(&:total).sum)
 					%tr
 		.col-md-6
 			.subtitle-center
-				Salidas
+				Egresos
 			%table.table
 				%tr
 					%th Compras (IVA inc.)
 					%td
 						= sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum)
-					%tr
-					%th Egresos
+				%tr
+					%th Gastos
 					%td
 						= sprintf("$%2.0f", @cash_flow.expenses.map(&:price).sum)
-					%tr
+				%tr
 					%th Aportes
 					%td
 						= sprintf("$%2.0f", @cash_flow.contributions.map(&:price).sum)
+				%tr
+					%th Despachos (IVA inc.)
+					%td
+						= sprintf("$%2.0f", @cash_flow.dispatch_destinations.map(&:total).sum)
 					%tr
+
 
 .container
 	%div
 		.well.col-md-offset-1.col-md-4
 			%p.subtotal
-				= "Total: #{sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)}"
+				= "Total: #{sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum+@cash_flow.dispatch_origins.map(&:total).sum)}"
 		.well.col-md-offset-2.col-md-4
 			%p.subtotal
-				= "Total: #{sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum+@cash_flow.expenses.map(&:price).sum+@cash_flow.contributions.map(&:price).sum)}"
+				= "Total: #{sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum+@cash_flow.expenses.map(&:price).sum+@cash_flow.contributions.map(&:price).sum+@cash_flow.dispatch_destinations.map(&:total).sum)}"

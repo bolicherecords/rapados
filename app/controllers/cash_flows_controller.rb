@@ -13,6 +13,10 @@ class CashFlowsController < ApplicationController
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
     @expenses = Fetchers::FetchExpensesService.decorated(options)
     @contributions = Fetchers::FetchContributionsService.decorated(options)
+    options[:origin] = true
+    @dispatches_origin = Fetchers::FetchDispatchesService.decorated(options)
+    options[:destination] = true
+    @dispatches_destination = Fetchers::FetchDispatchesService.decorated(options)
   end
 
   def new
@@ -52,7 +56,7 @@ class CashFlowsController < ApplicationController
   private
 
   def cash_flow_params
-    params.require(:cash_flow).permit(:start_at, :end_at)
+    params.require(:cash_flow).permit(:start_at, :end_at, :store_id)
   end
 
   def set_cash_flow

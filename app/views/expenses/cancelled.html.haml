@@ -1,5 +1,5 @@
 .title
-  Listado de Egresos
+  Listado de Gastos
   .title_label
     .label.label-warning
       Anulados
@@ -8,7 +8,7 @@
   .col-md-4.col-xs-5
     = link_to expenses_path(), class: 'btn btn-info' do
       %i.fa.fa-edit
-      Egresos Activos
+      Gastos Activos
   .col-md-8.col-xs-7
     = form_tag(cancelled_expenses_path(), :method => "get", id: "search-form") do
       .row
