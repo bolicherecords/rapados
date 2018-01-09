@@ -47,6 +47,7 @@ class SalesController < ApplicationController
   end
 
   def destroy
+    SaleStockService.execute(@sale, current_user, Stock::ADD_STOCK) if @sale.status == Sale::STATUS_FINISHED
     @sale.destroy
     redirect_to sales_url, notice: 'Venta eliminada exitosamente.'
   end

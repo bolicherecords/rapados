@@ -44,6 +44,7 @@ class PurchasesController < ApplicationController
   end
 
   def destroy
+    PurchaseStockService.execute(@purchase, current_user, Stock::REMOVE_STOCK) if @purchase.status == Purchase::STATUS_FINISHED
     @purchase.destroy
     redirect_to purchases_url, notice: 'Compra exitosamente borrada.'
   end
