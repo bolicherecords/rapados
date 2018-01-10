@@ -59,7 +59,7 @@
 				%th Descripción
 				%th Precio Compra
 				%th Total Producto
-				%th Tarifa
+				%th Iva
 				%th Total Tarifa
 				%th Total
 				%th Neto
@@ -79,13 +79,9 @@
 					%td
 						= sprintf("$%2.0f", purchase_detail.total)
 					%td
-						= sprintf("$%2.0f", purchase_detail.plan_price)
+						= sprintf("$%2.0f", purchase_detail.tax)
 					%td
-						= sprintf("$%2.0f", purchase_detail.total_plan)
-					%td
-						= sprintf("$%2.0f", purchase_detail.total_detail)
-					%td
-						= sprintf("$%2.0f", purchase_detail.total_without_tax)
+						= sprintf("$%2.0f", purchase_detail.total_with_tax)
 					%td
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
@@ -99,12 +95,12 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-3.well
 				%p.subtotal
-					= "Neto: #{sprintf("$%2.0f", @purchase.total_without_tax)}"
+					= "Neto: #{sprintf("$%2.0f", @purchase.total)}"
 				%p.subtotal
-					= "IVA: #{sprintf("$%2.0f", @purchase.total-@purchase.total_without_tax)}"
+					= "IVA: #{sprintf("$%2.0f", @purchase.tax)}"
 				%p.total
 					%strong
-						= "Total: #{sprintf("$%2.0f", @purchase.total)}"
+						= "Total: #{sprintf("$%2.0f", @purchase.total_with_tax)}"
 				
 
 :javascript

@@ -21,20 +21,16 @@ class PurchaseDetail
     total / amount
   end
 
-  def plan_price
-    product.plan.price
-  end
-
-  def total_plan
-    plan_price * amount
-  end
-
   def total_detail
     total + total_plan
   end
 
-  def total_without_tax
-    total_detail / 1.19
+  def tax
+    total * 0.19
+  end
+
+  def total_with_tax
+    total + tax
   end
   
 end
