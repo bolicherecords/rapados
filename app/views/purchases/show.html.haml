@@ -96,9 +96,11 @@
 					= "Neto: #{sprintf("$%2.2f", @purchase.total)}"
 				%p.subtotal
 					= "IVA: #{sprintf("$%2.2f", @purchase.tax)}"
+				%p.subtotal
+					= "Extra: #{sprintf("$%2.2f", @purchase.extra)}"
 				%p.total
 					%strong
-						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax)}"
+						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax + @purchase.extra)}"
 				
 
 :javascript

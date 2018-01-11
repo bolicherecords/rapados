@@ -24,6 +24,7 @@ class Purchase
   field :cancel_at,                     type: DateTime
   field :document_number,               type: Integer
   field :document_number_expiration_at, type: Date, default: Date.today
+  field :extra,                         type: Float, default: 0
 
   after_create :set_cash_flow
 

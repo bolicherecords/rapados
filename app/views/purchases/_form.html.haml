@@ -11,6 +11,9 @@
 	%div{ class: 'form-group label-floating'}
 		= f.label "Fecha Vencimiento", class: "title_label"
 		= f.text_field(:document_number_expiration_at, class: 'form-control')
+	%div{ class: 'form-group label-floating'}
+		= f.label "Cobro Extra", class: "title_label"
+		= f.text_field(:extra, class: 'form-control')
 
 	%div{ class: 'form-group label-floating'}
 		%br
