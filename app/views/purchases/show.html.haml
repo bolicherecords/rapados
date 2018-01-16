@@ -60,6 +60,7 @@
 				%th Precio Compra
 				%th Neto
 				%th Iva
+				%th Impuesto
 				%th Total
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
@@ -79,6 +80,8 @@
 					%td
 						= sprintf("$%2.2f", purchase_detail.tax)
 					%td
+						= sprintf("$%2.2f", purchase_detail.extra)
+					%td
 						= sprintf("$%2.2f", purchase_detail.total_with_tax)
 					%td
 						-#TODO refactor con cancancan
@@ -97,10 +100,10 @@
 				%p.subtotal
 					= "IVA: #{sprintf("$%2.2f", @purchase.tax)}"
 				%p.subtotal
-					= "Extra: #{sprintf("$%2.2f", @purchase.extra)}"
+					= "Impuesto: #{sprintf("$%2.2f", @purchase.extra)}"
 				%p.total
 					%strong
-						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax + @purchase.extra)}"
+						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax)}"
 				
 
 :javascript

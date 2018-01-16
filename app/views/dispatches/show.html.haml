@@ -51,7 +51,7 @@
 				%th Unidad
 				%th Nombre
 				%th Descripción
-				%th Precio Venta
+				%th Precio
 				%th Total
 				%th
 			- @dispatch.dispatch_details.each do |dispatch_detail|
@@ -65,9 +65,9 @@
 					%td
 						= dispatch_detail.product.description
 					%td
-						= sprintf("$%2.0f", dispatch_detail.total/dispatch_detail.amount)
+						= sprintf("$%2.00f", dispatch_detail.total/dispatch_detail.amount)
 					%td
-						= sprintf("$%2.0f", dispatch_detail.total)
+						= sprintf("$%2.00f", dispatch_detail.total)
 					%td
 						-#TODO refactor con cancancan
 						- if @dispatch.status == 1

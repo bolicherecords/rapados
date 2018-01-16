@@ -22,8 +22,8 @@
   %th Nombre
   %th Descripción
   %th Precio Compra/Unidad
-  %th Tarifa
   %th Precio Venta/Unidad
+  %th Extra
   %th Margen de Ganancia
   %th Código de Barras
   %th
@@ -36,9 +36,9 @@
         %td
           = "#{product.purchase_price} / #{product.unit}"
         %td
-          = link_to product.plan.price, product.plan
-        %td
           = "#{product.sale_price} / #{product.unit}"
+        %td
+          = "#{product.extra} #{'%'}"
         %td
           = "#{product.profit_margin} / #{product.unit}"
         %td

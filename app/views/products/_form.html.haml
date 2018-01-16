@@ -16,8 +16,8 @@
 			= f.label "Precio de Venta"
 			= f.text_field :sale_price, class: "form-control", autofocus: true
 		%div{ class: 'form-group label-floating'}
-			= f.label "Tarifa", class: "title_label"
-			= f.select(:plan_id, Plan.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Tarifa', class: 'form-control'})
+			= f.label "Impuesto"
+			= f.text_field :extra, class: "form-control", autofocus: true
 
 		%div
 			%br

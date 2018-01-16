@@ -20,7 +20,7 @@ class Dispatch
   STATUS_CANCELLED  = 3
 
   # == Atributos
-  field :total,       type: Integer, default: 0
+  field :total,       type: Float, default: 0
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime

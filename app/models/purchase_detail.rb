@@ -21,16 +21,16 @@ class PurchaseDetail
     total / amount
   end
 
-  def total_detail
-    total + total_plan
-  end
-
   def tax
     total * 0.19
   end
 
+  def extra
+    total * product.get_extra
+  end
+
   def total_with_tax
-    total + tax
+    total + tax + extra
   end
   
 end
