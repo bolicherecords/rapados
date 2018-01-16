@@ -26,7 +26,7 @@ class CashFlow
   field :status,       type: Integer, default: STATUS_ACTIVE
   field :order_number, type: Integer, default: 0
 
-  before_create :set_order_number
+  # before_create :set_order_number
 
   # == Buscador
   search_in :start_at, :end_at, :status
@@ -45,7 +45,7 @@ class CashFlow
       self.status = STATUS_FINISHED
       self.end_at = Time.now
       self.save
-      CashFlow.create(store: self.store, user: self.user, start_at: Time.now)
+      CashFlow.create(store: store, user: user, start_at: Time.now, order_number: get_order_number(store))
     end
   end
 
@@ -57,11 +57,9 @@ class CashFlow
     self.purchases.map{|p| p.total}.sum
   end
 
-  def set_order_number
-    begin
-      order_number = CashFlow.count > 0 ? CashFlow.last.order_number + 1 : 1
-      self.order_number = order_number
-    end while Product.where(order_number: order_number).present?
+  def get_order_number(store)
+    cash_flows = CashFlow.where(store: store)
+    order_number = cash_flows.count > 0 ? cash_flows.last.order_number + 1 : 1
   end
 
   def total_entry
