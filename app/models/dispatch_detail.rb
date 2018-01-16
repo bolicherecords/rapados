@@ -11,7 +11,7 @@ class DispatchDetail
 
   # == Atributos
 	field :amount, type: Float, default: 0
-  field :total, type: Integer, default: 0
+  field :total, type: Float, default: 0
 
   # == Validaciones
 

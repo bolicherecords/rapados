@@ -58,11 +58,10 @@
 				%th Nombre
 				%th Descripción
 				%th Precio Compra
-				%th Total Producto
-				%th Tarifa
-				%th Total Tarifa
-				%th Total
 				%th Neto
+				%th Iva
+				%th Impuesto
+				%th Total
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
 				%tr
@@ -75,17 +74,15 @@
 					%td
 						= purchase_detail.product.description
 					%td
-						= sprintf("$%2.0f", purchase_detail.purchase_price)
+						= sprintf("$%2.2f", purchase_detail.purchase_price)
 					%td
-						= sprintf("$%2.0f", purchase_detail.total)
+						= sprintf("$%2.2f", purchase_detail.total)
 					%td
-						= sprintf("$%2.0f", purchase_detail.plan_price)
+						= sprintf("$%2.2f", purchase_detail.tax)
 					%td
-						= sprintf("$%2.0f", purchase_detail.total_plan)
+						= sprintf("$%2.2f", purchase_detail.extra)
 					%td
-						= sprintf("$%2.0f", purchase_detail.total_detail)
-					%td
-						= sprintf("$%2.0f", purchase_detail.total_without_tax)
+						= sprintf("$%2.2f", purchase_detail.total_with_tax)
 					%td
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
@@ -99,12 +96,14 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-3.well
 				%p.subtotal
-					= "Neto: #{sprintf("$%2.0f", @purchase.total_without_tax)}"
+					= "Neto: #{sprintf("$%2.2f", @purchase.total)}"
 				%p.subtotal
-					= "IVA: #{sprintf("$%2.0f", @purchase.total-@purchase.total_without_tax)}"
+					= "IVA: #{sprintf("$%2.2f", @purchase.tax)}"
+				%p.subtotal
+					= "Impuesto: #{sprintf("$%2.2f", @purchase.extra)}"
 				%p.total
 					%strong
-						= "Total: #{sprintf("$%2.0f", @purchase.total)}"
+						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax)}"
 				
 
 :javascript

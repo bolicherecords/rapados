@@ -60,11 +60,19 @@ class Purchase
   end
 
   def total
-    purchase_details.map(&:total_detail).sum
+    purchase_details.map(&:total).sum
   end
 
-  def total_without_tax
-    purchase_details.map(&:total_without_tax).sum
+  def tax
+    purchase_details.map(&:tax).sum
+  end
+
+  def extra
+    purchase_details.map(&:extra).sum
+  end
+
+  def total_with_tax
+    purchase_details.map(&:total_with_tax).sum
   end
 
   def set_cash_flow
