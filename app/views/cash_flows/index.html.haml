@@ -3,9 +3,9 @@
 %hr
 .row
   .col-md-4.col-xs-5
-    = link_to new_cash_flow_path, class: 'btn btn-raised btn-success' do
-      %i.fa.fa-plus-circle
-      Nueva Caja
+    -# = link_to new_cash_flow_path, class: 'btn btn-raised btn-success' do
+    -#   %i.fa.fa-plus-circle
+    -#   Nueva Caja
   .col-md-8.col-xs-7
     = form_tag(cash_flows_path(), :method => "get", id: "search-form") do
       .row
@@ -19,15 +19,25 @@
   %th Local
   %th Fecha Inicio
   %th Fecha Término
+  %th Número de Orden
+  %th Estado
   %th
     - @cash_flows.each do |cash_flow|
       %tr
         %td
           = link_to cash_flow.store.name, cash_flow.store
         %td
-          = cash_flow.start_at
+          = cash_flow.start_at_date
         %td
-          = cash_flow.end_at
+          = cash_flow.end_at_date
+        %td
+          = cash_flow.order_number
+        %td
+          = cash_flow.status_name
         %td
           = link_to 'Ver', cash_flow_path(cash_flow), class: 'btn btn-raised btn-success'
-          = link_to 'Finalizar', edit_cash_flow_path(cash_flow, :origin => "FINISHED"), class: 'btn btn-raised btn-danger'
+          -#TODO refactor con cancancan
+          - if cash_flow.status == 1
+            = link_to edit_cash_flow_path(cash_flow, :origin => "FINISHED"), class: 'btn btn-raised btn-danger' do
+              %i.fa.fa-paper-plane
+              Finalizar

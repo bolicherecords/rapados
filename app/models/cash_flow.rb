@@ -24,6 +24,9 @@ class CashFlow
   field :start_at,     type: DateTime
   field :end_at,       type: DateTime
   field :status,       type: Integer, default: STATUS_ACTIVE
+  field :order_number, type: Integer, default: 0
+
+  before_create :set_order_number
 
   # == Buscador
   search_in :start_at, :end_at, :status
@@ -52,6 +55,21 @@ class CashFlow
 
   def total_purchase
     self.purchases.map{|p| p.total}.sum
+  end
+
+  def set_order_number
+    begin
+      order_number = CashFlow.count > 0 ? CashFlow.last.order_number + 1 : 1
+      self.order_number = order_number
+    end while Product.where(order_number: order_number).present?
+  end
+
+  def total_entry
+    sales.map(&:total).sum + dispatch_origins.map(&:total).sum
+  end
+
+  def total_egress
+    purchases.map(&:total).sum + expenses.map(&:price).sum + contributions.map(&:price).sum + dispatch_destinations.map(&:total).sum
   end
 
 end

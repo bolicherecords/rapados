@@ -1,5 +1,5 @@
 .row
-  .col-md-3
+  .col-md-2
     .panel.panel-default
       .panel-heading
         Panel Control
@@ -7,20 +7,24 @@
         = link_to cash_flow_report_cash_flows_path(@cash_flow), class: 'btn btn-link' do
           %i.fa.fa-calculator
           Arqueo de Caja
+        -# %br
+        -# = link_to edit_cash_flow_path(@cash_flow), class: 'btn btn-link' do
+        -#   %i.fa.fa-edit
+        -#   Editar Caja
+        -# %br
+        -# = link_to @cash_flow, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta caja?' }, class: 'btn btn-raised btn-link' do
+        -#   %i.fa.fa-trash-o
+        -#   Eliminar Caja
         %br
-        = link_to edit_cash_flow_path(@cash_flow), class: 'btn btn-link' do
-          %i.fa.fa-edit
-          Editar Caja
-        %br
-        = link_to @cash_flow, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar este cliente?' }, class: 'btn btn-raised btn-link' do
-          %i.fa.fa-trash-o
-          Eliminar Caja
+        = link_to edit_cash_flow_path(@cash_flow, :origin => "FINISHED"), class: 'btn btn-raised btn-link' do
+          %i.fa.fa-paper-plane
+          Finalizar Caja
         %br
         = link_to :back, class: 'btn btn-raised btn-link' do
           %i.fa.fa-arrow-left
           Volver
 
-  .col-md-9
+  .col-md-10
     .title
       Local:
       = @cash_flow.store.name
@@ -32,16 +36,26 @@
           %strong
             Fecha Inicio:
         %td
-          = @cash_flow.start_at
+          = @cash_flow.start_at_date
       %tr
         %td
           %strong
             Fecha Término
         %td
-          = @cash_flow.end_at
+          = @cash_flow.end_at_date
+      %tr
+        %td
+          %strong
+            Número Pedido
+        %td
+          = @cash_flow.order_number
+      %tr
+        %td
+          %strong
+            Número Pedido
+        %td
+          = @cash_flow.status_name
 
-
-  .col-md-9
     %ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
       %li.nav-item.active
         %a#pills-sales-tab.nav-link{"aria-controls" => "pills-sales", "aria-selected" => "true", "data-toggle" => "pill", :href => "#pills-sales", :role => "tab"}

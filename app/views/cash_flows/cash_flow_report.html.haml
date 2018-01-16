@@ -44,7 +44,12 @@
 	%div
 		.well.col-md-offset-1.col-md-4
 			%p.subtotal
-				= "Total: #{sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum+@cash_flow.dispatch_origins.map(&:total).sum)}"
+				= "Total Ingresos: #{sprintf("$%2.00f", @cash_flow.total_entry)}"
 		.well.col-md-offset-2.col-md-4
 			%p.subtotal
-				= "Total: #{sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum+@cash_flow.expenses.map(&:price).sum+@cash_flow.contributions.map(&:price).sum+@cash_flow.dispatch_destinations.map(&:total).sum)}"
+				= "Total Egresos: #{sprintf("$%2.00f", @cash_flow.total_egress)}"
+.container
+	%div
+		.well.col-md-offset-4.col-md-4
+			%p.subtotal
+				= "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry + @cash_flow.total_egress)}"

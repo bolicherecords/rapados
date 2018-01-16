@@ -10,6 +10,7 @@ class CashFlowsController < ApplicationController
     options = {}
     options[:cash_flow] = @cash_flow
     @sales = Fetchers::FetchSalesService.decorated(options)
+    @sales = Fetchers::FetchSalesService.decorated(options)
     @purchases = Fetchers::FetchPurchasesService.decorated(options)
     @expenses = Fetchers::FetchExpensesService.decorated(options)
     @contributions = Fetchers::FetchContributionsService.decorated(options)
@@ -17,6 +18,7 @@ class CashFlowsController < ApplicationController
     @dispatches_origin = Fetchers::FetchDispatchesService.decorated(options)
     options[:destination] = true
     @dispatches_destination = Fetchers::FetchDispatchesService.decorated(options)
+    @cash_flow = CashFlowDecorator.decorate(@cash_flow)
   end
 
   def new

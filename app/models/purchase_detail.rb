@@ -36,5 +36,5 @@ class PurchaseDetail
   def total_without_tax
     total_detail / 1.19
   end
-  
+
 end
