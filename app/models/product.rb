@@ -72,7 +72,7 @@ class Product
   end
 
   def profit_margin
-    sale_price - (purchase_price + purchase_price*get_extra)
+    sale_price - (purchase_price + purchase_price * get_extra)
   end
 
 end
