@@ -40,7 +40,7 @@ class CashFlowsController < ApplicationController
   end
 
   def cash_flow_report
-
+    @stores = Store.actives
   end
 
   private

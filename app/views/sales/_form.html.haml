@@ -2,10 +2,10 @@
 	- if current_user.is_admin?
 		%div{ class: 'form-group label-floating'}
 			= f.label "Local", class: "title_label"
-			= f.select(:store_id, Store.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local', class: 'form-control'})
+			= f.select(:store_id, Store.actives.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Local', class: 'form-control'})
 	%div{ class: 'form-group label-floating'}
 		= f.label "Cliente", class: "title_label"
-		= f.select(:customer_id, Customer.all.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
+		= f.select(:customer_id, Customer.actives.order("name ASC").collect {|c| [c.name, c.id]}, {}, {:prompt => 'Seleccione Cliente', class: 'form-control'})
 	%div{ class: 'form-group label-floating'}
 		= f.label "Nº Venta", class: "title_label"
 		= f.text_field(:number, class: 'form-control')

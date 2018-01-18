@@ -20,6 +20,9 @@ class Customer
   field :email,         type: String, default: ''
   field :status,        type: Integer, default: STATUS_ACTIVATE
 
+  # == Scopes
+  scope :actives, -> { where(status: STATUS_ACTIVATE).order('name ASC') }
+
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'
 

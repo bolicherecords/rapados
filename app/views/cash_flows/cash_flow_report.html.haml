@@ -31,7 +31,7 @@
 					-# = "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
 
 .container
-	- Store.all.each do |s|
+	- @stores.each do |s|
 		%div
 			.col-md-12
 				%hr
