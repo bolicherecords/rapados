@@ -54,7 +54,7 @@
 						%tr
 							%th Despachos (IVA inc.)
 							%td
-								= sprintf("$%2.0f", @cash_flow.dispatch_origins.map(&:total).sum)
+								= sprintf("$%2.0f", @cash_flow.dispatches.map(&:total).sum)
 							%tr
 			.col-md-5
 				.panel.panel-danger
@@ -77,5 +77,5 @@
 						%tr
 							%th Despachos (IVA inc.)
 							%td
-								= sprintf("$%2.0f", @cash_flow.dispatch_destinations.map(&:total).sum)
+								= sprintf("$%2.0f", @cash_flow.dispatches.map(&:total).sum)
 							%tr
