@@ -1,13 +1,16 @@
 %br
 %br
 %table.table
+  %th Local Origen
   %th Local Destino
   %th Fecha
   %th Total
   %th Estado
   %th
-    - @dispatches_origin.each do |dispatch|
+    - @dispatches.each do |dispatch|
       %tr
+        %td
+          = link_to dispatch.origin.name, dispatch.origin
         %td
           = link_to dispatch.destination.name, dispatch.destination
         %td

@@ -7,14 +7,6 @@
         = link_to cash_flow_report_cash_flows_path(@cash_flow), class: 'btn btn-link' do
           %i.fa.fa-calculator
           Arqueo de Caja
-        -# %br
-        -# = link_to edit_cash_flow_path(@cash_flow), class: 'btn btn-link' do
-        -#   %i.fa.fa-edit
-        -#   Editar Caja
-        -# %br
-        -# = link_to @cash_flow, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta caja?' }, class: 'btn btn-raised btn-link' do
-        -#   %i.fa.fa-trash-o
-        -#   Eliminar Caja
         %br
         = link_to edit_cash_flow_path(@cash_flow, :origin => "FINISHED"), class: 'btn btn-raised btn-link' do
           %i.fa.fa-paper-plane
@@ -61,11 +53,8 @@
         %a#pills-expenses-tab.nav-link{"aria-controls" => "pills-expenses", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-expenses", :role => "tab"}
           Gastos
       %li.nav-item
-        %a#pills-dispatches-origin-tab.nav-link{"aria-controls" => "pills-dispatches-origin", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches-origin", :role => "tab"}
-          Despachos Salida
-      %li.nav-item
-        %a#pills-dispatches-destination-tab.nav-link{"aria-controls" => "pills-dispatches-destination", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches-destination", :role => "tab"}
-          Despachos Entrada
+        %a#pills-dispatches-tab.nav-link{"aria-controls" => "pills-dispatches", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches", :role => "tab"}
+          Despachos
       %li.nav-item
         %a#pills-contributions-tab.nav-link{"aria-controls" => "pills-contributions", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-contributions", :role => "tab"}
           Aportes
@@ -76,9 +65,7 @@
         = render 'purchases'
       #pills-expenses.tab-pane.fade{"aria-labelledby" => "pills-expenses-tab", :role => "tabpanel"}
         = render 'expenses'
-      #pills-dispatches-origin.tab-pane.fade{"aria-labelledby" => "pills-dispatches-origin-tab", :role => "tabpanel"}
-        = render 'dispatches_origin'
-      #pills-dispatches-destination.tab-pane.fade{"aria-labelledby" => "pills-dispatches-destination-tab", :role => "tabpanel"}
-        = render 'dispatches_destination'
+      #pills-dispatches.tab-pane.fade{"aria-labelledby" => "pills-dispatches-tab", :role => "tabpanel"}
+        = render 'dispatches'
       #pills-contributions.tab-pane.fade{"aria-labelledby" => "pills-contributions-tab", :role => "tabpanel"}
         = render 'contributions'

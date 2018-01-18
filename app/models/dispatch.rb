@@ -7,11 +7,10 @@ class Dispatch
   # include GlobalID::Identification
 
   # == Asociaciones
-  belongs_to  :user
+  belongs_to  :user, optional: true
   belongs_to  :origin, class_name: "Store", inverse_of: :origins
   belongs_to  :destination, class_name: "Store", inverse_of: :destinations
-  belongs_to  :cash_flow_origin, class_name: "CashFlow", inverse_of: :dispatch_origins, optional: true
-  belongs_to  :cash_flow_destination, class_name: "CashFlow", inverse_of: :dispatch_destinations, optional: true
+  belongs_to  :cash_flow, optional: true
   has_many    :dispatch_details
 
   # == Constantes
@@ -30,7 +29,7 @@ class Dispatch
   # == Validaciones
 
   # == Buscador
-  search_in :status, :origin =>[:name], :destination =>[:name], :origin =>[:email]
+  #search_in :status, :origin =>[:name], :destination =>[:name]
 
   # == Métodos
   def draft?
@@ -61,8 +60,7 @@ class Dispatch
 
   def set_cash_flow
     cash_flow = CashFlow.current_cash_flow
-    update(cash_flow_origin: cash_flow)
-    update(cash_flow_destination: cash_flow)
+    update(cash_flow: cash_flow)
   end
 
 end
