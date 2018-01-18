@@ -10,7 +10,6 @@ class CashFlow
   STATUS_FINISHED   = 0
 
   # == Asociaciones
-  belongs_to :store
   belongs_to :user
 
   has_many :sales
@@ -45,21 +44,16 @@ class CashFlow
       self.status = STATUS_FINISHED
       self.end_at = Time.now
       self.save
-      CashFlow.create(store: store, user: user, start_at: Time.now, order_number: get_order_number(store))
+      CashFlow.create(user: user, start_at: Time.now, order_number: order_number + 1 )
     end
   end
 
-  def self.current_cash_flow(store)
-    CashFlow.where(store: store, status: STATUS_ACTIVE).first
+  def self.current_cash_flow
+    CashFlow.where(status: STATUS_ACTIVE).first
   end
 
   def total_purchase
     self.purchases.map{|p| p.total}.sum
-  end
-
-  def get_order_number(store)
-    cash_flows = CashFlow.where(store: store)
-    order_number = cash_flows.count > 0 ? cash_flows.last.order_number + 1 : 1
   end
 
   def total_entry

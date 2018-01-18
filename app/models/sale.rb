@@ -61,7 +61,7 @@ class Sale
   end
 
   def set_cash_flow
-    cash_flow = CashFlow.current_cash_flow(store)    
+    cash_flow = CashFlow.current_cash_flow   
     self.update(cash_flow: cash_flow)
   end
 

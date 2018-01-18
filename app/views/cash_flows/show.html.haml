@@ -26,8 +26,8 @@
 
   .col-md-10
     .title
-      Local:
-      = @cash_flow.store.name
+      Número Pedido:
+      = @cash_flow.order_number
     %br
     %br
     %table.table
@@ -46,13 +46,7 @@
       %tr
         %td
           %strong
-            Número Pedido
-        %td
-          = @cash_flow.order_number
-      %tr
-        %td
-          %strong
-            Número Pedido
+            Estado
         %td
           = @cash_flow.status_name
 

@@ -16,7 +16,6 @@
 %br
 %br
 %table.table
-  %th Local
   %th Fecha Inicio
   %th Fecha Término
   %th Número de Orden
@@ -24,8 +23,6 @@
   %th
     - @cash_flows.each do |cash_flow|
       %tr
-        %td
-          = link_to cash_flow.store.name, cash_flow.store
         %td
           = cash_flow.start_at_date
         %td

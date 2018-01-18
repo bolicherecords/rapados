@@ -60,10 +60,9 @@ class Dispatch
   end
 
   def set_cash_flow
-    cash_flow_origin = CashFlow.current_cash_flow(origin)
-    update(cash_flow_origin: cash_flow_origin)
-    cash_flow_destination = CashFlow.current_cash_flow(destination)
-    update(cash_flow_destination: cash_flow_destination)
+    cash_flow = CashFlow.current_cash_flow
+    update(cash_flow_origin: cash_flow)
+    update(cash_flow_destination: cash_flow)
   end
 
 end
