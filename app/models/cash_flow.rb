@@ -14,8 +14,7 @@ class CashFlow
 
   has_many :sales
   has_many :purchases
-  has_many :dispatch_origins, class_name: "Dispatch", inverse_of: :cash_flow_origin
-  has_many :dispatch_destinations, class_name: "Dispatch", inverse_of: :cash_flow_destination
+  has_many :dispatchs
   has_many :expenses
   has_many :contributions
 
