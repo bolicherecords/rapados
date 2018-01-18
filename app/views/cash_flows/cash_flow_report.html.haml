@@ -4,52 +4,78 @@
 
 .container
 	%div
-		.col-md-6
-			.subtitle-center
-				Ingresos
-			%table.table
-				%tr
-					%th Ventas (IVA inc.)
-					%td
-						= sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)
-				%tr
-					%th Despachos (IVA inc.)
-					%td
-						= sprintf("$%2.0f", @cash_flow.dispatch_origins.map(&:total).sum)
-					%tr
-		.col-md-6
-			.subtitle-center
-				Egresos
-			%table.table
-				%tr
-					%th Compras (IVA inc.)
-					%td
-						= sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum)
-				%tr
-					%th Gastos
-					%td
-						= sprintf("$%2.0f", @cash_flow.expenses.map(&:price).sum)
-				%tr
-					%th Aportes
-					%td
-						= sprintf("$%2.0f", @cash_flow.contributions.map(&:price).sum)
-				%tr
-					%th Despachos (IVA inc.)
-					%td
-						= sprintf("$%2.0f", @cash_flow.dispatch_destinations.map(&:total).sum)
-					%tr
+		.col-md-offset-1.col-md-3
+			.panel.panel-primary
+				.panel-heading.subtitle-center
+					.panel-title
+						Total Ingresos
+				.panel-body.subtotal
+					= "#{sprintf("$%2.00f", 100000000)}"
+					-# = "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
 
+		.col-md-offset-1.col-md-3
+			.panel.panel-primary
+				.panel-heading.subtitle-center
+					.panel-title
+						Total Egresos
+				.panel-body.subtotal
+					= "#{sprintf("$%2.00f", 100000000)}"
+					-# = "Total Egresos: #{sprintf("$%2.00f", @cash_flow.total_egress)}"
+		.col-md-offset-1.col-md-3
+			.panel.panel-primary
+				.panel-heading.subtitle-center
+					.panel-title
+						Saldo Caja
+				.panel-body.subtotal
+					= "#{sprintf("$%2.00f", 100000000)}"
+					-# = "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
 
 .container
-	%div
-		.well.col-md-offset-1.col-md-4
-			%p.subtotal
-				= "Total Ingresos: #{sprintf("$%2.00f", @cash_flow.total_entry)}"
-		.well.col-md-offset-2.col-md-4
-			%p.subtotal
-				= "Total Egresos: #{sprintf("$%2.00f", @cash_flow.total_egress)}"
-.container
-	%div
-		.well.col-md-offset-4.col-md-4
-			%p.subtotal
-				= "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
+	- Store.all.each do |s|
+		%div
+			.col-md-12
+				%hr
+		%div
+			.col-md-2
+				-# .store_title
+				%h4.bs-callout.bs-callout-primary
+					= s.name
+			.col-md-5
+				.panel.panel-success
+					.panel-heading.subtitle-center
+						.panel-title
+							Ingresos (Total: 10000000)
+
+					%table.table.panel-body
+						%tr
+							%th Ventas (IVA inc.)
+							%td
+								= sprintf("$%2.0f", @cash_flow.sales.map(&:total).sum)
+						%tr
+							%th Despachos (IVA inc.)
+							%td
+								= sprintf("$%2.0f", @cash_flow.dispatch_origins.map(&:total).sum)
+							%tr
+			.col-md-5
+				.panel.panel-danger
+					.panel-heading.subtitle-center
+						.panel-title
+							Egresos (Total: 100000000)
+					%table.table.panel-body
+						%tr
+							%th Compras (IVA inc.)
+							%td
+								= sprintf("$%2.0f", @cash_flow.purchases.map(&:total).sum)
+						%tr
+							%th Gastos
+							%td
+								= sprintf("$%2.0f", @cash_flow.expenses.map(&:price).sum)
+						%tr
+							%th Aportes
+							%td
+								= sprintf("$%2.0f", @cash_flow.contributions.map(&:price).sum)
+						%tr
+							%th Despachos (IVA inc.)
+							%td
+								= sprintf("$%2.0f", @cash_flow.dispatch_destinations.map(&:total).sum)
+							%tr
