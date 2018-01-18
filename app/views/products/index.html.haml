@@ -23,7 +23,7 @@
   %th Descripción
   %th Precio Compra/Unidad
   %th Precio Venta/Unidad
-  %th Extra
+  %th Impuesto
   %th Margen de Ganancia
   %th Código de Barras
   %th
@@ -43,7 +43,7 @@
           = "#{product.profit_margin} / #{product.unit}"
         %td
           = product.barcode
-        
+
         %td
           = link_to 'Desactivar', edit_product_path(product, origin: "DESACTIVATE"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_product_path(product), class: 'btn btn-raised btn-primary'

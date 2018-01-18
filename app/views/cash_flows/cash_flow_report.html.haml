@@ -52,4 +52,4 @@
 	%div
 		.well.col-md-offset-4.col-md-4
 			%p.subtotal
-				= "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry + @cash_flow.total_egress)}"
+				= "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
