@@ -17,6 +17,9 @@ class Store
   STATUS_DESACTIVATE = 0
   STATUS_ACTIVATE    = 1
 
+  TYPE_MASTER = 1
+  TYPE_SLAVE  = 0
+
   # == Atributos
   field :name,        type: String, default: ''
   field :city,        type: String, default: ''
@@ -26,6 +29,7 @@ class Store
   field :address,     type: String, default: ''
   field :timezone,    type: Integer, default: -3
   field :status,      type: Integer, default: STATUS_ACTIVATE
+  field :type,        type: Integer, default: TYPE_SLAVE
 
   # == Validaciones
   validates_presence_of :name, message: 'Debes ingresar un nombre.'

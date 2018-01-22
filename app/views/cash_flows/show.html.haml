@@ -44,28 +44,28 @@
 
     %ul#pills-tab.nav.nav-pills.mb-3{:role => "tablist"}
       %li.nav-item.active
-        %a#pills-sales-tab.nav-link{"aria-controls" => "pills-sales", "aria-selected" => "true", "data-toggle" => "pill", :href => "#pills-sales", :role => "tab"}
-          Ventas
-      %li.nav-item
         %a#pills-purchases-tab.nav-link{"aria-controls" => "pills-purchases", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-purchases", :role => "tab"}
           Compras
       %li.nav-item
-        %a#pills-expenses-tab.nav-link{"aria-controls" => "pills-expenses", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-expenses", :role => "tab"}
-          Gastos
+        %a#pills-sales-tab.nav-link{"aria-controls" => "pills-sales", "aria-selected" => "true", "data-toggle" => "pill", :href => "#pills-sales", :role => "tab"}
+          Ventas
       %li.nav-item
         %a#pills-dispatches-tab.nav-link{"aria-controls" => "pills-dispatches", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-dispatches", :role => "tab"}
           Despachos
       %li.nav-item
+        %a#pills-expenses-tab.nav-link{"aria-controls" => "pills-expenses", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-expenses", :role => "tab"}
+          Gastos
+      %li.nav-item
         %a#pills-contributions-tab.nav-link{"aria-controls" => "pills-contributions", "aria-selected" => "false", "data-toggle" => "pill", :href => "#pills-contributions", :role => "tab"}
           Aportes
     #pills-tabContent.tab-content
-      #pills-sales.tab-pane.fade.active.in{"aria-labelledby" => "pills-sales-tab", :role => "tabpanel"}
-        = render 'sales'
-      #pills-purchases.tab-pane.fade{"aria-labelledby" => "pills-purchases-tab", :role => "tabpanel"}
+      #pills-purchases.tab-pane.fade.active.in{"aria-labelledby" => "pills-purchases-tab", :role => "tabpanel"}
         = render 'purchases'
-      #pills-expenses.tab-pane.fade{"aria-labelledby" => "pills-expenses-tab", :role => "tabpanel"}
-        = render 'expenses'
+      #pills-sales.tab-pane.fade{"aria-labelledby" => "pills-sales-tab", :role => "tabpanel"}
+        = render 'sales'
       #pills-dispatches.tab-pane.fade{"aria-labelledby" => "pills-dispatches-tab", :role => "tabpanel"}
         = render 'dispatches'
+      #pills-expenses.tab-pane.fade{"aria-labelledby" => "pills-expenses-tab", :role => "tabpanel"}
+        = render 'expenses'
       #pills-contributions.tab-pane.fade{"aria-labelledby" => "pills-contributions-tab", :role => "tabpanel"}
         = render 'contributions'
