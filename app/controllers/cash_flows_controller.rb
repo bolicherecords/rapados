@@ -1,5 +1,5 @@
 class CashFlowsController < ApplicationController
-  before_action :set_cash_flow, only: [:show, :edit, :update, :destroy, :cash_flow_report]
+  before_action :set_cash_flow, only: [:show, :edit, :update, :destroy]
 
   def index
     options = params
@@ -40,6 +40,7 @@ class CashFlowsController < ApplicationController
   end
 
   def cash_flow_report
+    @cash_flow = params[:cash_flow].present? ? CashFlow.find(params[:cash_flow]) : CashFlow.current_cash_flow
     @stores = Store.actives
   end
 

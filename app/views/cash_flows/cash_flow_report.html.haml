@@ -2,114 +2,67 @@
 	Arqueo de Caja
 %hr
 
+%div
+	.container
+		- @stores.where(type: Store::TYPE_MASTER).each do |s|
+			%div
+				.col-md-6
+					%h4.bs-callout.bs-callout-primary.text-center
+						= s.name
+
+					.panel.panel-primary
+						.panel-heading.subtitle-center
+							.panel-title
+								= "Compras : #{sprintf("$%2.0f", @cash_flow.total_purchases(s))}"
+
+						%table.table.panel-body
+							%tr.text-right
+								%th Despachos
+								%td
+									= sprintf("$%2.0f", @cash_flow.total_origin_dispatches(s))
+							%tr.text-right
+								%th Gastos 
+								%td
+									= sprintf("$%2.0f", @cash_flow.total_expenses(s))
+							%tr.text-right
+								%th Total 
+								%td
+									%strong
+										= sprintf("$%2.0f", @cash_flow.total_master(s))
+
+		- @stores.where(type: Store::TYPE_SLAVE).each do |s|
+			%div
+				.col-md-6
+					%h4.bs-callout.bs-callout-primary.text-center
+						= s.name
+
+					.panel.panel-primary
+						.panel-heading.subtitle-center
+							.panel-title
+								= "Ventas : #{sprintf("$%2.0f", @cash_flow.total_sales(s))}"
+
+						%table.table.panel-body
+							%tr.text-right
+								%th Aportes
+								%td
+									= sprintf("$%2.0f", @cash_flow.total_contributions(s))
+							%tr.text-right
+								%th Gastos
+								%td
+									= sprintf("$%2.0f", @cash_flow.total_expenses(s))
+							%tr.text-right
+								%th Total 
+								%td
+									%strong	
+										= sprintf("$%2.0f", @cash_flow.total_slave(s))
+
 .container
 	%div
-		.col-md-offset-1.col-md-3
-			.panel.panel-primary
+		.col-md-offset-4.col-md-4
+			- saldo = @cash_flow.saldo
+			.panel{:class=> ("#{ saldo >= 0 ? "panel-success" : "panel-danger"}")}
 				.panel-heading.subtitle-center
 					.panel-title
-						Total Ingresos
-				.panel-body.subtotal
-					= "#{sprintf("$%2.00f", 100000000)}"
-					-# = "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
-
-		.col-md-offset-1.col-md-3
-			.panel.panel-primary
-				.panel-heading.subtitle-center
-					.panel-title
-						Total Egresos
-				.panel-body.subtotal
-					= "#{sprintf("$%2.00f", 100000000)}"
-					-# = "Total Egresos: #{sprintf("$%2.00f", @cash_flow.total_egress)}"
-		.col-md-offset-1.col-md-3
-			.panel.panel-primary
-				.panel-heading.subtitle-center
-					.panel-title
-						Saldo Caja
-				.panel-body.subtotal
-					= "#{sprintf("$%2.00f", 100000000)}"
-					-# = "Saldo Caja: #{sprintf("$%2.0f", @cash_flow.total_entry - @cash_flow.total_egress)}"
-
-.container
-	- @stores.where(type: Store::TYPE_MASTER).each do |s|
-		%div
-			.col-md-12
-				%hr
-		%div
-			.col-md-2
-				-# .store_title
-				%h4.bs-callout.bs-callout-primary
-					= s.name
-			.col-md-5
-				.panel.panel-success
-					.panel-heading.subtitle-center
-						.panel-title
-							Ingresos (Total: 10000000)
-
-					%table.table.panel-body
-
-						%tr
-							%th Ventas (IVA inc.)
-							%td
-								= sprintf("$%2.0f", @cash_flow.sales.where(store: s).map(&:total).sum)
-						%tr
-							%th Despachos (IVA inc.)
-							%td
-								= sprintf("$%2.0f", @cash_flow.dispatches.where(origin: s).map(&:total).sum)
-
-			.col-md-5
-				.panel.panel-danger
-					.panel-heading.subtitle-center
-						.panel-title
-							Egresos (Total: 100000000)
-					%table.table.panel-body
-						%tr
-							%th Compras (IVA inc.)
-							%td
-								= sprintf("$%2.0f", @cash_flow.purchases.where(store: s).map(&:total).sum)
-						%tr
-							%th Gastos
-							%td
-								= sprintf("$%2.0f", @cash_flow.expenses.where(store: s).map(&:price).sum)
-
-.container
-	- @stores.where(type: Store::TYPE_SLAVE).each do |s|
-		%div
-			.col-md-12
-				%hr
-		%div
-			.col-md-2
-				-# .store_title
-				%h4.bs-callout.bs-callout-primary
-					= s.name
-			.col-md-5
-				.panel.panel-success
-					.panel-heading.subtitle-center
-						.panel-title
-							Ingresos (Total: #{@cash_flow.sales.where(store: s).map(&:total).sum})
-
-					%table.table.panel-body
-						%tr
-							%th Ventas (IVA inc.)
-							%td
-								= sprintf("$%2.0f", @cash_flow.sales.where(store: s).map(&:total).sum)
-
-			.col-md-5
-				.panel.panel-danger
-					.panel-heading.subtitle-center
-						.panel-title
-							Egresos (Total: #{@cash_flow.expenses.where(store: s).map(&:price).sum + @cash_flow.contributions.where(store: s).map(&:price).sum + @cash_flow.dispatches.where(destination: s).map(&:total).sum })
-					%table.table.panel-body
-						%tr
-							%th Gastos
-							%td
-								= sprintf("$%2.0f", @cash_flow.expenses.where(store: s).map(&:price).sum)
-						%tr
-							%th Aportes
-							%td
-								= sprintf("$%2.0f", @cash_flow.contributions.where(store: s).map(&:price).sum)
-						%tr
-							%th Despachos (IVA inc.)
-							%td
-								= sprintf("$%2.0f", @cash_flow.dispatches.where(destination: s).map(&:total).sum)
-							%tr
+						Saldo
+				.panel-body.subtotal.text-center
+					= "#{sprintf("$%2.0f", saldo )}"

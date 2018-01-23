@@ -19,7 +19,7 @@ class Sale
   belongs_to :cash_flow, optional: true
 
   # == Atributos
-  field :total,       type: Integer, default: 0
+  #field :total,       type: Integer, default: 0
   field :status,      type: Integer, default: STATUS_DRAFT
   field :finish_at,   type: DateTime
   field :cancel_at,   type: DateTime

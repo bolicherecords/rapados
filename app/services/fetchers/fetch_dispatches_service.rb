@@ -6,7 +6,7 @@ class Fetchers::FetchDispatchesService < BaseService
     
     dispatches = status ? Dispatch.where(status: status) : Dispatch.where(:status.ne => Dispatch::STATUS_CANCELLED)
     dispatches = dispatches.full_text_search(query) if (query.present? && query != " ")
-    dispatches = dispatches.where(cash_flow: cash_flow )
+    dispatches = dispatches.where(cash_flow: cash_flow ) if cash_flow.present?
     
     dispatches = dispatches.order(created_at: :desc)
   end

@@ -17,6 +17,7 @@
   %th Fecha Inicio
   %th Fecha Término
   %th Número de Orden
+  %th Saldo
   %th Estado
   %th
     - @cash_flows.each do |cash_flow|
@@ -27,6 +28,8 @@
           = cash_flow.end_at_date
         %td
           = cash_flow.order_number
+        %td
+          = cash_flow.saldo
         %td
           = cash_flow.status_name
         %td

@@ -9,7 +9,7 @@ class DispatchDetailsController < ApplicationController
         if product.present?
           stock = Stock.current_stock(product, dispatch.origin)
           if stock.present? && stock.amount >= params[:amount].to_f
-            DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount], total: (product.purchase_price + product.purchase_price*product.get_extra) * params[:amount].to_f)
+            DispatchDetail.create(product: product, dispatch: dispatch, amount: params[:amount], total: (product.sale_price + product.sale_price*product.get_extra) * params[:amount].to_f)
             flash[:success] = 'Producto agregado exitosamente.'
           else
             flash[:danger] = "No hay sufiente stock, actualmente hay: #{stock.present? ? stock.amount : 0}"

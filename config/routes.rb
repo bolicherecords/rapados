@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 
   resources :cash_flows do
     collection do
-      get '/cash_flow_report/:id', to: 'cash_flows#cash_flow_report', as: 'cash_flow_report'
+      get '/cash_flow_report', to: 'cash_flows#cash_flow_report', as: 'cash_flow_report'
     end
   end
 
