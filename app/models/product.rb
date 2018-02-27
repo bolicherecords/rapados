@@ -16,7 +16,7 @@ class Product
   has_many    :sale_details
   has_many    :purchase_details
   has_many    :dispatch_details
-  has_many    :stocks
+  has_many    :stocks, dependent: :destroy
   belongs_to  :user
 
   STATUS_DESACTIVATE = 0
