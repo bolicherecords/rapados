@@ -25,6 +25,10 @@
 								%td
 									= sprintf("$%2.0f", @cash_flow.total_expenses(s))
 							%tr.text-right
+								%th Ventas 
+								%td
+									= sprintf("$%2.0f", @cash_flow.total_sales(s))
+							%tr.text-right
 								%th Total 
 								%td
 									%strong

@@ -77,7 +77,7 @@ class CashFlow
   end
 
   def total_master(store)
-    total_origin_dispatches(store) + total_expenses(store)
+    total_origin_dispatches(store) + total_expenses(store) - total_sales(store)
   end
 
   def total_slave(store)
