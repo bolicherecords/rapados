@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product.stocks.destroy_all
     @product.destroy
     flash[:success] = 'El producto ha sido creado con éxito.'
     redirect_to products_url
