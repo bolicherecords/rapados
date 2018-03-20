@@ -1,5 +1,5 @@
 class SaleDetailsController < ApplicationController
-  before_action :set_sale_detail, only: [:destroy]
+  before_action :set_sale_detail, only: [:edit, :update, :destroy]
 
   def create
     sale = Sale.find(params[:sale])
@@ -33,10 +33,22 @@ class SaleDetailsController < ApplicationController
     redirect_to @sale
   end
 
+  def edit
+  end
+
+  def update
+    @sale_detail.update(sale_detail_params)
+    redirect_to @sale_detail.sale, notice: 'Detalle de venta exitosamente editado.'
+  end
+
   private
 
   def sale_params
     params.require(:sale_details).permit(:barcode, :sale, :amount)
+  end
+
+  def sale_detail_params
+    params.require(:sale_detail).permit(:amount, :total)
   end
 
   def set_sale_detail
