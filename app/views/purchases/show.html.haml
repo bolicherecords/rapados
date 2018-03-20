@@ -85,9 +85,10 @@
 						= number_to_currency(purchase_detail.tax, :unit => "$", :separator => ",", :delimiter => ".")
 					%td
 						= number_to_currency(purchase_detail.total, :unit => "$", :separator => ",", :delimiter => ".")
-					%td
+					%td.align-right
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
+							= link_to 'Editar', edit_purchase_detail_path(purchase_detail), class: 'btn btn-raised btn-primary'
 							= link_to purchase_detail, method: :delete, data: { confirm: '¿Estás seguro que quieres quitar este producto?' }, class: 'btn btn-raised btn-danger' do
 								%i.fa.fa-trash-o
 								Quitar
@@ -102,7 +103,7 @@
 				%p.subtotal
 					= "IVA: #{number_to_currency(@purchase.tax, :unit => "$", :separator => ",", :delimiter => ".")	}"
 				%p.subtotal
-					= "Impuesto: #{number_to_currency(0, :unit => "$", :separator => ",", :delimiter => ".")	}"
+					= "Impuesto: #{number_to_currency(@purchase.extra, :unit => "$", :separator => ",", :delimiter => ".")	}"
 				%p.total
 					%strong
 						= "Total: #{number_to_currency(@purchase.total, :unit => "$", :separator => ",", :delimiter => ".")	}"

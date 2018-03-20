@@ -26,8 +26,6 @@ class Product
   field :name,            type: String, default: ''
   field :description,     type: String, default: ''
   field :unit,            type: String, default: ''
-  field :sale_price,      type: Integer, default: 0
-  field :purchase_price,  type: Float  , default: 0
   field :code,            type: Integer, default: ''
   field :barcode,         type: String, default: ''
   field :status,          type: Integer, default: STATUS_ACTIVATE
@@ -71,8 +69,8 @@ class Product
     "(#{barcode}) #{name}"
   end
 
-  def profit_margin
-    sale_price - (purchase_price + purchase_price * get_extra)
-  end
+  # def profit_margin
+  #   sale_price - (purchase_price + purchase_price * get_extra)
+  # end
 
 end
