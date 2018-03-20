@@ -72,9 +72,9 @@
 					%td
 						= sale_detail.product.description
 					%td
-						= number_to_currency(sale_detail.total/sale_detail.amount, :unit => "$", :separator => ",", :delimiter => ".")
+						= sprintf("$%d",(sale_detail.total/sale_detail.amount).round(0))
 					%td
-						= number_to_currency(sale_detail.total, :unit => "$", :separator => ",", :delimiter => ".")
+						= sprintf("$%d",sale_detail.total.round(0))
 					%td
 						-#TODO refactor con cancancan
 						- if @sale.status == 1
@@ -87,7 +87,7 @@
 			.col-md-8
 				= link_to 'Volver', sales_path , class: "btn btn-link"
 			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
-				= number_to_currency(@sale.total, :unit => "$", :separator => ",", :delimiter => ".")
+				= sprintf("$%d",@sale.total.round(0))
 
 :javascript
 	$('.js-barcode-input').select2({

@@ -67,7 +67,7 @@
 				%th Descripción
 				%th Neto
 				%th Iva
-				%th Total				
+				%th Total
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
 				%tr
@@ -80,11 +80,13 @@
 					%td
 						= purchase_detail.product.description
 					%td
-						= number_to_currency(purchase_detail.price, :unit => "$", :separator => ",", :delimiter => ".")
+						= sprintf("$%d", purchase_detail.price.round(0))
+
 					%td
-						= number_to_currency(purchase_detail.tax, :unit => "$", :separator => ",", :delimiter => ".")
+						= sprintf("$%d", purchase_detail.tax.round(0))
+
 					%td
-						= number_to_currency(purchase_detail.total, :unit => "$", :separator => ",", :delimiter => ".")
+						= sprintf("$%d", purchase_detail.total.round(0))
 					%td.align-right
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
@@ -99,14 +101,14 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-3.well
 				%p.subtotal
-					= "Neto: #{number_to_currency(@purchase.price, :unit => "$", :separator => ",", :delimiter => ".")	}"
+					= "Neto: #{sprintf("$%d",@purchase.price.round(0))}"
 				%p.subtotal
-					= "IVA: #{number_to_currency(@purchase.tax, :unit => "$", :separator => ",", :delimiter => ".")	}"
+					= "IVA: #{sprintf("$%d",@purchase.tax.round(0))}"
 				%p.subtotal
-					= "Impuesto: #{number_to_currency(@purchase.extra, :unit => "$", :separator => ",", :delimiter => ".")	}"
+					= "Impuesto: #{sprintf("$%d",@purchase.extra)}"
 				%p.total
 					%strong
-						= "Total: #{number_to_currency(@purchase.total, :unit => "$", :separator => ",", :delimiter => ".")	}"
+						= "Total: #{sprintf("$%d",@purchase.total.round(0))}"
 
 :javascript
 	$('.js-barcode-input').select2({
