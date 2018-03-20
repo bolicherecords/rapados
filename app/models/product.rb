@@ -27,6 +27,7 @@ class Product
   field :description,     type: String, default: ''
   field :unit,            type: String, default: ''
   field :code,            type: Integer, default: ''
+  field :sale_price,      type: Integer, default: 0
   field :barcode,         type: String, default: ''
   field :status,          type: Integer, default: STATUS_ACTIVATE
   field :extra,           type: Float  , default: 0

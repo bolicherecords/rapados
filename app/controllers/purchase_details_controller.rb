@@ -34,7 +34,7 @@ class PurchaseDetailsController < ApplicationController
 
   def update
     @purchase_detail.update(purchase_detail_params)
-    redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editada.'
+    redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editado.'
   end
 
   private

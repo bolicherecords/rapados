@@ -10,8 +10,8 @@ class SaleDetail
   belongs_to :product
 
   # == Atributos
-  field :amount, type: Float, default: 0
-	field :total, type: Integer, default: 0
+  field :amount,  type: Float, default: 0
+	field :total,   type: Integer, default: 0
 
   # == Validaciones
   #validates_presence_of :total,  message: "Debes ingresar una cantidad."
