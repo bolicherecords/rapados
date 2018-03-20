@@ -13,22 +13,22 @@
 					.panel.panel-primary
 						.panel-heading.subtitle-center
 							.panel-title
-								= "Compras : #{sprintf("$%2.0f", @cash_flow.total_purchases(s))}"
+								= number_to_currency(@cash_flow.total_purchases(s), :unit => "$", :separator => ",", :delimiter => ".")
 
 						%table.table.panel-body
 							%tr.text-right
 								%th Despachos
 								%td
-									= sprintf("$%2.0f", @cash_flow.total_origin_dispatches(s))
+									= number_to_currency(@cash_flow.total_origin_dispatches(s), :unit => "$", :separator => ",", :delimiter => ".")
 							%tr.text-right
-								%th Gastos 
+								%th Gastos
 								%td
-									= sprintf("$%2.0f", @cash_flow.total_expenses(s))
+									= number_to_currency(@cash_flow.total_expenses(s), :unit => "$", :separator => ",", :delimiter => ".")
 							%tr.text-right
-								%th Total 
+								%th Total
 								%td
 									%strong
-										= sprintf("$%2.0f", @cash_flow.total_master(s))
+									= number_to_currency(@cash_flow.total_master(s), :unit => "$", :separator => ",", :delimiter => ".")
 
 		- @stores.where(type: Store::TYPE_SLAVE).each do |s|
 			%div
@@ -39,22 +39,22 @@
 					.panel.panel-primary
 						.panel-heading.subtitle-center
 							.panel-title
-								= "Ventas : #{sprintf("$%2.0f", @cash_flow.total_sales(s))}"
+								= "Ventas : {#{number_to_currency(@cash_flow.total_sales(s), :unit => "$", :separator => ",", :delimiter => ".")}}"
 
 						%table.table.panel-body
 							%tr.text-right
 								%th Aportes
 								%td
-									= sprintf("$%2.0f", @cash_flow.total_contributions(s))
+									= number_to_currency(@cash_flow.total_contributions(s), :unit => "$", :separator => ",", :delimiter => ".")
 							%tr.text-right
 								%th Gastos
 								%td
-									= sprintf("$%2.0f", @cash_flow.total_expenses(s))
+									= number_to_currency(@cash_flow.total_expenses(s), :unit => "$", :separator => ",", :delimiter => ".")
 							%tr.text-right
-								%th Total 
+								%th Total
 								%td
-									%strong	
-										= sprintf("$%2.0f", @cash_flow.total_slave(s))
+									%strong
+										= number_to_currency(@cash_flow.total_slave(s), :unit => "$", :separator => ",", :delimiter => ".")
 
 .container
 	%div
@@ -65,4 +65,4 @@
 					.panel-title
 						Saldo
 				.panel-body.subtotal.text-center
-					= "#{sprintf("$%2.0f", saldo )}"
+					= number_to_currency(saldo , :unit => "$", :separator => ",", :delimiter => ".")
