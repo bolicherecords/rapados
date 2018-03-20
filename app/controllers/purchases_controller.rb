@@ -52,7 +52,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchase).permit(:name, :phone, :email, :provider_id, :store_id, :document_number, :document_number_expiration_at, :extra)
+    params.require(:purchase).permit(:provider_id, :store_id, :document_number, :document_number_expiration_at)
   end
 
   def set_purchase

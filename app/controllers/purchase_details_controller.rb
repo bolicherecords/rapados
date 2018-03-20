@@ -1,5 +1,5 @@
 class PurchaseDetailsController < ApplicationController
-  before_action :set_purchase_detail, only: [:destroy]
+  before_action :set_purchase_detail, only: [:edit, :update, :destroy]
 
   def create
     purchase = Purchase.find(params[:purchase])
@@ -29,10 +29,22 @@ class PurchaseDetailsController < ApplicationController
     redirect_to @purchase
   end
 
+  def edit
+  end
+
+  def update
+    @purchase_detail.update(purchase_detail_params)
+    redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editada.'
+  end
+
   private
 
   def purchase_params
     params.require(:purchase_details).permit(:barcode, :purchase, :amount, :price, :total, :tax)
+  end
+
+  def purchase_detail_params
+    params.require(:purchase_detail).permit(:amount, :price, :total, :tax)
   end
 
   def set_purchase_detail

@@ -67,8 +67,14 @@ class Purchase
     purchase_details.map(&:tax).sum
   end
 
+  def extra
+    purchase_details_ids = purchase_details.reject{|pd| pd.product.extra.blank?}
+    purchase_details = PurchaseDetail.where(:id.in => purchase_details_ids)
+    total = purchase_details.map{|pd| pd.total * pd.product.extra/100}.sum
+  end
+
   def total
-    purchase_details.map(&:total).sum
+    purchase_details.map(&:total).sum + extra
   end
 
   def set_cash_flow

@@ -21,8 +21,6 @@
 %table.table
   %th Nombre
   %th Descripción
-  %th Precio Compra/Unidad
-  %th Precio Venta/Unidad
   %th Impuesto
   %th Margen de Ganancia
   %th Código de Barras
@@ -34,13 +32,9 @@
         %td
           = product.description
         %td
-          = "#{product.purchase_price} / #{product.unit}"
-        %td
-          = "#{product.sale_price} / #{product.unit}"
-        %td
           = "#{product.extra} #{'%'}"
         %td
-          = "#{product.profit_margin} / #{product.unit}"
+          = "0 / #{product.unit}"
         %td
           = product.barcode
 

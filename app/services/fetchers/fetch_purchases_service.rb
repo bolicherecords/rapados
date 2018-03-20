@@ -8,7 +8,7 @@ class Fetchers::FetchPurchasesService < BaseService
     purchases = purchases.where(cash_flow: cash_flow) if cash_flow.present?
     purchases = purchases.full_text_search(query) if (query.present? && query != " ")
 
-    purchases = purchases.sort({document_number_expiration_at: 1})
+    purchases = purchases.sort({created_at: -1})
   end
 
   def self.decorated(params = {})
