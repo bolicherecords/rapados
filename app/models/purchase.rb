@@ -82,4 +82,7 @@ class Purchase
     self.update(cash_flow: cash_flow)
   end
 
+  def valid_values?
+    price.present? || total.present?
+  end
 end
