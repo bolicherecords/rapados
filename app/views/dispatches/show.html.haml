@@ -65,9 +65,9 @@
 					%td
 						= dispatch_detail.product.description
 					%td
-						= sprintf("$%2.00f", dispatch_detail.total/dispatch_detail.amount)
+						= number_to_currency(dispatch_detail.total/dispatch_detail.amount, :unit => "$", :separator => ",", :delimiter => ".")
 					%td
-						= sprintf("$%2.00f", dispatch_detail.total)
+						= number_to_currency(dispatch_detail.total, :unit => "$", :separator => ",", :delimiter => ".")
 					%td
 						-#TODO refactor con cancancan
 						- if @dispatch.status == 1
@@ -80,7 +80,7 @@
 			.col-md-8
 				= link_to 'Volver', dispatches_path , class: "btn btn-link"
 			.col-md-4.well{style: 'text-align:center;font-size: 35px;'}
-				= "Total: #{sprintf("$%2.0f", @dispatch.total)}"
+				= number_to_currency(@dispatch.total, :unit => "$", :separator => ",", :delimiter => ".")
 
 :javascript
 	$('.js-barcode-input').select2({
