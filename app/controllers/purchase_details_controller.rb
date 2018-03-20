@@ -3,22 +3,26 @@ class PurchaseDetailsController < ApplicationController
 
   def create
     purchase = Purchase.find(params[:purchase])
-    if params[:barcode].present? && params[:amount].present?
-      if purchase.draft?
-        product = Product.where(barcode: params[:barcode]).first
-        if product.present?
-          purchase_detail = PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], price: params[:price], tax: params[:tax], total: params[:total])
-          purchase_detail.set_values
+    if params[:price].present? || params[:total].present?
+      if params[:barcode].present? && params[:amount].present?
+        if purchase.draft?
+          product = Product.where(barcode: params[:barcode]).first
+          if product.present?
+            purchase_detail = PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], price: params[:price], tax: params[:tax], total: params[:total])
+            purchase_detail.set_values
 
-          flash[:success] = 'Producto agregado exitosamente.'
+            flash[:success] = 'Producto agregado exitosamente.'
+          else
+            flash[:danger] = 'Código de barra no registrado'
+          end
         else
-          flash[:danger] = 'Código de barra no registrado'
+          flash[:danger] = "Imposible agregar producto. Compra #{PurchaseDecorator.decorate(purchase).status_name}."
         end
       else
-        flash[:danger] = "Imposible agregar producto. Compra #{PurchaseDecorator.decorate(purchase).status_name}."
+        flash[:danger] = 'Debes ingresar cantidad y código de barra'
       end
     else
-      flash[:danger] = 'Debes ingresar cantidad y código de barra'
+      flash[:danger] = 'Debes ingresar como mínimo neto o total para calcular resto de valores.'
     end
     redirect_to purchase
   end
@@ -34,7 +38,7 @@ class PurchaseDetailsController < ApplicationController
 
   def update
     @purchase_detail.update(purchase_detail_params)
-    redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editada.'
+    redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editado.'
   end
 
   private
