@@ -59,20 +59,16 @@ class Purchase
     status == STATUS_DRAFT
   end
 
-  def total
-    purchase_details.map(&:total).sum
+  def price
+    purchase_details.map(&:price).sum
   end
 
   def tax
     purchase_details.map(&:tax).sum
   end
 
-  def extra
-    purchase_details.map(&:extra).sum
-  end
-
-  def total_with_tax
-    purchase_details.map(&:total_with_tax).sum
+  def total
+    purchase_details.map(&:total).sum
   end
 
   def set_cash_flow

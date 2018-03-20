@@ -7,7 +7,9 @@ class PurchaseDetailsController < ApplicationController
       if purchase.draft?
         product = Product.where(barcode: params[:barcode]).first
         if product.present?
-          PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], total: product.purchase_price * params[:amount].to_f)
+          purchase_detail = PurchaseDetail.create(product: product, purchase: purchase, amount: params[:amount], price: params[:price], tax: params[:tax], total: params[:total])
+          purchase_detail.set_values
+
           flash[:success] = 'Producto agregado exitosamente.'
         else
           flash[:danger] = 'Código de barra no registrado'
@@ -30,7 +32,7 @@ class PurchaseDetailsController < ApplicationController
   private
 
   def purchase_params
-    params.require(:purchase_details).permit(:barcode, :purchase, :amount)
+    params.require(:purchase_details).permit(:barcode, :purchase, :amount, :price, :total, :tax)
   end
 
   def set_purchase_detail

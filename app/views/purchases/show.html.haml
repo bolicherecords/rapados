@@ -29,26 +29,34 @@
 				%td
 					= @purchase.status_name
 
-
 	.row
-		%h3
-			Agregar Productos
-		%br
-		= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
-			-#TODO refactor con cancancan
-			- if @purchase.status == 1
-				.col-md-2
-					= text_field_tag :amount, params[:amount], placeholder: "Cantidad", autofocus: true, class: "form-control"
-				.col-md-4
-					= select_tag :barcode, options_from_collection_for_select(@products, "barcode", "full_name"), {include_blank: true, class: 'form-control js-barcode-input'}
-			.col-md-4
-				-#TODO refactor con cancancan
-				- if @purchase.status == 1
-					= submit_tag "Agregar", class: "btn btn-success js-add-product"
-					= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
-				- elsif @purchase.status == 2
-					= link_to 'Imprimir', "#", class: 'btn btn-raised btn-info'
-					= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+		.container
+			%h3
+				Agregar Productos
+			%br
+			.row
+				= form_tag(purchase_details_path(purchase: @purchase), :method => "post") do
+					-#TODO refactor con cancancan
+					- if @purchase.status == Purchase::STATUS_DRAFT
+						.col-md-1
+							= text_field_tag :amount, params[:amount], placeholder: "Cant.", autofocus: true, class: "form-control"
+						.col-md-2
+							= text_field_tag :price, params[:price], placeholder: "Precio", autofocus: true, class: "form-control"
+						.col-md-2
+							= text_field_tag :tax, params[:tax], placeholder: "Iva", autofocus: true, class: "form-control"
+						.col-md-2
+							= text_field_tag :total, params[:total], placeholder: "Total", autofocus: true, class: "form-control"
+						.col-md-3
+							= select_tag :barcode, options_from_collection_for_select(@products, "barcode", "full_name"), {include_blank: true, class: 'form-control js-barcode-input'}
+					.col-md-2.pull-right.pr-0
+						-#TODO refactor con cancancan
+						- if @purchase.status == 1
+							= submit_tag "Agregar", class: "btn btn-success js-add-product"
+							= link_to 'Finalizar', edit_purchase_path(@purchase, origin: "FINISHED"), class: 'btn btn-raised btn-danger'
+						- elsif @purchase.status == 2
+							= link_to 'Imprimir', "#", class: 'btn btn-raised btn-info'
+							= link_to 'Anular', edit_purchase_path(@purchase, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
+
 	%div
 		%br
 		%table.table
@@ -57,11 +65,9 @@
 				%th Unidad
 				%th Nombre
 				%th Descripción
-				%th Precio Compra
 				%th Neto
 				%th Iva
-				%th Impuesto
-				%th Total
+				%th Total				
 				%th
 			- @purchase.purchase_details.each do |purchase_detail|
 				%tr
@@ -74,15 +80,11 @@
 					%td
 						= purchase_detail.product.description
 					%td
-						= sprintf("$%2.2f", purchase_detail.purchase_price)
-					%td
-						= sprintf("$%2.2f", purchase_detail.total)
+						= sprintf("$%2.2f", purchase_detail.price)
 					%td
 						= sprintf("$%2.2f", purchase_detail.tax)
 					%td
-						= sprintf("$%2.2f", purchase_detail.extra)
-					%td
-						= sprintf("$%2.2f", purchase_detail.total_with_tax)
+						= sprintf("$%2.2f", purchase_detail.total)
 					%td
 						-#TODO refactor con cancancan
 						- if @purchase.status == 1
@@ -96,14 +98,14 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-3.well
 				%p.subtotal
-					= "Neto: #{sprintf("$%2.2f", @purchase.total)}"
+					= "Neto: #{sprintf("$%2.2f", @purchase.price)}"
 				%p.subtotal
 					= "IVA: #{sprintf("$%2.2f", @purchase.tax)}"
 				%p.subtotal
-					= "Impuesto: #{sprintf("$%2.2f", @purchase.extra)}"
+					= "Impuesto: #{sprintf("$%2.2f", 0)}"
 				%p.total
 					%strong
-						= "Total: #{sprintf("$%2.2f", @purchase.total_with_tax)}"
+						= "Total: #{sprintf("$%2.2f", @purchase.total)}"
 				
 
 :javascript
