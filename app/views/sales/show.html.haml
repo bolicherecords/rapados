@@ -72,9 +72,9 @@
 					%td
 						= sale_detail.product.description
 					%td
-						= sprintf("$%d",(sale_detail.total/sale_detail.amount).round(0))
+						= number_to_currency((sale_detail.total/sale_detail.amount).round(0), :unit => "$", :delimiter => ".", precision: 0)
 					%td
-						= sprintf("$%d",sale_detail.total.round(0))
+						= number_to_currency(sale_detail.total.round(0), :unit => "$", :delimiter => ".", precision: 0)
 					%td
 						-#TODO refactor con cancancan
 						- if @sale.status == 1

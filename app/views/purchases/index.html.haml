@@ -43,7 +43,7 @@
         %td
           = purchase.created_at_datetime
         %td
-          = 0#purchase.total
+          = number_to_currency(purchase.total, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = purchase.status_name
         %td

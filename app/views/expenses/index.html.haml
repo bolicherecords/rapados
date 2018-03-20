@@ -30,7 +30,7 @@
         %td
           = expense.name
         %td
-          = expense.price
+          = number_to_currency(expense.price, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = link_to 'Anular', edit_expense_path(expense, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_expense_path(expense), class: 'btn btn-raised btn-primary'
