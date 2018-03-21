@@ -101,14 +101,14 @@
 				= link_to 'Volver', purchases_path , class: "btn btn-link"
 			.col-md-3.well
 				%p.subtotal
-					number_to_currency(@purchase.price.round(0), :unit => "$", :delimiter => ".", precision: 0)
+					= "Neto: #{number_to_currency(@purchase.price.round(0), :unit => "$", :delimiter => ".", precision: 0)}"
 				%p.subtotal
-					number_to_currency(@purchase.tax.round(0), :unit => "$", :delimiter => ".", precision: 0)
+					= "Iva: #{number_to_currency(@purchase.tax.round(0), :unit => "$", :delimiter => ".", precision: 0)}"
 				%p.subtotal
-					number_to_currency(@purchase.extra, :unit => "$", :delimiter => ".", precision: 0)
+					= "Impuesto: #{number_to_currency(@purchase.extra, :unit => "$", :delimiter => ".", precision: 0)}"
 				%p.total
 					%strong
-						number_to_currency(@purchase.total.round(0), :unit => "$", :delimiter => ".", precision: 0)
+						= "Total: #{number_to_currency(@purchase.total.round(0), :unit => "$", :delimiter => ".", precision: 0)}"
 
 :javascript
 	$('.js-barcode-input').select2({
