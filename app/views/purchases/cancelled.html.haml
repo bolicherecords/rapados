@@ -43,7 +43,7 @@
         %td
           = purchase.created_at_datetime
         %td
-          = purchase.total
+          = number_to_currency(purchase.total, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = link_to 'Ver', purchase_path(purchase), class: 'btn btn-raised btn-success'
           = link_to purchase, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta compra?' }, class: 'btn btn-raised btn-danger' do

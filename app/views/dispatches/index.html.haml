@@ -34,7 +34,7 @@
         %td
           = dispatch.created_at_datetime
         %td
-          = dispatch.total
+          = number_to_currency(dispatch.total, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = dispatch.status_name
         %td

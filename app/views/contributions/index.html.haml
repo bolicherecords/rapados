@@ -30,7 +30,7 @@
         %td
           = contribution.name
         %td
-          = contribution.price
+          = number_to_currency(contribution.price, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = link_to 'Anular', edit_contribution_path(contribution, origin: "CANCELLED"), class: 'btn btn-raised btn-warning'
           = link_to 'Editar', edit_contribution_path(contribution), class: 'btn btn-raised btn-primary'

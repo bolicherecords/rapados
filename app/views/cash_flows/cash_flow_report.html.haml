@@ -4,65 +4,133 @@
 
 %div
 	.container
-		- @stores.where(type: Store::TYPE_MASTER).each do |s|
-			%div
-				.col-md-6
-					%h4.bs-callout.bs-callout-primary.text-center
-						= s.name
+		%div
+			.col-md-6
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
 
-					.panel.panel-primary
-						.panel-heading.subtitle-center
-							.panel-title
-								= sprintf("$%d",@cash_flow.total_purchases(s).round(0))
-						%table.table.panel-body
-							%tr.text-right
-								%th Despachos
-								%td
-									= sprintf("$%d",@cash_flow.total_origin_dispatches(s).round(0))
-							%tr.text-right
-								%th Gastos
-								%td
-									= sprintf("$%d",@cash_flow.total_expenses(s).round(0))
-							%tr.text-right
-								%th Total
-								%td
-									%strong
-										= sprintf("$%d",@cash_flow.total_master(s).round(0))
+					%table.table.panel-body
+						%tr.text-right
+							%th Compras
+							%td
+								= number_to_currency(@cash_flow.total_purchases(@santiago).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Gastos Santiago
+							%td
+								= number_to_currency(@cash_flow.total_expenses(@santiago).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Gastos Isla
+							%td
+								= number_to_currency(@cash_flow.total_expenses(@isla).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Total Gastos
+							%td
+								%strong
+									- total_expenses = @cash_flow.total_purchases(@santiago).round(0) + @cash_flow.total_expenses(@santiago).round(0)+ @cash_flow.total_expenses(@isla).round(0)
+									= number_to_currency(total_expenses, :unit => "$", :delimiter => ".", precision: 0)
 
-		- @stores.where(type: Store::TYPE_SLAVE).each do |s|
-			%div
-				.col-md-6
-					%h4.bs-callout.bs-callout-primary.text-center
-						= s.name
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
 
-					.panel.panel-primary
-						.panel-heading.subtitle-center
-							.panel-title
-								@cash_flow.total_master(s).round(0)
-								= "Ventas : #{sprintf("$%d",@cash_flow.total_sales(s).round(0))}"
+					%table.table.panel-body
+						%tr.text-right
+							%th Ventas Santiago
+							%td
+								= number_to_currency(@cash_flow.total_sales(@isla).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Ventas Isla
+							%td
+								= number_to_currency(@cash_flow.total_sales(@isla).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Total Ventas
+							%td
+								%strong
+									- total_sales = @cash_flow.total_sales(@santiago).round(0) + @cash_flow.total_sales(@isla).round(0)
+									= number_to_currency(total_sales, :unit => "$", :delimiter => ".", precision: 0)
 
-						%table.table.panel-body
-							%tr.text-right
-								%th Aportes
-								%td
-									= sprintf("$%d",@cash_flow.total_contributions(s).round(0))
-							%tr.text-right
-								%th Gastos
-								%td
-									= sprintf("$%d",@cash_flow.total_expenses(s).round(0))
-							%tr.text-right
-								%th Total
-								%td
-									%strong
-										= sprintf("$%d",@cash_flow.total_slave(s).round(0))
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
 
-.container
-	%div
-		.col-md-offset-4.col-md-4
-			- saldo = @cash_flow.saldo
-			.panel{:class=> ("#{ saldo >= 0 ? "panel-success" : "panel-danger"}")}
-				.panel-heading.subtitle-center
-					.panel-title
-						Saldo
-				.panel-body.subtotal.text-center
-					= sprintf("$%d",saldo.round(0))
+					%table.table.panel-body
+						%tr.text-right
+							%th Ganancias
+							%td
+								%strong
+									- total_earnings = total_sales - total_expenses
+									= number_to_currency(total_earnings, :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Distribución
+							%td
+								%strong
+									= number_to_currency(total_earnings/2, :unit => "$", :delimiter => ".", precision: 0)
+
+			.col-md-6
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
+
+					%table.table.panel-body
+						%tr.text-right
+							%th Despachos Santiago-Isla
+							%td
+								%strong
+									= number_to_currency(@cash_flow.total_origin_dispatches(@santiago), :unit => "$", :delimiter => ".", precision: 0)
+
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
+
+					%table.table.panel-body
+						%tr.text-right
+							%th Aportes Santiago
+							%td
+								= number_to_currency(@cash_flow.total_contributions(@santiago).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Aportes Isla
+							%td
+								= number_to_currency(@cash_flow.total_contributions(@isla).round(0), :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Total Aportes
+							%td
+								%strong
+									- total_contributions = @cash_flow.total_contributions(@santiago).round(0) + @cash_flow.total_contributions(@isla).round(0)
+									= number_to_currency(total_contributions, :unit => "$", :delimiter => ".", precision: 0)
+
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
+
+					%table.table.panel-body
+						%tr.text-right
+							%th Caja Santiago
+							%td
+								%strong
+									- santiago_cash_flow = @cash_flow.total_contributions(@santiago).round(0) - total_earnings/2
+									= number_to_currency(santiago_cash_flow, :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Caja Isla
+							%td
+								%strong
+									- isla_cash_flow = @cash_flow.total_contributions(@isla).round(0) - total_earnings/2
+									= number_to_currency(isla_cash_flow, :unit => "$", :delimiter => ".", precision: 0)
+
+				.panel.panel-primary
+					.panel-heading.subtitle-center
+						.panel-title
+
+					%table.table.panel-body
+						%tr.text-right
+							%th Saldo Santiago
+							%td
+								%strong
+									- santiago_balance = @cash_flow.total_sales(@santiago).round(0) - santiago_cash_flow
+									= number_to_currency(santiago_balance, :unit => "$", :delimiter => ".", precision: 0)
+						%tr.text-right
+							%th Saldo Isla
+							%td
+								%strong
+									- isla_balance = @cash_flow.total_sales(@isla).round(0) - isla_cash_flow
+									= number_to_currency(isla_balance, :unit => "$", :delimiter => ".", precision: 0)

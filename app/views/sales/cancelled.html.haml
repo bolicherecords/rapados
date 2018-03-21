@@ -40,7 +40,7 @@
         %td
           = sale.created_at_datetime
         %td
-          = sale.total
+          = number_to_currency(purchase.total, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = link_to 'Ver', sale_path(sale), class: 'btn btn-raised btn-success'
           = link_to sale, method: :delete, data: { confirm: '¿Estás seguro que quieres eliminar esta venta?' }, class: 'btn btn-raised btn-danger' do

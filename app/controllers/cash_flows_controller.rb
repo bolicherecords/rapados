@@ -40,6 +40,8 @@ class CashFlowsController < ApplicationController
   end
 
   def cash_flow_report
+    @santiago = Store.find_by(type: Store::TYPE_MASTER)
+    @isla = Store.find_by(type: Store::TYPE_SLAVE)
     @cash_flow = params[:cash_flow].present? ? CashFlow.find(params[:cash_flow]) : CashFlow.current_cash_flow
     @stores = Store.actives
   end

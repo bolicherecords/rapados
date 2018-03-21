@@ -40,7 +40,7 @@
         %td
           = sale.created_at_datetime
         %td
-          = sale.total
+          = number_to_currency(sale.total, :unit => "$", :delimiter => ".", precision: 0)
         %td
           = sale.status_name
         %td
