@@ -1,5 +1,5 @@
 class DispatchDetailsController < ApplicationController
-  before_action :set_dispatch_detail, only: [:destroy]
+  before_action :set_dispatch_detail, only: [:edit, :update, :destroy]
 
   def create
     dispatch = Dispatch.find(params[:dispatch])
@@ -32,10 +32,22 @@ class DispatchDetailsController < ApplicationController
     redirect_to @dispatch
   end
 
+  def edit
+  end
+
+  def update
+    @dispatch_detail.update(dispatch_detail_params)
+    redirect_to @dispatch_detail.dispatch, notice: 'Detalle de despacho exitosamente editado.'
+  end
+
   private
 
   def dispatch_params
     params.require(:dispatch_details).permit(:barcode, :dispatch, :amount)
+  end
+
+  def dispatch_detail_params
+    params.require(:dispatch_detail).permit(:amount, :total)
   end
 
   def set_dispatch_detail
