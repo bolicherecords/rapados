@@ -68,6 +68,7 @@
             %td
               = stock.amount
             %td
-              = stock.created_at
+              -#TODO refactor decorator
+              = stock.created_at.strftime('%d/%m/%Y')
             %td
-              = stock.updated_at
+              = stock.updated_at.strftime('%d/%m/%Y')
