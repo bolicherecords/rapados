@@ -46,8 +46,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    flash[:success] = 'El producto ha sido creado con éxito.'
+    unless @product.dispatch_details.any? || @product.purchase_details.any? || @product.dispatch_details.any?
+      @product.destroy
+      flash[:success] = "El producto #{@product.name} ha sido eliminado con éxito."
+    else
+      flash[:danger] = "El producto #{@product.name} no se pude borrar, ya que ha sido útilizado una transacción."
+    end
     redirect_to products_url
   end
 
