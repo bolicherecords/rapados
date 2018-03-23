@@ -38,7 +38,7 @@
 						%tr.text-right
 							%th Ventas Santiago
 							%td
-								= number_to_currency(@cash_flow.total_sales(@isla).round(0), :unit => "$", :delimiter => ".", precision: 0)
+								= number_to_currency(@cash_flow.total_sales(@santiago).round(0), :unit => "$", :delimiter => ".", precision: 0)
 						%tr.text-right
 							%th Ventas Isla
 							%td
