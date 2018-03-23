@@ -65,7 +65,8 @@
 							%th Distribución
 							%td
 								%strong
-									= number_to_currency(total_earnings/2, :unit => "$", :delimiter => ".", precision: 0)
+									- total_distribution = total_earnings/2
+									= number_to_currency(total_distribution, :unit => "$", :delimiter => ".", precision: 0)
 
 			.col-md-6
 				.panel.panel-primary
@@ -108,13 +109,13 @@
 							%th Caja Santiago
 							%td
 								%strong
-									- santiago_cash_flow = @cash_flow.total_contributions(@santiago).round(0) - total_earnings/2
+									- santiago_cash_flow = @cash_flow.total_contributions(@santiago).round(0) + total_distribution
 									= number_to_currency(santiago_cash_flow, :unit => "$", :delimiter => ".", precision: 0)
 						%tr.text-right
 							%th Caja Isla
 							%td
 								%strong
-									- isla_cash_flow = @cash_flow.total_contributions(@isla).round(0) - total_earnings/2
+									- isla_cash_flow = @cash_flow.total_contributions(@isla).round(0) + total_distribution
 									= number_to_currency(isla_cash_flow, :unit => "$", :delimiter => ".", precision: 0)
 
 				.panel.panel-primary
