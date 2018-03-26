@@ -21,6 +21,7 @@
 %table.table
   %th Nombre
   %th Descripción
+  %th Precio Venta
   %th Impuesto
   %th Margen de Ganancia
   %th Código de Barras
@@ -31,6 +32,8 @@
           = link_to product.name, product
         %td
           = product.description
+        %td
+          = number_to_currency(product.sale_price.round(0), :unit => "$", :delimiter => ".", precision: 0)
         %td
           = "#{product.extra} #{'%'}"
         %td

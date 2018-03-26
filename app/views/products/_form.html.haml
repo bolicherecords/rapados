@@ -7,11 +7,14 @@
 			= f.label "Descripción"
 			= f.text_field :description, class: "form-control", autofocus: true
 		%div{ class: 'form-group label-floating'}
-			= f.label "Unidad"
-			= f.select :unit, unit_list, {:selected => unit_list.first[0]}, {:class =>'form-control '}
+			= f.label "Precio Venta"
+			= f.text_field :sale_price, class: "form-control", autofocus: true
 		%div{ class: 'form-group label-floating'}
 			= f.label "Impuesto"
 			= f.text_field :extra, class: "form-control", autofocus: true
+		%div{ class: 'form-group label-floating'}
+			= f.label "Unidad"
+			= f.select :unit, unit_list, {:selected => unit_list.first[0]}, {:class =>'form-control '}
 
 		%div
 			%br

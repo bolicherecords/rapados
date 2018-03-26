@@ -70,7 +70,7 @@ class Purchase
   def extra
     purchase_details_ids = purchase_details.reject{|pd| pd.product.nil?}.reject{|pd| pd.product.extra.blank?}
     purchase_details = PurchaseDetail.where(:id.in => purchase_details_ids)
-    total = purchase_details.map{|pd| pd.total * pd.product.extra/100}.sum
+    total = purchase_details.map{|pd| pd.price * pd.product.extra/100}.sum
   end
 
   def total

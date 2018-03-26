@@ -32,16 +32,21 @@
       %tr
         %td
           %strong
-            Impuesto
-        %td
-          = "#{@product.extra} #{'%'}"
-      %tr
-        %td
-          %strong
             Descripción:
         %td
           = @product.description
-
+      %tr
+        %td
+          %strong
+            Precio Venta
+        %td
+          = number_to_currency(@product.sale_price.round(0), :unit => "$", :delimiter => ".", precision: 0)
+      %tr
+        %td
+          %strong
+            Impuesto
+        %td
+          = "#{@product.extra} #{'%'}"
     -# - @barcode_png = barcode_output(@product)
     -# = wicked_pdf_image_tag_for_public(@barcode_png)
 

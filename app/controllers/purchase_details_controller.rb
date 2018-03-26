@@ -38,6 +38,8 @@ class PurchaseDetailsController < ApplicationController
 
   def update
     @purchase_detail.update(purchase_detail_params)
+    @purchase_detail.update(total:nil, tax:nil)
+    @purchase_detail.set_values
     redirect_to @purchase_detail.purchase, notice: 'Detalle de compra exitosamente editado.'
   end
 
